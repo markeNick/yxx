@@ -1,6 +1,6 @@
 package com.yxx.pojo;
 
-public class collection {
+public class Collection {
     private Integer collection_id;
     private Integer goods_id;
     private String openID;

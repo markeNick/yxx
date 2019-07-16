@@ -2,7 +2,7 @@ package com.yxx.pojo;
 
 import java.util.Date;
 
-public class orders {
+public class Orders {
     private Integer orders_id;
     private Integer goods_id;
     private Integer status;

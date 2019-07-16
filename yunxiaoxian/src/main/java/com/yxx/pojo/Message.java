@@ -1,6 +1,6 @@
 package com.yxx.pojo;
 
-public class message {
+public class Message {
     private Integer message_id;
     private Integer goods_id;
     private String message;

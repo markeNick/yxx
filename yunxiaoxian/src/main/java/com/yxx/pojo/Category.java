@@ -1,6 +1,6 @@
 package com.yxx.pojo;
 
-public class category {
+public class Category {
     private Integer category_id;
     private String category;
     private String class_name;
