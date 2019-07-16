@@ -20,7 +20,6 @@ public class AdminInfoController {
         List<AdminInfo> adminInfos = adminInfoMapper.selectAllAdmin();
         System.out.println(adminInfos.toString());
         model.addAttribute("adminInfos",adminInfos);
-        int a=1;
         return "showAll";
     }
 }
