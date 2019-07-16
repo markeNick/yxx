@@ -20,7 +20,7 @@
     </bean>
 
     <!-- 扫描controller包开启注解 -->
-    <context:component-scan base-package="com.myee.controller"></context:component-scan>
+    <context:component-scan base-package="com.yxx.controller"></context:component-scan>
     <!-- 拦截器 -->
     <!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/user/**"/>
         <bean class="com.myee.intercepter.Intercepter1"></bean> </mvc:interceptor>
@@ -33,8 +33,8 @@
     <bean id="conversion" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
-                <bean class="com.myee.conversiom.DateConversion"></bean>
-                <bean class="com.myee.conversiom.IntegerToString"></bean>
+                <bean class="com.yxx.conversiom.DateConversion"></bean>
+                <bean class="com.yxx.conversiom.IntegerToString"></bean>
             </list>
         </property>
     </bean>
