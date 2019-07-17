@@ -8,10 +8,14 @@ public class Goods {
     private String goods_name;
     private String goods_describe;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private float goods_price;
 =======
     private BigDecimal goods_price;
 >>>>>>> 0c493051aa47780d3eaad1bc939a2098d7eab286
+=======
+    private BigDecimal goods_price;
+>>>>>>> linxianchang
     private String goods_image;
     private Integer category_id;
     private Integer status;
@@ -20,11 +24,11 @@ public class Goods {
     private String openID;
 
 
-    public float getGoods_price() {
+    public BigDecimal getGoods_price() {
         return goods_price;
     }
 
-    public void setGoods_price(float goods_price) {
+    public void setGoods_price(BigDecimal goods_price) {
         this.goods_price = goods_price;
     }
 
