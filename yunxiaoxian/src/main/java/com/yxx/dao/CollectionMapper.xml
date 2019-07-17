@@ -5,4 +5,10 @@
 
 <mapper namespace="com.yxx.dao.CollectionMapper">
 
+    <!--collection表的实体映射-->
+    <resultMap id="CollectionResultMap" type="com.yxx.pojo.Collection">
+        <result column="collection_id" property="collection_id" />
+        <result column="goods_id" property="goods_id" />
+        <result column="openID" property="openID" />
+    </resultMap>
 </mapper>
