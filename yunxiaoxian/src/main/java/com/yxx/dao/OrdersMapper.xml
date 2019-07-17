@@ -4,5 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yxx.dao.OrdersMapper">
-
+    <resultMap id="OrdersResultMap" type="com.yxx.pojo.Orders">
+        <result column="orders_id" property="orders_id" />
+        <result column="goods_id" property="goods_id" />
+        <result column="status" property="status" />
+        <result column="buyer" property="buyer" />
+        <result column="seller" property="seller" />
+        <result column="create_time" property="create_time" />
+    </resultMap>
 </mapper>

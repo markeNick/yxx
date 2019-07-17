@@ -1,4 +1,4 @@
 package com.yxx.dao;
 
-public class UserMapper {
+public interface UserMapper {
 }
