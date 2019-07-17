@@ -1,12 +1,14 @@
 package com.yxx.pojo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Goods {
     private Integer goods_id;
     private String goods_name;
     private String goods_describe;
-    private String[] goods_image;
+    private BigDecimal goods_price;
+    private String goods_image;
     private Integer category_id;
     private Integer status;
     private Date create_time;
@@ -37,11 +39,19 @@ public class Goods {
         this.goods_describe = goods_describe;
     }
 
-    public String[] getGoods_image() {
+    public BigDecimal getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(BigDecimal goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getGoods_image() {
         return goods_image;
     }
 
-    public void setGoods_image(String[] goods_image) {
+    public void setGoods_image(String goods_image) {
         this.goods_image = goods_image;
     }
 
