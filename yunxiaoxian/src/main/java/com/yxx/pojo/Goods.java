@@ -14,7 +14,7 @@ public class Goods {
     private Date create_time;
     private Date sale_time;
     private String openID;
-    
+
     public Integer getGoods_id() {
         return goods_id;
     }
