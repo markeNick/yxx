@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <!-- 别名 -->
 <configuration>
-	<settings>
+<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 

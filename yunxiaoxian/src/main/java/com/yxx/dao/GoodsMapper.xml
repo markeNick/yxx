@@ -9,6 +9,7 @@
         <result column="goods_id" property="goods_id" />
         <result column="goods_name" property="goods_name" />
         <result column="goods_describe" property="goods_describe" />
+        <result column="goods_price" property="goods_price" />
         <result column="goods_image" property="goods_image" />
         <result column="category_id" property="category_id" />
         <result column="status" property="status" />

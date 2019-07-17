@@ -6,12 +6,30 @@ public class Goods {
     private Integer goods_id;
     private String goods_name;
     private String goods_describe;
-    private String[] goods_image;
+    private float goods_price;
+    private String goods_image;
     private Integer category_id;
     private Integer status;
     private Date create_time;
     private Date sale_time;
     private String openID;
+
+
+    public float getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(float goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getGoods_image() {
+        return goods_image;
+    }
+
+    public void setGoods_image(String goods_image) {
+        this.goods_image = goods_image;
+    }
 
     public Integer getGoods_id() {
         return goods_id;
@@ -35,14 +53,6 @@ public class Goods {
 
     public void setGoods_describe(String goods_describe) {
         this.goods_describe = goods_describe;
-    }
-
-    public String[] getGoods_image() {
-        return goods_image;
-    }
-
-    public void setGoods_image(String[] goods_image) {
-        this.goods_image = goods_image;
     }
 
     public Integer getCategory_id() {
