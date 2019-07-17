@@ -9,6 +9,7 @@ public class Goods {
     private String goods_describe;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private float goods_price;
 =======
     private BigDecimal goods_price;
@@ -16,12 +17,16 @@ public class Goods {
 =======
     private BigDecimal goods_price;
 >>>>>>> linxianchang
+=======
+    private BigDecimal goods_price;
+>>>>>>> c7e6c0c5c766e5433270a073661edf386a9d45b5
     private String goods_image;
     private Integer category_id;
     private Integer status;
     private Date create_time;
     private Date sale_time;
     private String openID;
+<<<<<<< HEAD
 
 
     public BigDecimal getGoods_price() {
@@ -40,6 +45,9 @@ public class Goods {
         this.goods_image = goods_image;
     }
 
+=======
+    
+>>>>>>> c7e6c0c5c766e5433270a073661edf386a9d45b5
     public Integer getGoods_id() {
         return goods_id;
     }
@@ -64,8 +72,6 @@ public class Goods {
         this.goods_describe = goods_describe;
     }
 
-<<<<<<< HEAD
-=======
     public BigDecimal getGoods_price() {
         return goods_price;
     }
@@ -82,7 +88,6 @@ public class Goods {
         this.goods_image = goods_image;
     }
 
->>>>>>> 0c493051aa47780d3eaad1bc939a2098d7eab286
     public Integer getCategory_id() {
         return category_id;
     }
