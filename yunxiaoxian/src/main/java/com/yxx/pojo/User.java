@@ -5,6 +5,7 @@ public class User {
     private String openID;
     private String user_name;
     private String user_image;
+    private Integer blacklist;
 
     public Integer getUser_id() {
         return user_id;
@@ -36,5 +37,13 @@ public class User {
 
     public void setUser_image(String user_image) {
         this.user_image = user_image;
+    }
+
+    public Integer getBlacklist() {
+        return blacklist;
+    }
+
+    public void setBlacklist(Integer blacklist) {
+        this.blacklist = blacklist;
     }
 }

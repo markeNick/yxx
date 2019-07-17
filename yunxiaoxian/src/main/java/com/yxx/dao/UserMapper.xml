@@ -9,5 +9,6 @@
         <result column="openID" property="openID" />
         <result column="user_name" property="user_name" />
         <result column="user_image" property="user_image" />
+        <result column="blacklist" property="blacklist" />
     </resultMap>
 </mapper>
