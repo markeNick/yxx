@@ -1,4 +1,4 @@
 package com.yxx.dao;
 
-public class MessageMapper {
+public interface MessageMapper {
 }

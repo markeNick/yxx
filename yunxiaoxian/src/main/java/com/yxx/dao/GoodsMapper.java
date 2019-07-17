@@ -1,4 +1,4 @@
 package com.yxx.dao;
 
-public class GoodsMapper {
+public interface GoodsMapper {
 }
