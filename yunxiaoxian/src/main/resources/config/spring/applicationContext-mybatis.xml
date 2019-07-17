@@ -24,11 +24,7 @@
         <!-- mybatis核心配置文件 -->
         <property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"></property>
         <!-- sql映射文件 -->
-        <!--<property name="mapperLocations">
-            <list>
-                <value>classpath:com/yxx/dao/*.xml</value>
-            </list>
-        </property>-->
+        <property name="mapperLocations" value="classpath:com/yxx/dao/*.xml"></property>
     </bean>
 
     <!-- 扫描mapper -->
