@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yxx.dao.ChatMapper">
+    <resultMap id="ChatResultMap" type="com.yxx.pojo.Chat">
+        <result column="chat_id" property="chat_id" />
+        <result column="A_openID" property="A_openID"/>
+        <result column="B_openID" property="B_openID"/>
+        <result column="content" property="content"/>
+    </resultMap>
+</mapper>
