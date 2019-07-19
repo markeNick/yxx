@@ -1,33 +1,33 @@
 package com.yxx.pojo;
 
 public class Chat {
-    private Integer chat_id;
-    private String A_openID;
-    private String B_openID;
+    private Integer chatId;
+    private String AOpenID;
+    private String BOpenID;
     private String content;
 
-    public Integer getChat_id() {
-        return chat_id;
+    public Integer getChatId() {
+        return chatId;
     }
 
-    public void setChat_id(Integer chat_id) {
-        this.chat_id = chat_id;
+    public void setChatId(Integer chatId) {
+        this.chatId = chatId;
     }
 
-    public String getA_openID() {
-        return A_openID;
+    public String getAOpenID() {
+        return AOpenID;
     }
 
-    public void setA_openID(String a_openID) {
-        A_openID = a_openID;
+    public void setAOpenID(String AOpenID) {
+        this.AOpenID = AOpenID;
     }
 
-    public String getB_openID() {
-        return B_openID;
+    public String getBOpenID() {
+        return BOpenID;
     }
 
-    public void setB_openID(String b_openID) {
-        B_openID = b_openID;
+    public void setBOpenID(String BOpenID) {
+        this.BOpenID = BOpenID;
     }
 
     public String getContent() {

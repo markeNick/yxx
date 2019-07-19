@@ -1,18 +1,18 @@
 package com.yxx.pojo;
 
 public class User {
-    private Integer user_id;
+    private Integer userId;
     private String openID;
-    private String user_name;
-    private String user_image;
+    private String userName;
+    private String userImage;
     private Integer blacklist;
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getOpenID() {
@@ -23,20 +23,20 @@ public class User {
         this.openID = openID;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUser_image() {
-        return user_image;
+    public String getUserImage() {
+        return userImage;
     }
 
-    public void setUser_image(String user_image) {
-        this.user_image = user_image;
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public Integer getBlacklist() {
@@ -46,4 +46,8 @@ public class User {
     public void setBlacklist(Integer blacklist) {
         this.blacklist = blacklist;
     }
+
+
+
+
 }

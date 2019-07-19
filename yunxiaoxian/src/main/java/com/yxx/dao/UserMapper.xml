@@ -11,4 +11,7 @@
         <result column="user_image" property="user_image" />
         <result column="blacklist" property="blacklist" />
     </resultMap>
+    <select id="selectAllFormUser" resultType="com.yxx.pojo.User">
+        select * from user
+    </select>
 </mapper>
