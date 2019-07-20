@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 19/07/2019 14:21:07
+ Date: 20/07/2019 22:32:36
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,14 @@ CREATE TABLE `category`  (
   `category` varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '类别',
   `class_name` varchar(30) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '图型名称',
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES (1, '1', '电子');
+INSERT INTO `category` VALUES (2, '2', '家居');
+INSERT INTO `category` VALUES (3, '3', '电器');
 
 -- ----------------------------
 -- Table structure for chat
@@ -66,8 +73,7 @@ DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods`  (
   `goods_id` int(255) NOT NULL AUTO_INCREMENT COMMENT '物品ID',
   `goods_name` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '物品名称',
-  `
-goods_describe` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '物品描述',
+  `goods_describe` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '物品描述',
   `goods_price` decimal(20, 2) NULL DEFAULT NULL COMMENT '物品价格',
   `goods_image` text CHARACTER SET gbk COLLATE gbk_chinese_ci NULL COMMENT '物品图片地址',
   `category_id` tinyint(15) NULL DEFAULT NULL COMMENT '物品类别ID',
@@ -80,7 +86,23 @@ goods_describe` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAU
   INDEX `g_categoryID`(`category_id`) USING BTREE,
   CONSTRAINT `g_categoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `g_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of goods
+-- ----------------------------
+INSERT INTO `goods` VALUES (1, '1', '1', 1.00, '1', 1, 1, '2019-07-26 12:13:31', '2019-07-26 12:13:37', '1');
+INSERT INTO `goods` VALUES (2, '2', '电子', 2.00, '2', 1, 2, '2019-07-24 12:16:06', '2019-07-26 12:16:09', '1');
+INSERT INTO `goods` VALUES (3, '2', '电子', 3.00, '1', 1, 2, '2019-07-24 12:16:24', '2019-07-11 12:16:27', '1');
+INSERT INTO `goods` VALUES (4, '3', 'abc', 4.00, '1', 1, 1, '2019-07-26 14:39:02', '2019-08-04 14:39:05', '1');
+INSERT INTO `goods` VALUES (5, '2', '家居', 5.00, '1', 2, 2, '2019-07-07 20:34:14', '2019-08-04 20:34:20', '1');
+INSERT INTO `goods` VALUES (6, '3', '家居', 5.00, '2', 2, 2, '2019-07-10 22:21:41', '2019-08-02 22:21:44', '1');
+INSERT INTO `goods` VALUES (7, '3', '家居', 5.00, '1', 2, 2, '2019-07-23 22:23:21', '2019-07-26 22:23:24', '1');
+INSERT INTO `goods` VALUES (8, '32', '电器', 3.00, '1', 3, 2, '2019-07-24 22:24:30', '2019-08-01 22:24:33', '1');
+INSERT INTO `goods` VALUES (9, '2', '电器', 2.00, '3', 3, 2, '2019-07-03 22:25:02', '2019-07-31 22:25:05', '1');
+INSERT INTO `goods` VALUES (10, '23', '电器', 2.00, '3', 3, 2, '2019-06-24 22:25:16', '2019-06-25 22:25:20', '1');
+INSERT INTO `goods` VALUES (11, '32', '电子', 2.00, '3', 1, 2, '2019-07-11 22:25:34', '2019-07-31 22:25:36', '1');
+INSERT INTO `goods` VALUES (12, '32', '电子', 22.00, '3', 1, 2, '2019-07-02 22:26:47', '2019-07-31 22:26:49', '1');
 
 -- ----------------------------
 -- Table structure for message
@@ -135,7 +157,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1111, 'aaa', 'aaa', 'aaa', 1);
-INSERT INTO `user` VALUES (2222, 'bbb', 'bbb', 'bbb', 2);
+INSERT INTO `user` VALUES (1111, '1', 'aaa', 'aaa', 1);
+INSERT INTO `user` VALUES (2222, '2', 'bbb', 'bbb', 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
