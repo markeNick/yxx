@@ -18,7 +18,7 @@
         <result column="openID" property="openID" />
     </resultMap>
 
-<!--    搜索框 根据商品描述查询商品信息(分页)-->
+<!--    搜索框 根据商品描述或类型查询商品信息(分页)-->
     <select id="selectGoodsByGoodsDescribe" resultMap="GoodsResultMap" parameterType="com.yxx.pojo.Goods">
         select * from goods
         <where>
@@ -26,9 +26,25 @@
                 goods_describe like CONCAT('%',#{goodsDescribe},'%')
                 or goods_name like CONCAT('%',#{goodsDescribe},'%')
             </if>
+            <if test="categoryId!=null">
+                category_id=#{categoryId}
+            </if>
         </where>
-        order by goods_price desc
+        order by create_time desc
         limit 0,10
 
+    </select>
+<!--    搜索框 根据商品描述或类型查询相应商品在商品表的记录数-->
+    <select id="selectCountByGoods" resultType="int" parameterType="com.yxx.pojo.Goods">
+        select count(*) from goods
+        <where>
+            <if test="goodsDescribe!=null and goodsDescribe!=''">
+                goods_describe like CONCAT('%',#{goodsDescribe},'%')
+                or goods_name like CONCAT('%',#{goodsDescribe},'%')
+            </if>
+            <if test="categoryId!=null">
+                category_id=#{categoryId}
+            </if>
+        </where>
     </select>
 </mapper>

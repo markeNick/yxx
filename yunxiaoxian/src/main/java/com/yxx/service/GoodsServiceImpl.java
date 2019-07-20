@@ -16,4 +16,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> selectGoodsByGoodsDescribe(Goods goods) {
         return goodsMapper.selectGoodsByGoodsDescribe(goods);
     }
+
+    @Override
+    public int selectCountByGoods(Goods goods) {
+        return goodsMapper.selectCountByGoods(goods);
+    }
 }
