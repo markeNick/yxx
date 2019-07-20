@@ -28,6 +28,22 @@ public class Goods {
         this.goodsName = goodsName;
     }
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsDescribe='" + goodsDescribe + '\'' +
+                ", goodsPrice=" + goodsPrice +
+                ", goodsImage='" + goodsImage + '\'' +
+                ", categoryId=" + categoryId +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", saleTime=" + saleTime +
+                ", openID='" + openID + '\'' +
+                '}';
+    }
+
     public String getGoodsDescribe() {
         return goodsDescribe;
     }

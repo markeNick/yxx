@@ -5,10 +5,10 @@
 
 <mapper namespace="com.yxx.dao.UserMapper">
     <resultMap id="UserResultMap" type="com.yxx.pojo.User">
-        <result column="user_id" property="user_id" />
+        <result column="user_id" property="userId" />
         <result column="openID" property="openID" />
-        <result column="user_name" property="user_name" />
-        <result column="user_image" property="user_image" />
+        <result column="user_name" property="userName" />
+        <result column="user_image" property="userImage" />
         <result column="blacklist" property="blacklist" />
     </resultMap>
     <select id="selectAllFormUser" resultType="com.yxx.pojo.User">

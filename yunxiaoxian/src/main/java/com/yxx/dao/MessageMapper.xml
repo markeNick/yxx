@@ -5,8 +5,8 @@
 
 <mapper namespace="com.yxx.dao.MessageMapper">
     <resultMap id="MessageResultMap" type="com.yxx.pojo.Message">
-        <result column="message_id" property="message_id" />
-        <result column="goods_id" property="goods_id" />
+        <result column="message_id" property="messageId" />
+        <result column="goods_id" property="goodsId" />
         <result column="message" property="message" />
         <result column="openID" property="openID" />
     </resultMap>
