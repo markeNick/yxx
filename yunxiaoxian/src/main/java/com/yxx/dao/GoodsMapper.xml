@@ -23,7 +23,8 @@
         select * from goods
         <where>
             <if test="goodsDescribe!=null and goodsDescribe!=''">
-                goods_describe LIKE CONCAT(CONCAT('%',#{goodsDescribe},'%'))
+                goods_describe like CONCAT('%',#{goodsDescribe},'%')
+                or goods_name like CONCAT('%',#{goodsDescribe},'%')
             </if>
         </where>
         order by goods_price desc
