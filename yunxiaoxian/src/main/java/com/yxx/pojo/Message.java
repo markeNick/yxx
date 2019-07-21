@@ -1,25 +1,25 @@
 package com.yxx.pojo;
 
 public class Message {
-    private Integer message_id;
-    private Integer goods_id;
+    private Integer messageId;
+    private Integer goodsId;
     private String message;
     private String openID;
 
-    public Integer getMessage_id() {
-        return message_id;
+    public Integer getMessageId() {
+        return messageId;
     }
 
-    public void setMessage_id(Integer message_id) {
-        this.message_id = message_id;
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
     }
 
-    public Integer getGoods_id() {
-        return goods_id;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoods_id(Integer goods_id) {
-        this.goods_id = goods_id;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
     public String getMessage() {

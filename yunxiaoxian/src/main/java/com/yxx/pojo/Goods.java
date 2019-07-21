@@ -4,63 +4,64 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Goods {
-    private Integer goods_id;
-    private String goods_name;
-    private String goods_describe;
-    private BigDecimal goods_price;
-    private String goods_image;
-    private Integer category_id;
+    private Integer goodsId;
+    private String goodsName;
+    private String goodsDescribe;
+    private BigDecimal goodsPrice;
+    private String goodsImage;
+    private Integer categoryId;
     private Integer status;
-    private Date create_time;
-    private Date sale_time;
+    private Date createTime;
+    private Date saleTime;
     private String openID;
+    private Integer currentPage;
 
-    public Integer getGoods_id() {
-        return goods_id;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoods_id(Integer goods_id) {
-        this.goods_id = goods_id;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getGoods_name() {
-        return goods_name;
+    public String getGoodsName() {
+        return goodsName;
     }
 
-    public void setGoods_name(String goods_name) {
-        this.goods_name = goods_name;
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
     }
 
-    public String getGoods_describe() {
-        return goods_describe;
+    public String getGoodsDescribe() {
+        return goodsDescribe;
     }
 
-    public void setGoods_describe(String goods_describe) {
-        this.goods_describe = goods_describe;
+    public void setGoodsDescribe(String goodsDescribe) {
+        this.goodsDescribe = goodsDescribe;
     }
 
-    public BigDecimal getGoods_price() {
-        return goods_price;
+    public BigDecimal getGoodsPrice() {
+        return goodsPrice;
     }
 
-    public void setGoods_price(BigDecimal goods_price) {
-        this.goods_price = goods_price;
+    public void setGoodsPrice(BigDecimal goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
-    public String getGoods_image() {
-        return goods_image;
+    public String getGoodsImage() {
+        return goodsImage;
     }
 
-    public void setGoods_image(String goods_image) {
-        this.goods_image = goods_image;
+    public void setGoodsImage(String goodsImage) {
+        this.goodsImage = goodsImage;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Integer getStatus() {
@@ -71,20 +72,20 @@ public class Goods {
         this.status = status;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getSale_time() {
-        return sale_time;
+    public Date getSaleTime() {
+        return saleTime;
     }
 
-    public void setSale_time(Date sale_time) {
-        this.sale_time = sale_time;
+    public void setSaleTime(Date saleTime) {
+        this.saleTime = saleTime;
     }
 
     public String getOpenID() {
@@ -94,4 +95,14 @@ public class Goods {
     public void setOpenID(String openID) {
         this.openID = openID;
     }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+
 }

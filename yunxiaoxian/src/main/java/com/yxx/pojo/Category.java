@@ -1,16 +1,16 @@
 package com.yxx.pojo;
 
 public class Category {
-    private Integer category_id;
+    private Integer categoryId;
     private String category;
-    private String class_name;
+    private String className;
 
-    public Integer getCategory_id() {
-        return category_id;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCategory() {
@@ -21,11 +21,11 @@ public class Category {
         this.category = category;
     }
 
-    public String getClass_name() {
-        return class_name;
+    public String getClassName() {
+        return className;
     }
 
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

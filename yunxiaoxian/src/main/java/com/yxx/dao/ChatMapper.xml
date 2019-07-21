@@ -5,9 +5,9 @@
 
 <mapper namespace="com.yxx.dao.ChatMapper">
     <resultMap id="ChatResultMap" type="com.yxx.pojo.Chat">
-        <result column="chat_id" property="chat_id" />
-        <result column="A_openID" property="A_openID"/>
-        <result column="B_openID" property="B_openID"/>
+        <result column="chat_id" property="chatId" />
+        <result column="A_openID" property="AOpenID"/>
+        <result column="B_openID" property="BOpenID"/>
         <result column="content" property="content"/>
     </resultMap>
 </mapper>
