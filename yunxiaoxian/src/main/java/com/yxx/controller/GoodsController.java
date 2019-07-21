@@ -2,6 +2,7 @@ package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yxx.pojo.Goods;
+import com.yxx.pojo.GoodsCustom;
 import com.yxx.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class GoodsController {
             goods.setGoodsDescribe(new String(goodsDescribe.getBytes("ISO-8859-1"),"UTF-8"));
         }
         JSONObject json=new JSONObject();
-        List<Goods> goodslist=null;//商品信息集合
+        List<GoodsCustom> goodslist=null;//商品信息集合
         Integer maxpage=null;//最大页数
         Integer count=null;//总记录数
         try {
@@ -59,5 +60,27 @@ public class GoodsController {
             json.put("goodslist",null);
         }
             return json;
+    }
+    //返回 单个商品详细信息
+    @GetMapping("selectOneGoodsDetailMessage")
+    @ResponseBody
+    public JSONObject selectOneGoodsDetailMessage(@ModelAttribute("goods")Goods goods,Integer goodsId){
+        Goods goodsmessage=null;
+        JSONObject json=new JSONObject();
+        if(goodsId!=null){//假如商品id不为null,查询商品信息
+            try {
+                goodsmessage = goodsService.selectOneGoodsByGoodsId(goods);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        if(goodsmessage!=null){
+            json.put("goodsmessage",goodsmessage);
+            return json;
+        }else {//假如没查到或者商品id为null,返回null
+            json.put("goodsmessage",null);
+            return json;
+        }
+
     }
 }

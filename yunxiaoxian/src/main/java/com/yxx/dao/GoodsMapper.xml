@@ -19,32 +19,40 @@
     </resultMap>
 
 <!--    搜索框 根据商品描述或类型查询商品信息(分页)-->
-    <select id="selectGoodsByGoodsDescribe" resultMap="GoodsResultMap" parameterType="com.yxx.pojo.Goods">
-        select * from goods
+    <select id="selectGoodsByGoodsDescribe" resultType="com.yxx.pojo.GoodsCustom" parameterType="com.yxx.pojo.Goods">
+        select * from user,goods
         <where>
+            status=0 and user.openID=goods.openID
             <if test="goodsDescribe!=null and goodsDescribe!=''">
-                goods_describe like CONCAT('%',#{goodsDescribe},'%')
+            and   goods_describe like CONCAT('%',#{goodsDescribe},'%')
                 or goods_name like CONCAT('%',#{goodsDescribe},'%')
             </if>
             <if test="categoryId!=null">
-                category_id=#{categoryId}
+             and category_id=#{categoryId}
             </if>
         </where>
         order by create_time desc
         limit #{currentPage},10
 
     </select>
+
 <!--    搜索框 根据商品描述或类型查询相应商品在商品表的记录数-->
     <select id="selectCountByGoods" resultType="int" parameterType="com.yxx.pojo.Goods">
         select count(*) from goods
         <where>
+            status=0
             <if test="goodsDescribe!=null and goodsDescribe!=''">
-                goods_describe like CONCAT('%',#{goodsDescribe},'%')
+             and goods_describe like CONCAT('%',#{goodsDescribe},'%')
                 or goods_name like CONCAT('%',#{goodsDescribe},'%')
             </if>
             <if test="categoryId!=null">
-                category_id=#{categoryId}
+            and category_id=#{categoryId}
             </if>
         </where>
+    </select>
+
+<!--    查询单个商品的详细信息-->
+    <select id="selectOneGoodsByGoodsId" resultMap="GoodsResultMap" parameterType="com.yxx.pojo.Goods">
+        select * from goods where goods_id=#{goodsId} and status=0;
     </select>
 </mapper>
