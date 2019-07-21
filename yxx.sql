@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 20/07/2019 22:32:36
+ Date: 21/07/2019 12:02:59
 */
 
 SET NAMES utf8mb4;
@@ -26,14 +26,21 @@ CREATE TABLE `category`  (
   `category` varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '类别',
   `class_name` varchar(30) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '图型名称',
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (1, '1', '电子');
-INSERT INTO `category` VALUES (2, '2', '家居');
-INSERT INTO `category` VALUES (3, '3', '电器');
+INSERT INTO `category` VALUES (0, '二手手机', 'icon-icon--');
+INSERT INTO `category` VALUES (1, '数码', 'icon-shuma');
+INSERT INTO `category` VALUES (2, '二手图书', 'icon-book');
+INSERT INTO `category` VALUES (3, '游戏交易', 'icon-youxi');
+INSERT INTO `category` VALUES (4, '服装鞋包', 'icon-Txu-');
+INSERT INTO `category` VALUES (5, '美妆闲置', 'icon-meizhuang');
+INSERT INTO `category` VALUES (6, '运动户外', 'icon-yundong');
+INSERT INTO `category` VALUES (7, '乐器', 'icon-gangqin');
+INSERT INTO `category` VALUES (8, '跑腿代办', 'icon-icon6');
+INSERT INTO `category` VALUES (9, '其他闲置', 'icon-qita-');
 
 -- ----------------------------
 -- Table structure for chat
@@ -86,23 +93,24 @@ CREATE TABLE `goods`  (
   INDEX `g_categoryID`(`category_id`) USING BTREE,
   CONSTRAINT `g_categoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `g_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, '1', '1', 1.00, '1', 1, 1, '2019-07-26 12:13:31', '2019-07-26 12:13:37', '1');
-INSERT INTO `goods` VALUES (2, '2', '电子', 2.00, '2', 1, 2, '2019-07-24 12:16:06', '2019-07-26 12:16:09', '1');
-INSERT INTO `goods` VALUES (3, '2', '电子', 3.00, '1', 1, 2, '2019-07-24 12:16:24', '2019-07-11 12:16:27', '1');
-INSERT INTO `goods` VALUES (4, '3', 'abc', 4.00, '1', 1, 1, '2019-07-26 14:39:02', '2019-08-04 14:39:05', '1');
-INSERT INTO `goods` VALUES (5, '2', '家居', 5.00, '1', 2, 2, '2019-07-07 20:34:14', '2019-08-04 20:34:20', '1');
-INSERT INTO `goods` VALUES (6, '3', '家居', 5.00, '2', 2, 2, '2019-07-10 22:21:41', '2019-08-02 22:21:44', '1');
-INSERT INTO `goods` VALUES (7, '3', '家居', 5.00, '1', 2, 2, '2019-07-23 22:23:21', '2019-07-26 22:23:24', '1');
-INSERT INTO `goods` VALUES (8, '32', '电器', 3.00, '1', 3, 2, '2019-07-24 22:24:30', '2019-08-01 22:24:33', '1');
-INSERT INTO `goods` VALUES (9, '2', '电器', 2.00, '3', 3, 2, '2019-07-03 22:25:02', '2019-07-31 22:25:05', '1');
-INSERT INTO `goods` VALUES (10, '23', '电器', 2.00, '3', 3, 2, '2019-06-24 22:25:16', '2019-06-25 22:25:20', '1');
-INSERT INTO `goods` VALUES (11, '32', '电子', 2.00, '3', 1, 2, '2019-07-11 22:25:34', '2019-07-31 22:25:36', '1');
-INSERT INTO `goods` VALUES (12, '32', '电子', 22.00, '3', 1, 2, '2019-07-02 22:26:47', '2019-07-31 22:26:49', '1');
+INSERT INTO `goods` VALUES (1, '1', '板凳', 1.00, '1', 9, 0, '2019-07-04 11:58:06', NULL, '1');
+INSERT INTO `goods` VALUES (2, '2', '手机', 2.00, '2', 0, 0, '2019-07-24 12:16:06', NULL, '1');
+INSERT INTO `goods` VALUES (3, '2', '手机', 3.00, '1', 0, 0, '2019-07-24 12:16:24', NULL, '1');
+INSERT INTO `goods` VALUES (4, '3', '惠普笔记本', 4.00, '1', 1, 0, '2019-07-26 14:39:02', NULL, '1');
+INSERT INTO `goods` VALUES (5, '2', '轮椅', 5.00, '1', 6, 0, '2019-07-07 20:34:14', NULL, '1');
+INSERT INTO `goods` VALUES (6, '3', '板凳', 5.00, '2', 9, 0, '2019-07-10 22:21:41', NULL, '1');
+INSERT INTO `goods` VALUES (7, '3', '书桌', 5.00, '1', 9, 0, '2019-07-23 22:23:21', NULL, '1');
+INSERT INTO `goods` VALUES (8, '32', '破鞋', 3.00, '1', 6, 0, '2019-07-24 22:24:30', NULL, '1');
+INSERT INTO `goods` VALUES (9, '2', '钢铁侠手办', 2.00, '3', 9, 0, '2019-07-03 22:25:02', NULL, '1');
+INSERT INTO `goods` VALUES (10, '23', '联想笔记本', 2.00, '3', 1, 0, '2019-06-24 22:25:16', NULL, '1');
+INSERT INTO `goods` VALUES (11, '32', 'X洗面奶', 2.00, '3', 5, 0, '2019-07-11 22:25:34', NULL, '1');
+INSERT INTO `goods` VALUES (12, '32', 'ipad', 22.00, '3', 1, 0, '2019-07-02 22:26:47', NULL, '1');
+INSERT INTO `goods` VALUES (13, '323', '斗破苍穹', 22.00, '2', 2, 0, '2019-07-03 11:56:22', NULL, '1');
 
 -- ----------------------------
 -- Table structure for message
