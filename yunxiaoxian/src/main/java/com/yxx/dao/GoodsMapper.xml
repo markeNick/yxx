@@ -31,7 +31,7 @@
             </if>
         </where>
         order by create_time desc
-        limit 0,10
+        limit #{currentPage},10
 
     </select>
 <!--    搜索框 根据商品描述或类型查询相应商品在商品表的记录数-->

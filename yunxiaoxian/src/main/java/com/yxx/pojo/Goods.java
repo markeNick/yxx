@@ -112,5 +112,14 @@ public class Goods {
     private Date saleTime;
     private String openID;
 
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    private Integer currentPage;
 
 }

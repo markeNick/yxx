@@ -20,7 +20,7 @@ public class GoodsController {
     //搜索框   根据商品描述和页码模糊查询商品信息
     @GetMapping("selectGoodsByGoodsDescribe")
     @ResponseBody
-    public JSONObject selectGoodsByGoodsDescribe(@ModelAttribute("goods")Goods goods,String goodsDescribe) throws UnsupportedEncodingException {
+    public JSONObject selectGoodsByGoodsDescribe(@ModelAttribute("goods")Goods goods,String goodsDescribe,Integer currentPage) throws UnsupportedEncodingException {
         if(goodsDescribe!=null){//解决搜索信息中文乱码
             goods.setGoodsDescribe(new String(goodsDescribe.getBytes("ISO-8859-1"),"UTF-8"));
         }
@@ -29,27 +29,32 @@ public class GoodsController {
         Integer maxpage=null;//最大页数
         Integer count=null;//总记录数
         try {
-            goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+            if(currentPage!=null){//假如发送了页码,返回后续页的数据
+                goods.setCurrentPage((currentPage-1)*10);
+                goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+            }else{//假如没发送页码,返回第一页的数据
+                goods.setCurrentPage(0);
+                goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+            }
             count= goodsService.selectCountByGoods(goods);//查询相应所有商品信息总记录数
         }catch(Exception e){
             e.printStackTrace();
         }
         if(count!=null){
-            if(count/10==0||count%10>0){//1-9条记录数
+            if(count/10==0&&count%10>0){//1-9条记录数
                 maxpage=1;
-            }else if(count/10>0||count%10>0){//不能被10整除的记录数
+            }else if(count/10>0&&count%10>0){//不能被10整除的记录数
                 maxpage=(count/10)+1;
-            }else if(count/10>0||count%10==0) {//能被10整除的记录数
+            }else if(count/10>0&&count%10==0) {//能被10整除的记录数
                 maxpage=count/10;
             }
         } else{//0条记录数
             maxpage=0;
         }
-        if(goodslist!=null||goodslist.size()!=0||maxpage!=0){//假如查询到信息,返回
-            json.put("goodslist",goodslist);
-            json.put("maxpage",maxpage);
-            json.put("count",count);
-            json.put("maxpage",maxpage);
+        if(goodslist!=null&&goodslist.size()!=0&&maxpage!=0){//假如查询到信息,返回
+            json.put("goodslist",goodslist);//商品信息
+            json.put("maxpage",maxpage);//最大页数
+            json.put("count",count);//总纪录数
         }else {//没查询到,返回null
             json.put("goodslist",null);
         }
