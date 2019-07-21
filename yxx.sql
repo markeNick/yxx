@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 21/07/2019 13:37:58
+ Date: 21/07/2019 16:56:42
 */
 
 SET NAMES utf8mb4;
@@ -93,7 +93,7 @@ CREATE TABLE `goods`  (
   INDEX `g_categoryID`(`category_id`) USING BTREE,
   CONSTRAINT `g_categoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `g_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods
@@ -102,7 +102,7 @@ INSERT INTO `goods` VALUES (1, '1', '板凳', 1.00, '1', 9, 0, '2019-07-04 11:58
 INSERT INTO `goods` VALUES (2, '2', '手机', 2.00, '2', 0, 0, '2019-07-24 12:16:06', NULL, '1');
 INSERT INTO `goods` VALUES (3, '2', '手机', 3.00, '1', 0, 0, '2019-07-24 12:16:24', NULL, '1');
 INSERT INTO `goods` VALUES (4, '3', '惠普笔记本', 4.00, '1', 1, 0, '2019-07-26 14:39:02', NULL, '1');
-INSERT INTO `goods` VALUES (5, '2', '轮椅', 5.00, '1', 6, 0, '2019-07-07 20:34:14', NULL, '1');
+INSERT INTO `goods` VALUES (5, '2', '轮椅', 5.00, '1', 6, 1, '2019-07-07 20:34:14', NULL, '1');
 INSERT INTO `goods` VALUES (6, '3', '板凳', 5.00, '2', 9, 0, '2019-07-10 22:21:41', NULL, '1');
 INSERT INTO `goods` VALUES (7, '3', '书桌', 5.00, '1', 9, 0, '2019-07-23 22:23:21', NULL, '1');
 INSERT INTO `goods` VALUES (8, '32', '破鞋', 3.00, '1', 6, 0, '2019-07-24 22:24:30', NULL, '1');
@@ -111,8 +111,9 @@ INSERT INTO `goods` VALUES (10, '23', '联想笔记本', 2.00, '3', 1, 0, '2019-
 INSERT INTO `goods` VALUES (11, '32', 'X洗面奶', 2.00, '3', 5, 0, '2019-07-11 22:25:34', NULL, '1');
 INSERT INTO `goods` VALUES (12, '32', 'ipad', 22.00, '3', 1, 0, '2019-07-02 22:26:47', NULL, '1');
 INSERT INTO `goods` VALUES (13, '323', '斗破苍穹', 22.00, '2', 2, 0, '2019-07-03 11:56:22', NULL, '1');
-INSERT INTO `goods` VALUES (14, '232', '斗罗大陆', 21.00, '2', 2, 1, '2019-07-17 12:35:08', NULL, '1');
-INSERT INTO `goods` VALUES (15, '312', '诛仙', 23.00, '2', 2, 0, '2019-07-23 13:36:22', NULL, '2');
+INSERT INTO `goods` VALUES (14, '232', '斗罗大陆', 21.00, '2', 2, 1, '2019-07-17 12:35:08', NULL, '2');
+INSERT INTO `goods` VALUES (15, '312', '诛仙', 23.00, '2', 2, 0, '2019-07-23 13:36:22', NULL, '1');
+INSERT INTO `goods` VALUES (16, '213', '仙逆', 32.00, '2', 2, 1, '2019-07-10 14:20:57', NULL, '2');
 
 -- ----------------------------
 -- Table structure for message
@@ -148,7 +149,14 @@ CREATE TABLE `orders`  (
   CONSTRAINT `o_buyer` FOREIGN KEY (`buyer`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `o_goodsID` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `o_seller` FOREIGN KEY (`seller`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES (1, 14, 1, '1', '2', '2019-07-27 14:22:14');
+INSERT INTO `orders` VALUES (2, 16, 1, '1', '2', '2019-07-28 14:22:32');
+INSERT INTO `orders` VALUES (3, 5, 1, '2', '1', '2019-07-27 14:23:46');
 
 -- ----------------------------
 -- Table structure for user
