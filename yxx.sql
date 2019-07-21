@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 21/07/2019 12:02:59
+ Date: 21/07/2019 13:37:58
 */
 
 SET NAMES utf8mb4;
@@ -93,7 +93,7 @@ CREATE TABLE `goods`  (
   INDEX `g_categoryID`(`category_id`) USING BTREE,
   CONSTRAINT `g_categoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `g_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods
@@ -111,6 +111,8 @@ INSERT INTO `goods` VALUES (10, '23', '联想笔记本', 2.00, '3', 1, 0, '2019-
 INSERT INTO `goods` VALUES (11, '32', 'X洗面奶', 2.00, '3', 5, 0, '2019-07-11 22:25:34', NULL, '1');
 INSERT INTO `goods` VALUES (12, '32', 'ipad', 22.00, '3', 1, 0, '2019-07-02 22:26:47', NULL, '1');
 INSERT INTO `goods` VALUES (13, '323', '斗破苍穹', 22.00, '2', 2, 0, '2019-07-03 11:56:22', NULL, '1');
+INSERT INTO `goods` VALUES (14, '232', '斗罗大陆', 21.00, '2', 2, 1, '2019-07-17 12:35:08', NULL, '1');
+INSERT INTO `goods` VALUES (15, '312', '诛仙', 23.00, '2', 2, 0, '2019-07-23 13:36:22', NULL, '2');
 
 -- ----------------------------
 -- Table structure for message
