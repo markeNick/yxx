@@ -1,4 +1,4 @@
-package com.yxx.conversiom;
+package com.yxx.conversion;
 
 public class IntegerToString implements org.springframework.core.convert.converter.Converter<Integer, String> {
     @Override

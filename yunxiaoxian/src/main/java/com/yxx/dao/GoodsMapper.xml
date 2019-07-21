@@ -18,7 +18,7 @@
         <result column="openID" property="openID" />
     </resultMap>
 
-<!--    搜索框 根据商品描述或类型查询商品信息(分页)-->
+    <!--    搜索框 根据商品描述或类型查询商品信息(分页)-->
     <select id="selectGoodsByGoodsDescribe" resultType="com.yxx.pojo.GoodsCustom" parameterType="com.yxx.pojo.Goods">
         select * from user,goods
         <where>
@@ -36,7 +36,7 @@
 
     </select>
 
-<!--    搜索框 根据商品描述或类型查询相应商品在商品表的记录数-->
+    <!--    搜索框 根据商品描述或类型查询相应商品在商品表的记录数-->
     <select id="selectCountByGoods" resultType="int" parameterType="com.yxx.pojo.Goods">
         select count(*) from goods
         <where>
@@ -51,8 +51,33 @@
         </where>
     </select>
 
-<!--    查询单个商品的详细信息-->
+    <!--    查询单个商品的详细信息-->
     <select id="selectOneGoodsByGoodsId" resultType="com.yxx.pojo.GoodsCustom" parameterType="com.yxx.pojo.Goods">
         select * from user,goods where goods_id=#{goodsId} and status=0 and user.openID=goods.openID;
+    </select>
+
+    <!--    查询我卖的商品信息-->
+    <select id="selectAllMySaleGoods" resultType="com.yxx.pojo.OrderCustom">
+        select * from orders,goods
+        where goods.openID=#{openID} and orders.seller=#{openID}
+        and goods.goods_id=orders.goods_id
+        order by orders.create_time desc
+        limit #{currentPage},10
+    </select>
+
+    <!--    查询我买的商品信息-->
+    <select id="selectAllMyBuyGoods" resultType="com.yxx.pojo.OrderCustom">
+        select * from orders,user,goods
+        where orders.buyer=#{openID} and orders.seller=user.openID and orders.goods_id=goods.goods_id
+        order by orders.create_time desc
+        limit #{currentPage},10
+    </select>
+
+    <!--    查询我发布的商品信息-->
+    <select id="selectAllMyPublishGoods" resultType="com.yxx.pojo.OrderCustom">
+        select * from goods
+        where goods.openID=#{openID}
+        order by goods.create_time desc
+        limit #{currentPage},10
     </select>
 </mapper>

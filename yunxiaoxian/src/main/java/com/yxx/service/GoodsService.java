@@ -2,6 +2,7 @@ package com.yxx.service;
 
 import com.yxx.pojo.Goods;
 import com.yxx.pojo.GoodsCustom;
+import com.yxx.pojo.OrderCustom;
 
 import java.util.List;
 
@@ -12,4 +13,10 @@ public interface GoodsService {
     public int selectCountByGoods(Goods goods);
     //查询单个商品的详细信息
     public GoodsCustom selectOneGoodsByGoodsId(Goods goods);
+    //查询我卖的商品信息
+    public List<OrderCustom> selectAllMySaleGoods(String openID,Integer currentPage);
+    //查询我买的商品信息
+    public List<OrderCustom> selectAllMyBuyGoods(String openID,Integer currentPage);
+    //查询我发布的商品信息
+    public List<OrderCustom> selectAllMyPublishGoods(String openID,Integer currentPage);
 }

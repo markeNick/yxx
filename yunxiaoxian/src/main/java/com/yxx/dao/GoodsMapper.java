@@ -2,6 +2,8 @@ package com.yxx.dao;
 
 import com.yxx.pojo.Goods;
 import com.yxx.pojo.GoodsCustom;
+import com.yxx.pojo.OrderCustom;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,4 +14,11 @@ public interface GoodsMapper {
     public int selectCountByGoods(Goods goods);
     //查询单个商品的详细信息
     public GoodsCustom selectOneGoodsByGoodsId(Goods goods);
+    //查询我卖的商品信息
+    public List<OrderCustom> selectAllMySaleGoods(@Param("openID") String openID,@Param("currentPage") Integer currentPage);
+    //查询我买的商品信息
+    public List<OrderCustom> selectAllMyBuyGoods(@Param("openID") String openID,@Param("currentPage") Integer currentPage);
+    //查询我发布的商品信息
+    public List<OrderCustom> selectAllMyPublishGoods(@Param("openID") String openID,@Param("currentPage") Integer currentPage);
+
 }

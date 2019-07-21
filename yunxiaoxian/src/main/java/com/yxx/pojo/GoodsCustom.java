@@ -1,5 +1,7 @@
 package com.yxx.pojo;
 
+import java.util.Date;
+
 public class GoodsCustom extends Goods {
     private String userName;
     private String userImage;
