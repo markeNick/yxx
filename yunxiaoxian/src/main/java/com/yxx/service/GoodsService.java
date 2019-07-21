@@ -11,5 +11,5 @@ public interface GoodsService {
     //搜索框 根据商品描述或类型查询相应商品在商品表的记录数
     public int selectCountByGoods(Goods goods);
     //查询单个商品的详细信息
-    public Goods selectOneGoodsByGoodsId(Goods goods);
+    public GoodsCustom selectOneGoodsByGoodsId(Goods goods);
 }

@@ -65,7 +65,7 @@ public class GoodsController {
     @GetMapping("selectOneGoodsDetailMessage")
     @ResponseBody
     public JSONObject selectOneGoodsDetailMessage(@ModelAttribute("goods")Goods goods,Integer goodsId){
-        Goods goodsmessage=null;
+        GoodsCustom goodsmessage=null;
         JSONObject json=new JSONObject();
         if(goodsId!=null){//假如商品id不为null,查询商品信息
             try {

@@ -24,7 +24,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods selectOneGoodsByGoodsId(Goods goods) {
+    public GoodsCustom selectOneGoodsByGoodsId(Goods goods) {
         return goodsMapper.selectOneGoodsByGoodsId(goods);
     }
 }

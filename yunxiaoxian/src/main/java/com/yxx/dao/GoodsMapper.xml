@@ -52,7 +52,7 @@
     </select>
 
 <!--    查询单个商品的详细信息-->
-    <select id="selectOneGoodsByGoodsId" resultMap="GoodsResultMap" parameterType="com.yxx.pojo.Goods">
-        select * from goods where goods_id=#{goodsId} and status=0;
+    <select id="selectOneGoodsByGoodsId" resultType="com.yxx.pojo.GoodsCustom" parameterType="com.yxx.pojo.Goods">
+        select * from user,goods where goods_id=#{goodsId} and status=0 and user.openID=goods.openID;
     </select>
 </mapper>
