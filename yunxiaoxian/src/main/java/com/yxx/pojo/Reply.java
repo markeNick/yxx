@@ -7,10 +7,29 @@ public class Reply {
     private String speaker;
     private String listener;
     private String seller;
+    private String sellerImage;
     private String buyer;
+    private String buyerImage;
     private Date createTime;
     private String message;
     private String messageNumber;
+
+
+    public String getSellerImage() {
+        return sellerImage;
+    }
+
+    public void setSellerImage(String sellerImage) {
+        this.sellerImage = sellerImage;
+    }
+
+    public String getBuyerImage() {
+        return buyerImage;
+    }
+
+    public void setBuyerImage(String buyerImage) {
+        this.buyerImage = buyerImage;
+    }
 
     public int getReplyId() {
         return replyId;

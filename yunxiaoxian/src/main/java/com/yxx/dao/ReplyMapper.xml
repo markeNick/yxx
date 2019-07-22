@@ -9,14 +9,16 @@
         <result column="speaker" property="speaker"/>
         <result column="listener" property="listener"/>
         <result column="seller" property="seller"/>
+        <result column="seller_image" property="sellerImage"/>
         <result column="buyer" property="buyer"/>
+        <result column="buyer_image" property="buyerImage"/>
         <result column="create_time" property="createTime"/>
         <result column="message" property="message"/>
         <result column="message_number" property="messageNumber"/>
     </resultMap>
     <select id="selectDetailForOneReply" resultType="com.yxx.pojo.Reply">
-        select * from reply where message_number=#{messageNumber}
-        order by create_time desc
+        select * from reply,user where message_number=#{messageNumber}
+        order by reply.create_time desc
         limit #{currentPage},15
     </select>
 </mapper>
