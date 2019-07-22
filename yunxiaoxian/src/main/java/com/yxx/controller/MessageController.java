@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.yxx.pojo.Message;
 import com.yxx.pojo.MessageCustom;
 import com.yxx.service.MessageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ public class MessageController {
     @PostMapping("/selectAllMyMessage")
     @ResponseBody
     public JSONObject selectAllMyMessage(String openID,Integer currentPage){
+        Logger logger = LoggerFactory.getLogger(MessageController.class);
         JSONObject json=new JSONObject();
         List<String> messageNumberList=new ArrayList<String>();//存留言框编号集合
         List<MessageCustom> messagelist=null;
@@ -55,10 +58,18 @@ public class MessageController {
                 return json;
             }
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error("error:",e);
         }
         json.put("messagelist",messagelist);
         return json;
     }
 
+    //查看留言详细记录
+    @PostMapping("/selectDetailForReply")
+    @ResponseBody
+    public JSONObject selectDetailForReply(){
+        Logger logger = LoggerFactory.getLogger(MessageController.class);
+        JSONObject json=new JSONObject();
+        return json;
+    }
 }
