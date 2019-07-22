@@ -1,10 +1,21 @@
 package com.yxx.pojo;
 
+import java.util.Date;
+
 public class Message {
     private Integer messageId;
     private Integer goodsId;
     private String message;
     private String openID;
+    private Date createTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public Integer getMessageId() {
         return messageId;
