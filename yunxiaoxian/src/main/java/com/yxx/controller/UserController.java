@@ -1,19 +1,28 @@
 package com.yxx.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.GoodsCustom;
+import com.yxx.pojo.MessageCustom;
 import com.yxx.pojo.User;
+import com.yxx.service.CollectionService;
 import com.yxx.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.xml.ws.RequestWrapper;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 
 @Controller
 public class UserController {
+    private Logger logger = Logger.getLogger(UserController.class);
+
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CollectionService collectionService;
 
     @RequestMapping(value = "/test")
     public String test(){
@@ -25,4 +34,65 @@ public class UserController {
         List<User> userslist = userService.selectAllFormUser();
         return userslist;
     }
+
+    //修改用户或注册用户
+    @PostMapping("updateUser")
+    @ResponseBody
+    public JSONObject updateUser(@RequestParam("openID")String openID,
+                                 @RequestParam("userName")String userName,
+                                 @RequestParam("userImage")String userImage){
+
+        JSONObject json = new JSONObject();
+
+        User user = new User();
+        user.setOpenID(openID);
+        user.setUserImage(userImage);
+        user.setUserName(userName);
+
+        User temp = userService.selectUserByOpenID(openID);
+
+        //如果user用户存在,则更新用户信息
+        if(temp != null){
+            if(userService.updateUser(user) == 1){  //如果更新成功返回true，否则返回false
+                System.out.println("更新");
+                json.put("status", "true");
+                return json;
+            }
+
+            json.put("status", "false");
+            return json;
+        }
+        //如果user用户不存在,则注册用户
+        if(userService.registerUser(user) == 1){    //如果注册成功返回true，否则返回false
+            System.out.println("注册");
+            json.put("status", "true");
+            return json;
+        }
+
+        json.put("status", "true");
+        return json;
+    }
+
+    //我的收藏
+    @PostMapping("selectUserCollection")
+    @ResponseBody
+    public JSONObject selectUserCollection(String openID, Integer currentPage){
+        JSONObject json = new JSONObject();
+        List<GoodsCustom> collectionList = null;
+
+        try {
+            collectionList = collectionService.selectUserCollerction(openID, (currentPage - 1) * 10);
+        } catch (Exception e) {
+            logger.error("error:{}" + " from" + getClass(), e);
+        }
+
+        if(collectionList != null && collectionList.size() != 0){
+            json.put("collectionList", collectionList);
+            return json;
+        }
+
+        json.put("collectionList", null);
+        return json;
+    }
+
 }

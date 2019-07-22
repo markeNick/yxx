@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 21/07/2019 16:56:42
+ Date: 22/07/2019 22:33:07
 */
 
 SET NAMES utf8mb4;
@@ -93,27 +93,28 @@ CREATE TABLE `goods`  (
   INDEX `g_categoryID`(`category_id`) USING BTREE,
   CONSTRAINT `g_categoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `g_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, '1', '板凳', 1.00, '1', 9, 0, '2019-07-04 11:58:06', NULL, '1');
-INSERT INTO `goods` VALUES (2, '2', '手机', 2.00, '2', 0, 0, '2019-07-24 12:16:06', NULL, '1');
-INSERT INTO `goods` VALUES (3, '2', '手机', 3.00, '1', 0, 0, '2019-07-24 12:16:24', NULL, '1');
-INSERT INTO `goods` VALUES (4, '3', '惠普笔记本', 4.00, '1', 1, 0, '2019-07-26 14:39:02', NULL, '1');
-INSERT INTO `goods` VALUES (5, '2', '轮椅', 5.00, '1', 6, 1, '2019-07-07 20:34:14', NULL, '1');
-INSERT INTO `goods` VALUES (6, '3', '板凳', 5.00, '2', 9, 0, '2019-07-10 22:21:41', NULL, '1');
-INSERT INTO `goods` VALUES (7, '3', '书桌', 5.00, '1', 9, 0, '2019-07-23 22:23:21', NULL, '1');
-INSERT INTO `goods` VALUES (8, '32', '破鞋', 3.00, '1', 6, 0, '2019-07-24 22:24:30', NULL, '1');
-INSERT INTO `goods` VALUES (9, '2', '钢铁侠手办', 2.00, '3', 9, 0, '2019-07-03 22:25:02', NULL, '1');
-INSERT INTO `goods` VALUES (10, '23', '联想笔记本', 2.00, '3', 1, 0, '2019-06-24 22:25:16', NULL, '1');
-INSERT INTO `goods` VALUES (11, '32', 'X洗面奶', 2.00, '3', 5, 0, '2019-07-11 22:25:34', NULL, '1');
-INSERT INTO `goods` VALUES (12, '32', 'ipad', 22.00, '3', 1, 0, '2019-07-02 22:26:47', NULL, '1');
-INSERT INTO `goods` VALUES (13, '323', '斗破苍穹', 22.00, '2', 2, 0, '2019-07-03 11:56:22', NULL, '1');
-INSERT INTO `goods` VALUES (14, '232', '斗罗大陆', 21.00, '2', 2, 1, '2019-07-17 12:35:08', NULL, '2');
-INSERT INTO `goods` VALUES (15, '312', '诛仙', 23.00, '2', 2, 0, '2019-07-23 13:36:22', NULL, '1');
-INSERT INTO `goods` VALUES (16, '213', '仙逆', 32.00, '2', 2, 1, '2019-07-10 14:20:57', NULL, '2');
+INSERT INTO `goods` VALUES (1, '凳子', '板凳', 1.00, '1', 9, 0, '2019-07-04 11:58:06', NULL, '1');
+INSERT INTO `goods` VALUES (2, '华为手机', '手机', 2.00, '2', 0, 0, '2019-07-24 12:16:06', NULL, '1');
+INSERT INTO `goods` VALUES (3, '三星手机', '手机', 3.00, '1', 0, 0, '2019-07-24 12:16:24', NULL, '1');
+INSERT INTO `goods` VALUES (4, '惠普笔记本', '惠普笔记本', 4.00, '1', 1, 0, '2019-07-26 14:39:02', NULL, '1');
+INSERT INTO `goods` VALUES (5, '铁轮椅', '轮椅', 5.00, '1', 6, 1, '2019-07-07 20:34:14', NULL, '1');
+INSERT INTO `goods` VALUES (6, '木凳子', '板凳', 5.00, '2', 9, 0, '2019-07-10 22:21:41', NULL, '1');
+INSERT INTO `goods` VALUES (7, '木桌子', '书桌', 5.00, '1', 9, 0, '2019-07-23 22:23:21', NULL, '1');
+INSERT INTO `goods` VALUES (8, '耐克鞋', '破鞋', 3.00, '1', 6, 0, '2019-07-24 22:24:30', NULL, '1');
+INSERT INTO `goods` VALUES (9, '钢铁侠手办', '钢铁侠手办', 2.00, '3', 9, 0, '2019-07-03 22:25:02', NULL, '1');
+INSERT INTO `goods` VALUES (10, '联想笔记本', '联想笔记本', 2.00, '3', 1, 0, '2019-06-24 22:25:16', NULL, '1');
+INSERT INTO `goods` VALUES (11, 'X洗面奶', 'X洗面奶', 2.00, '3', 5, 0, '2019-07-11 22:25:34', NULL, '1');
+INSERT INTO `goods` VALUES (12, 'ipad', 'ipad', 22.00, '3', 1, 0, '2019-07-02 22:26:47', NULL, '1');
+INSERT INTO `goods` VALUES (13, '《斗破苍穹》实体书', '斗破苍穹', 22.00, '2', 2, 0, '2019-07-03 11:56:22', NULL, '1');
+INSERT INTO `goods` VALUES (14, '《斗罗大陆》实体书', '斗罗大陆', 21.00, '2', 2, 1, '2019-07-17 12:35:08', NULL, '2');
+INSERT INTO `goods` VALUES (15, '《诛仙》实体书', '诛仙', 23.00, '2', 2, 0, '2019-07-23 13:36:22', NULL, '1');
+INSERT INTO `goods` VALUES (16, '《仙逆》实体书', '仙逆', 32.00, '2', 2, 1, '2019-07-10 14:20:57', NULL, '2');
+INSERT INTO `goods` VALUES (17, '《龙族5悼亡者的归来》', '龙族五', 40.00, '3', 2, 0, '2019-07-24 15:33:38', NULL, '2');
 
 -- ----------------------------
 -- Table structure for message
@@ -124,12 +125,21 @@ CREATE TABLE `message`  (
   `goods_id` int(255) NULL DEFAULT NULL COMMENT '物品ID',
   `message` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '留言信息',
   `openID` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '留言用户openID',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '留言时间',
+  `message_number` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复框编号',
   PRIMARY KEY (`message_id`) USING BTREE,
   INDEX `m_openID`(`openID`) USING BTREE,
   INDEX `m_goodsID`(`goods_id`) USING BTREE,
   CONSTRAINT `m_goodsID` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `m_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of message
+-- ----------------------------
+INSERT INTO `message` VALUES (1, 1, '便宜卖可以吗？', '2', '2019-07-12 15:06:30', 'a1');
+INSERT INTO `message` VALUES (2, 2, '便宜卖我哇！', '2', '2019-08-02 15:06:33', 'a2');
+INSERT INTO `message` VALUES (3, 17, '二十块能卖吗?', '1', '2019-07-22 21:30:06', 'a3');
 
 -- ----------------------------
 -- Table structure for orders
@@ -157,6 +167,32 @@ CREATE TABLE `orders`  (
 INSERT INTO `orders` VALUES (1, 14, 1, '1', '2', '2019-07-27 14:22:14');
 INSERT INTO `orders` VALUES (2, 16, 1, '1', '2', '2019-07-28 14:22:32');
 INSERT INTO `orders` VALUES (3, 5, 1, '2', '1', '2019-07-27 14:23:46');
+
+-- ----------------------------
+-- Table structure for reply
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply`  (
+  `reply_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '回复ID',
+  `speaker` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家name',
+  `listener` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '卖家name',
+  `seller` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NOT NULL COMMENT '卖家openID',
+  `buyer` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家openID',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `message` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复信息',
+  `message_number` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT '' COMMENT '回复框编号',
+  PRIMARY KEY (`reply_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+INSERT INTO `reply` VALUES (1, 'aaa', 'bbb', '1', '2', '2019-07-22 19:40:35', '不能少了!', 'a1');
+INSERT INTO `reply` VALUES (2, 'aaa', 'bbb', '1', '2', '2019-07-22 19:41:34', '再少就亏大了！', 'a1');
+INSERT INTO `reply` VALUES (3, 'bbb', 'aaa', '1', '2', '2019-07-22 19:42:54', '你亏不了多少!', 'a1');
+INSERT INTO `reply` VALUES (4, 'aaa', 'bbb', '1', '2', '2019-07-22 19:44:02', '够便宜的了!', 'a2');
+INSERT INTO `reply` VALUES (5, 'bbb', 'aaa', '1', '2', '2019-07-22 19:45:36', '你才便宜几个钱!', 'a2');
+INSERT INTO `reply` VALUES (6, 'bbb', 'aaa', '2', '1', '2019-07-22 21:30:37', '不能', 'a3');
 
 -- ----------------------------
 -- Table structure for user

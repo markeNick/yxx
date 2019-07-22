@@ -11,7 +11,35 @@
         <result column="user_image" property="userImage" />
         <result column="blacklist" property="blacklist" />
     </resultMap>
+
+    <!-- 查询所有用户 -->
     <select id="selectAllFormUser" resultType="com.yxx.pojo.User">
         select * from user
     </select>
+
+    <!-- 根据openID查询用户信息 -->
+    <select id="selectByOpenID" resultType="com.yxx.pojo.User" parameterType="string">
+        select * from user
+        where openID = #{openID}
+    </select>
+
+    <!-- 根据openID更新用户信息 -->
+    <update id="updateUserByOpenID" parameterType="com.yxx.pojo.User">
+        update user
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userImage != null and userImage != ''">
+                user_image = #{userImage}
+            </if>
+        </set>
+        where openID = #{openID}
+    </update>
+
+    <!-- 注册用户 -->
+    <insert id="registerUser" parameterType="com.yxx.pojo.User">
+        insert into user(openID, user_name, user_image, blacklist)
+        values(#{openID}, #{userName}, #{userImage}, 0)
+    </insert>
 </mapper>

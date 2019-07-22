@@ -18,5 +18,5 @@ public interface GoodsService {
     //查询我买的商品信息
     public List<OrderCustom> selectAllMyBuyGoods(String openID,Integer currentPage);
     //查询我发布的商品信息
-    public List<OrderCustom> selectAllMyPublishGoods(String openID,Integer currentPage);
+    public List<Goods> selectAllMyPublishGoods(String openID,Integer currentPage);
 }

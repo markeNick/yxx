@@ -47,7 +47,14 @@ public class User {
         this.blacklist = blacklist;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", openID='" + openID + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userImage='" + userImage + '\'' +
+                ", blacklist=" + blacklist +
+                '}';
+    }
 }
