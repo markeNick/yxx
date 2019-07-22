@@ -40,7 +40,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<OrderCustom> selectAllMyPublishGoods(String openID, Integer currentPage) {
+    public List<Goods> selectAllMyPublishGoods(String openID, Integer currentPage) {
         return goodsMapper.selectAllMyPublishGoods(openID,currentPage);
     }
 }
