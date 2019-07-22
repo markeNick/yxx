@@ -10,12 +10,21 @@
         <result column="message" property="message" />
         <result column="openID" property="openID" />
         <result column="create_time" property="createTime" />
+        <result column="message_number" property="messageNumber" />
     </resultMap>
     <!--    查询买家留言-->
-    <select id="selectMyMessage" resultType="com.yxx.pojo.MessageCustom">
+    <select id="selectAllMyMessage" resultType="com.yxx.pojo.MessageCustom">
         select * from message,goods,user
         where goods.openID=#{openID} and goods.goods_id=message.goods_id and message.openID=user.openID
         order by message.create_time desc
-        limit #{currentPage},15
+        limit #{currentPage},10
+    </select>
+    <!--    查询用户留言框分别对应的回复数量-->
+    <select id="selectOneMessageNumberForReplyCount" resultType="java.lang.Integer">
+         select count(*) from reply where reply.message_number in
+         <foreach collection="list" item="MessageNumber" open="(" separator="," close=")">
+         #{MessageNumber}
+        </foreach>
+        group by reply.message_number
     </select>
 </mapper>

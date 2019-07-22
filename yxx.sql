@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 22/07/2019 15:39:33
+ Date: 22/07/2019 22:33:07
 */
 
 SET NAMES utf8mb4;
@@ -126,6 +126,7 @@ CREATE TABLE `message`  (
   `message` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '留言信息',
   `openID` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '留言用户openID',
   `create_time` datetime NULL DEFAULT NULL COMMENT '留言时间',
+  `message_number` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复框编号',
   PRIMARY KEY (`message_id`) USING BTREE,
   INDEX `m_openID`(`openID`) USING BTREE,
   INDEX `m_goodsID`(`goods_id`) USING BTREE,
@@ -136,10 +137,9 @@ CREATE TABLE `message`  (
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES (1, 1, '便宜卖可以吗？', '2', '2019-07-12 15:06:30');
-INSERT INTO `message` VALUES (2, 1, '便宜卖我哇！', '2', '2019-08-02 15:06:33');
-INSERT INTO `message` VALUES (3, 17, '能不能送？', '1', '2019-07-30 15:36:21');
-INSERT INTO `message` VALUES (4, 17, '就不能少点？', '1', '2019-07-30 15:37:25');
+INSERT INTO `message` VALUES (1, 1, '便宜卖可以吗？', '2', '2019-07-12 15:06:30', 'a1');
+INSERT INTO `message` VALUES (2, 2, '便宜卖我哇！', '2', '2019-08-02 15:06:33', 'a2');
+INSERT INTO `message` VALUES (3, 17, '二十块能卖吗?', '1', '2019-07-22 21:30:06', 'a3');
 
 -- ----------------------------
 -- Table structure for orders
@@ -167,6 +167,32 @@ CREATE TABLE `orders`  (
 INSERT INTO `orders` VALUES (1, 14, 1, '1', '2', '2019-07-27 14:22:14');
 INSERT INTO `orders` VALUES (2, 16, 1, '1', '2', '2019-07-28 14:22:32');
 INSERT INTO `orders` VALUES (3, 5, 1, '2', '1', '2019-07-27 14:23:46');
+
+-- ----------------------------
+-- Table structure for reply
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply`  (
+  `reply_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '回复ID',
+  `speaker` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家name',
+  `listener` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '卖家name',
+  `seller` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NOT NULL COMMENT '卖家openID',
+  `buyer` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家openID',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `message` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复信息',
+  `message_number` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT '' COMMENT '回复框编号',
+  PRIMARY KEY (`reply_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+INSERT INTO `reply` VALUES (1, 'aaa', 'bbb', '1', '2', '2019-07-22 19:40:35', '不能少了!', 'a1');
+INSERT INTO `reply` VALUES (2, 'aaa', 'bbb', '1', '2', '2019-07-22 19:41:34', '再少就亏大了！', 'a1');
+INSERT INTO `reply` VALUES (3, 'bbb', 'aaa', '1', '2', '2019-07-22 19:42:54', '你亏不了多少!', 'a1');
+INSERT INTO `reply` VALUES (4, 'aaa', 'bbb', '1', '2', '2019-07-22 19:44:02', '够便宜的了!', 'a2');
+INSERT INTO `reply` VALUES (5, 'bbb', 'aaa', '1', '2', '2019-07-22 19:45:36', '你才便宜几个钱!', 'a2');
+INSERT INTO `reply` VALUES (6, 'bbb', 'aaa', '2', '1', '2019-07-22 21:30:37', '不能', 'a3');
 
 -- ----------------------------
 -- Table structure for user

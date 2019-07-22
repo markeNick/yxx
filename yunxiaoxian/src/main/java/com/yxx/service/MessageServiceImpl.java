@@ -2,6 +2,7 @@ package com.yxx.service;
 
 import com.yxx.dao.MessageMapper;
 import com.yxx.pojo.Message;
+import com.yxx.pojo.MessageCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,12 @@ public class MessageServiceImpl implements MessageService {
     private MessageMapper messageMapper;
 
     @Override
-    public List<Message> selectMyMessage(String openID, Integer currentPage) {
-        return messageMapper.selectMyMessage(openID,currentPage);
+    public List<MessageCustom> selectAllMyMessage(String openID, Integer currentPage) {
+        return messageMapper.selectAllMyMessage(openID,currentPage);
+    }
+
+    @Override
+    public List<Integer> selectOneMessageNumberForReplyCount(List<String> messageNumberList) {
+        return messageMapper.selectOneMessageNumberForReplyCount(messageNumberList);
     }
 }
