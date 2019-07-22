@@ -28,39 +28,38 @@ public class MessageController {
         List<String> messageNumberList=new ArrayList<String>();//存留言框编号集合
         List<MessageCustom> messagelist=null;
         try {
-            if(currentPage!=null&&openID!=null){//openID和页码不为空
+            if(currentPage != null && openID != null){//openID和页码不为空
                 messagelist = messageService.selectAllMyMessage(openID,(currentPage-1)*10);//查询所有留言
-        if(messagelist.size()>0){//假如能查到
-            int size=messagelist.size();//存集合长度
-            for(MessageCustom messageCustom:messagelist){
-                messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
-            }
-            List<Integer> messages = messageService.selectOneMessageNumberForReplyCount(messageNumberList);
-            for(int i=0;i<size;i++){//将回复别存进每个MessageCustom
-                messagelist.get(i).setCount(messages.get(i));
-            }
-        }
-            }else if(currentPage==null&&openID!=null){//openID不为空和页码为空
+                if(messagelist.size() > 0) {//假如能查到
+                    int size = messagelist.size();//存集合长度
+                    for(MessageCustom messageCustom:messagelist){
+                        messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
+                    }
+                    List<Integer> messages = messageService.selectOneMessageNumberForReplyCount(messageNumberList);
+                    for(int i = 0; i < size; i++){//将回复别存进每个MessageCustom
+                        messagelist.get(i).setCount(messages.get(i));
+                    }
+                }
+            } else if (currentPage == null && openID != null){//openID不为空和页码为空
                 messagelist = messageService.selectAllMyMessage(openID, 0);
-                if(messagelist.size()>0){//假如能查到
+                if(messagelist.size() > 0){//假如能查到
                     int size=messagelist.size();//存集合长度
                     for(MessageCustom messageCustom:messagelist){
                         messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
                     }
                     List<Integer> messages = messageService.selectOneMessageNumberForReplyCount(messageNumberList);
-                    for(int i=0;i<size;i++){//将回复数分别存进每个MessageCustom
+                    for(int i = 0; i < size; i++){//将回复数分别存进每个MessageCustom
                         messagelist.get(i).setCount(messages.get(i));
                     }
                 }
-            }
-            else {//openID为空
-                json.put("messagelist",new ArrayList<String>());
+            } else {//openID为空
+                json.put("messagelist", new ArrayList<String>());
                 return json;
             }
         }catch (Exception e){
-            logger.error("error:",e);
+            logger.error("error:", e);
         }
-        json.put("messagelist",messagelist);
+        json.put("messagelist", messagelist);
         return json;
     }
 
