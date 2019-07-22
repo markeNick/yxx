@@ -38,12 +38,24 @@ public class GoodsController {
         try {
             if(currentPage!=null){//假如发送了页码,返回后续页的数据
                 goods.setCurrentPage((currentPage-1)*10);
-                goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+                try {
+                    goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+                }catch (Exception e){
+                    logger.error("error:",e);
+                }
             }else{//假如没发送页码,返回第一页的数据
                 goods.setCurrentPage(0);
-                goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+                try {
+                    goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
+                }catch (Exception e){
+                    logger.error("error:",e);
+                }
             }
-            count= goodsService.selectCountByGoods(goods);//查询相应所有商品信息总记录数
+            try {
+                count= goodsService.selectCountByGoods(goods);//查询相应所有商品信息总记录数
+            }catch (Exception e){
+                logger.error("error:",e);
+            }
         }catch(Exception e){
             logger.error("error:",e);
         }

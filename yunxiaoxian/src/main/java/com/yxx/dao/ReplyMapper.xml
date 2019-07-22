@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yxx.dao.ReplyMapper">
-    <resultMap id="ChatResultMap" type="com.yxx.pojo.Chat">
+    <resultMap id="ReplyResultMap" type="com.yxx.pojo.Reply">
         <result column="reply_id" property="replyId" />
         <result column="speaker" property="speaker"/>
         <result column="listener" property="listener"/>
@@ -14,8 +14,8 @@
         <result column="message" property="message"/>
         <result column="message_number" property="messageNumber"/>
     </resultMap>
-    <select id="selectDetailForOneReply">
-        select * from reply where messageNumber=#{messageNumber}
+    <select id="selectDetailForOneReply" resultType="com.yxx.pojo.Reply">
+        select * from reply where message_number=#{messageNumber}
         order by create_time desc
         limit #{currentPage},15
     </select>

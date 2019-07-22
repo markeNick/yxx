@@ -101,6 +101,7 @@ public class MessageController {
             json.put("replylist",new ArrayList<String>());
             return json;
         }
+        json.put("replylist",replylist);
         return json;
     }
 }
