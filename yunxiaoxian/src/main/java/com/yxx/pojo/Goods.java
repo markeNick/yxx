@@ -16,6 +16,14 @@ public class Goods {
     private String openID;
     private Integer currentPage;
 
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
     public Integer getGoodsId() {
         return goodsId;
     }
@@ -96,13 +104,13 @@ public class Goods {
         this.openID = openID;
     }
 
-    public Integer getCurrentPage() {
-        return currentPage;
-    }
 
-    public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
-    }
+
+
+
+
+
+
 
 
 }

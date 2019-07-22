@@ -137,7 +137,7 @@ public class GoodsController {
     @ResponseBody
     public JSONObject selectAllMyPublishGoods(String openID,Integer currentPage){
         JSONObject json=new JSONObject();
-        List<OrderCustom> mypublishlist=null;
+        List<Goods> mypublishlist=null;
         try {
             if(currentPage!=null){//查询我发布的商品信息
                 mypublishlist = goodsService.selectAllMyPublishGoods(openID,(currentPage-1)*10);
