@@ -29,13 +29,10 @@ public class UserController {
         return userslist;
     }
 
-<<<<<<< HEAD
 
-    //发布商品
-/*    @RequestMapping(value = "/publishMyGoods")
-    //查询我卖的商品
-=======
->>>>>>> feature
+
+
+
     @PostMapping("updateUser")
 
     @ResponseBody
@@ -58,13 +55,9 @@ public class UserController {
             json.put("status", "true");
             return json;
         }
-<<<<<<< HEAD
-
-    }*/
-=======
-        json.put("status", "false");
+        json.put("status", "true");
         return json;
     }
->>>>>>> feature
+
 
 }
