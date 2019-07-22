@@ -29,13 +29,12 @@ public class UserController {
         return userslist;
     }
 
-<<<<<<< HEAD
+
     //发布商品
 /*    @RequestMapping(value = "/publishMyGoods")
-=======
     //查询我卖的商品
     @PostMapping("updateUser")
->>>>>>> feature
+
     @ResponseBody
     public JSONObject updateUser(@ModelAttribute("user")User user){
         JSONObject json = new JSONObject();
@@ -56,11 +55,7 @@ public class UserController {
             json.put("status", "true");
             return json;
         }
-<<<<<<< HEAD
+
     }*/
-=======
-        json.put("status", "false");
-        return json;
-    }
->>>>>>> feature
+
 }
