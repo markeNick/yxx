@@ -1,9 +1,10 @@
 package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yxx.pojo.Message;
 import com.yxx.pojo.MessageCustom;
+import com.yxx.pojo.Reply;
 import com.yxx.service.MessageService;
+import com.yxx.service.ReplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.List;
 public class MessageController {
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private ReplyService replyService;
 
     //查询买家留言
     @PostMapping("/selectAllMyMessage")
@@ -29,7 +32,11 @@ public class MessageController {
         List<MessageCustom> messagelist=null;
         try {
             if(currentPage!=null&&openID!=null){//openID和页码不为空
-                messagelist = messageService.selectAllMyMessage(openID,(currentPage-1)*10);//查询所有留言
+                try {
+                    messagelist = messageService.selectAllMyMessage(openID,(currentPage-1)*10);//查询所有留言
+                }catch (Exception e){
+                    logger.error("error",e);
+                }
         if(messagelist.size()>0){//假如能查到
             int size=messagelist.size();//存集合长度
             for(MessageCustom messageCustom:messagelist){
@@ -41,7 +48,12 @@ public class MessageController {
             }
         }
             }else if(currentPage==null&&openID!=null){//openID不为空和页码为空
-                messagelist = messageService.selectAllMyMessage(openID, 0);
+                try {
+                    messagelist = messageService.selectAllMyMessage(openID, 0);//查询所有留言
+                }catch (Exception e){
+                    logger.error("error",e);
+                }
+
                 if(messagelist.size()>0){//假如能查到
                     int size=messagelist.size();//存集合长度
                     for(MessageCustom messageCustom:messagelist){
@@ -67,9 +79,29 @@ public class MessageController {
     //查看留言详细记录
     @PostMapping("/selectDetailForReply")
     @ResponseBody
-    public JSONObject selectDetailForReply(){
+    public JSONObject selectDetailForReply(String messageNumber,Integer currentPage){
         Logger logger = LoggerFactory.getLogger(MessageController.class);
         JSONObject json=new JSONObject();
+        List<Reply> replylist=null;
+
+        if(currentPage!=null&&messageNumber!=null){//messageNumber和页码不为空
+            try {
+                replylist = replyService.selectDetailForOneReply(messageNumber,(currentPage-1)*10);//查询回复信息
+            }catch (Exception e){
+                logger.error("error",e);
+            }
+        }else if(currentPage==null&&messageNumber!=null){//messageNumber不为空和页码为空
+            try {
+                replylist = replyService.selectDetailForOneReply(messageNumber,0);//查询回复信息
+            }catch (Exception e){
+                logger.error("error",e);
+            }
+        }
+        else {//messageNumber为空
+            json.put("replylist",new ArrayList<String>());
+            return json;
+        }
+        json.put("replylist",replylist);
         return json;
     }
 }
