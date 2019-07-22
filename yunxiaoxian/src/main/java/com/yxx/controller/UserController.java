@@ -29,7 +29,6 @@ public class UserController {
         return userslist;
     }
 
-    //查询我卖的商品
     @PostMapping("updateUser")
     @ResponseBody
     public JSONObject updateUser(@ModelAttribute("user")User user){
