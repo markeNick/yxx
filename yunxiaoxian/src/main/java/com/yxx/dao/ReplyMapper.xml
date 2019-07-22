@@ -14,4 +14,9 @@
         <result column="message" property="message"/>
         <result column="message_number" property="messageNumber"/>
     </resultMap>
+    <select id="selectDetailForOneReply">
+        select * from reply where messageNumber=#{messageNumber}
+        order by create_time desc
+        limit #{currentPage},15
+    </select>
 </mapper>
