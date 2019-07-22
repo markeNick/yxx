@@ -26,7 +26,6 @@ public class UserController {
         return userslist;
     }
 
-    //查询我卖的商品
     @PostMapping("updateUser")
     @ResponseBody
     public JSONObject updateUser(@RequestParam("openID")String openID,
@@ -52,15 +51,16 @@ public class UserController {
             json.put("status", "false");
             return json;
         }
-
         //如果user用户不存在,则注册用户
         if(userService.registerUser(user) == 1){    //如果注册成功返回true，否则返回false
             System.out.println("注册");
             json.put("status", "true");
             return json;
         }
-        json.put("status", "false");
+        json.put("status", "true");
         return json;
 
     }
+
+
 }
