@@ -33,7 +33,7 @@ public class UserController {
     }
 
     //发布商品
-    @RequestMapping(value = "/publishMyGoods")
+/*    @RequestMapping(value = "/publishMyGoods")
     @ResponseBody
     public JSONObject publishMyGoods(@ModelAttribute("goods") Goods goods, HttpServletRequest req, HttpServletResponse res, MultipartFile attach){
         JSONObject json =new JSONObject();
@@ -85,5 +85,5 @@ public class UserController {
 
             }
         }
-    }
+    }*/
 }
