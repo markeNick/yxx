@@ -5,10 +5,19 @@
 
 <mapper namespace="com.yxx.dao.CollectionMapper">
 
-    <!--collection表的实体映射-->
+    <!-- collection表的实体映射 -->
     <resultMap id="CollectionResultMap" type="com.yxx.pojo.Collection">
         <result column="collection_id" property="collectionId" />
         <result column="goods_id" property="goodsId" />
         <result column="openID" property="openID" />
     </resultMap>
+
+    <!-- 根据用户的openID查询其所收藏的物品信息 -->
+    <select id="selectUserCollectionByOpenID" resultType="com.yxx.pojo.GoodsCustom">
+        select goods.*, user.* from goods,collection,user
+        where goods.goods_id = collection.goods_id
+        and user.openID = goods.openID
+        and collection.openID = #{openID}
+        limit #{currentPage}, 10
+    </select>
 </mapper>
