@@ -16,4 +16,21 @@ public class UserServiceImpl implements UserService {
     public List<User> selectAllFormUser() {
         return userMapper.selectAllFormUser();
     }
+
+    @Override
+    public User selectUserByOpenID(String openID) {
+
+        return userMapper.selectByOpenID(openID);
+    }
+
+    @Override
+    public int updateUser(User user) {
+
+        return userMapper.updateUserByOpenID(user);
+    }
+
+    @Override
+    public int registerUser(User user) {
+        return userMapper.registerUser(user);
+    }
 }
