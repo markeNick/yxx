@@ -1,5 +1,7 @@
 package com.yxx.pojo;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -58,7 +60,8 @@ public class Goods {
 
     //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
     public String getGoodsImage() {
-        return goodsImage.toString();
+
+        return StringUtils.join(goodsImage, ",");
     }
 
     public void setGoodsImage(String goodsImage) {
