@@ -36,10 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+<<<<<<< HEAD
     public User selectUserByGoodsId(Integer goodsId) {
         return userMapper.selectUserByGoodsId(goodsId);
     }
     @Override
+=======
+>>>>>>> 9de3f80ea5cc26cdeb8dc3aeb3fe76adb83cc4e6
     public int soldMyGoods(String openID, Integer goodsID) {
         return userMapper.updateMySoldGoodsStatus(openID, goodsID);
     }
