@@ -28,16 +28,6 @@ public interface UserMapper {
      * @param user
      * @return
      */
-<<<<<<< HEAD
-    public int  registerUser(User user);
-
-    /**
-     * 根据goods_id查询用户信息
-     * @param goodsId
-     * @return
-     */
-    public User selectUserByGoodsId(@Param("goodsId")Integer goodsId);
-=======
     public int registerUser(User user);
 
     /**
@@ -48,5 +38,4 @@ public interface UserMapper {
      */
     public int updateMySoldGoodsStatus(@Param("openID")String openID,
                                  @Param("goodsID")Integer goodsID);
->>>>>>> feature
 }

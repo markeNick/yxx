@@ -40,4 +40,9 @@ public class ChatController {
 //
 //        System.out.println(str1);
 //    }
+
+    public static void main(String[] args) {
+        String[] str = {"test", "test", "test"};
+        System.out.println(str.toString());
+    }
 }

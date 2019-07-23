@@ -57,8 +57,8 @@ public class Goods {
     }
 
     //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
-    public String[] getGoodsImage() {
-        return goodsImage;
+    public String getGoodsImage() {
+        return goodsImage.toString();
     }
 
     public void setGoodsImage(String goodsImage) {
