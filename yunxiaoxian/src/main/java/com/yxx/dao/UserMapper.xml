@@ -42,4 +42,12 @@
         insert into user(openID, user_name, user_image, blacklist)
         values(#{openID}, #{userName}, #{userImage}, 0)
     </insert>
+
+    <!-- 更新用户在售物品状态 -->
+    <update id="updateMySoldGoodsStatus">
+        update goods
+        set status = 1
+        where openID = #{openID}
+        and goods_id = #{goodsID}
+    </update>
 </mapper>

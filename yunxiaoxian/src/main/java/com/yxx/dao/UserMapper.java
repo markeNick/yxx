@@ -28,5 +28,14 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    public int  registerUser(User user);
+    public int registerUser(User user);
+
+    /**
+     * 更新用户在售物品状态
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public int updateMySoldGoodsStatus(@Param("openID")String openID,
+                                 @Param("goodsID")Integer goodsID);
 }

@@ -73,6 +73,25 @@ public class UserController {
         return json;
     }
 
+    //卖家售出功能
+    @PostMapping("soldMyGoods")
+    @ResponseBody
+    public JSONObject soldMyGoods(String openID, Integer goodsID){
+        JSONObject json = new JSONObject();
+
+        try {
+            if(userService.soldMyGoods(openID, goodsID) == 1){
+                json.put("status", "true");
+                return json;
+            }
+        } catch (Exception e) {
+            logger.debug("soldMyGoods--> error:{}", e);
+        }
+
+        json.put("status", "false");
+        return json;
+    }
+
 
 
 }
