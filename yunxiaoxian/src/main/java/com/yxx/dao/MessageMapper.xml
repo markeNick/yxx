@@ -27,4 +27,15 @@
         </foreach>
         group by reply.message_number
     </select>
+
+    <!--根据goods_id,openID,message插入message表(留言)-->
+    <insert id="insertMessageByMessage" parameterType="com.yxx.pojo.Message">
+        insert into message set goods_id=#{goodsId},message=#{message},
+        openID=#{openID},create_time=#{createTime},message_number=#{messageNumber}
+    </insert>
+
+    <!--根据goodsId,openID查询留言框编号-->
+    <select id="selectMessageNumberByGoodsIDAndOpenID" resultType="java.lang.String">
+        select message_number from message where openID=#{openID} and goods_id=#{goodsId}
+    </select>
 </mapper>

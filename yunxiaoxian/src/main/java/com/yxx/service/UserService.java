@@ -28,4 +28,11 @@ public interface UserService{
      */
     public int registerUser(User user);
 
+    /**
+     * 售出物品
+     * @param openID
+     * @return
+     */
+    public int soldMyGoods(String openID, Integer goodsID);
+
 }

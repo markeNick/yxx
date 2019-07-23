@@ -29,13 +29,12 @@ public class GoodsController {
     public JSONObject selectGoodsByGoodsDescribe(@ModelAttribute("goods")Goods goods,String goodsDescribe,Integer currentPage) throws UnsupportedEncodingException {
         Logger logger = LoggerFactory.getLogger(GoodsController.class);
         if(goodsDescribe!=null){//解决搜索信息中文乱码
-            goods.setGoodsDescribe(new String(goodsDescribe.getBytes("ISO-8859-1"),"UTF-8"));
+            goods.setGoodsDescribe(new String(goodsDescribe.getBytes("UTF-8"),"UTF-8"));
         }
         JSONObject json=new JSONObject();
         List<GoodsCustom> goodslist=null;//商品信息集合
         Integer maxpage=null;//最大页数
         Integer count=null;//总记录数
-        try {
             if(currentPage!=null){//假如发送了页码,返回后续页的数据
                 goods.setCurrentPage((currentPage-1)*10);
                 try {
@@ -51,12 +50,9 @@ public class GoodsController {
                     logger.error("error:",e);
                 }
             }
-            try {
-                count= goodsService.selectCountByGoods(goods);//查询相应所有商品信息总记录数
-            }catch (Exception e){
-                logger.error("error:",e);
-            }
-        }catch(Exception e){
+        try {
+            count= goodsService.selectCountByGoods(goods);//查询相应所有商品信息总记录数
+        }catch (Exception e){
             logger.error("error:",e);
         }
         if(count!=null){
@@ -70,12 +66,12 @@ public class GoodsController {
         } else{//0条记录数
             maxpage=0;
         }
-        if(goodslist!=null&&goodslist.size()!=0&&maxpage!=0){//假如查询到信息,返回
+        if(goodslist!=null&&goodslist.size()>0&&maxpage!=0){//假如查询到信息,返回
             json.put("goodslist",goodslist);//商品信息
             json.put("maxpage",maxpage);//最大页数
             json.put("count",count);//总纪录数
         }else {//没查询到,返回null
-            json.put("goodslist",new ArrayList<String>());
+            json.put("goodslist", null);
         }
             return json;
     }

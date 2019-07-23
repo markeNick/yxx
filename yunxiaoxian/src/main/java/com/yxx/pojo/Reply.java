@@ -5,12 +5,31 @@ import java.util.Date;
 public class Reply {
     private int replyId;
     private String speaker;
+    private String speakerImage;
     private String listener;
     private String seller;
     private String buyer;
     private Date createTime;
     private String message;
     private String messageNumber;
+    private Integer goodsId;
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public String getSpeakerImage() {
+        return speakerImage;
+    }
+
+    public void setSpeakerImage(String speakerImage) {
+        this.speakerImage = speakerImage;
+    }
+
 
     public int getReplyId() {
         return replyId;

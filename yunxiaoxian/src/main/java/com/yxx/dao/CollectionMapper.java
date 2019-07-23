@@ -1,5 +1,6 @@
 package com.yxx.dao;
 
+import com.yxx.pojo.Collection;
 import com.yxx.pojo.GoodsCustom;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,4 +16,21 @@ public interface CollectionMapper {
      */
     public List<GoodsCustom> selectUserCollectionByOpenID(@Param("openID")String openID,
                                                           @Param("currentPage")Integer currentPage);
+
+    /**
+     * 将用户收藏物品信息存入collection表
+     * @param openID
+     * @param goodsID
+     */
+    public int insertUserCollection(@Param("openID")String openID,
+                                     @Param("goodsID")Integer goodsID);
+
+    /**
+     * 根据openID和goodsID查询collection中的记录
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public List<Collection> selectCollectionByGoodsIDAndOpenID(@Param("openID")String openID,
+                                                          @Param("goodsID")Integer goodsID);
 }

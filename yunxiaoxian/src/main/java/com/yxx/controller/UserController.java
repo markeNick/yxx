@@ -73,26 +73,25 @@ public class UserController {
         return json;
     }
 
-    //我的收藏
-    @PostMapping("selectUserCollection")
+    //卖家售出功能
+    @PostMapping("soldMyGoods")
     @ResponseBody
-    public JSONObject selectUserCollection(String openID, Integer currentPage){
+    public JSONObject soldMyGoods(String openID, Integer goodsID){
         JSONObject json = new JSONObject();
-        List<GoodsCustom> collectionList = null;
 
         try {
-            collectionList = collectionService.selectUserCollerction(openID, (currentPage - 1) * 10);
+            if(userService.soldMyGoods(openID, goodsID) == 1){
+                json.put("status", "true");
+                return json;
+            }
         } catch (Exception e) {
-            logger.error("error:{}" + " from" + getClass(), e);
+            logger.debug("soldMyGoods--> error:{}", e);
         }
 
-        if(collectionList != null && collectionList.size() != 0){
-            json.put("collectionList", collectionList);
-            return json;
-        }
-
-        json.put("collectionList", null);
+        json.put("status", "false");
         return json;
     }
+
+
 
 }

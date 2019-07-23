@@ -31,6 +31,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int registerUser(User user) {
+
         return userMapper.registerUser(user);
+    }
+
+    @Override
+    public int soldMyGoods(String openID, Integer goodsID) {
+
+        return userMapper.updateMySoldGoodsStatus(openID, goodsID);
     }
 }
