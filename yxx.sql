@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 23/07/2019 13:38:41
+ Date: 23/07/2019 21:22:13
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `category`  (
   `category` varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '类别',
   `class_name` varchar(30) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '图型名称',
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of category
@@ -98,23 +98,23 @@ CREATE TABLE `goods`  (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, '凳子', '板凳', 1.00, '1', 9, 0, '2019-07-04 11:58:06', NULL, '1');
-INSERT INTO `goods` VALUES (2, '华为手机', '手机', 2.00, '2', 0, 0, '2019-07-24 12:16:06', NULL, '1');
-INSERT INTO `goods` VALUES (3, '三星手机', '手机', 3.00, '1', 0, 0, '2019-07-24 12:16:24', NULL, '1');
-INSERT INTO `goods` VALUES (4, '惠普笔记本', '惠普笔记本', 4.00, '1', 1, 0, '2019-07-26 14:39:02', NULL, '1');
-INSERT INTO `goods` VALUES (5, '铁轮椅', '轮椅', 5.00, '1', 6, 1, '2019-07-07 20:34:14', NULL, '1');
-INSERT INTO `goods` VALUES (6, '木凳子', '板凳', 5.00, '2', 9, 0, '2019-07-10 22:21:41', NULL, '1');
-INSERT INTO `goods` VALUES (7, '木桌子', '书桌', 5.00, '1', 9, 0, '2019-07-23 22:23:21', NULL, '1');
-INSERT INTO `goods` VALUES (8, '耐克鞋', '破鞋', 3.00, '1', 6, 0, '2019-07-24 22:24:30', NULL, '1');
-INSERT INTO `goods` VALUES (9, '钢铁侠手办', '钢铁侠手办', 2.00, '3', 9, 0, '2019-07-03 22:25:02', NULL, '1');
-INSERT INTO `goods` VALUES (10, '联想笔记本', '联想笔记本', 2.00, '3', 1, 0, '2019-06-24 22:25:16', NULL, '1');
-INSERT INTO `goods` VALUES (11, 'X洗面奶', 'X洗面奶', 2.00, '3', 5, 0, '2019-07-11 22:25:34', NULL, '1');
-INSERT INTO `goods` VALUES (12, 'ipad', 'ipad', 22.00, '3', 1, 0, '2019-07-02 22:26:47', NULL, '1');
-INSERT INTO `goods` VALUES (13, '《斗破苍穹》实体书', '斗破苍穹', 22.00, '2', 2, 0, '2019-07-03 11:56:22', NULL, '1');
-INSERT INTO `goods` VALUES (14, '《斗罗大陆》实体书', '斗罗大陆', 21.00, '2', 2, 1, '2019-07-17 12:35:08', NULL, '2');
-INSERT INTO `goods` VALUES (15, '《诛仙》实体书', '诛仙', 23.00, '2', 2, 0, '2019-07-23 13:36:22', NULL, '1');
-INSERT INTO `goods` VALUES (16, '《仙逆》实体书', '仙逆', 32.00, '2', 2, 1, '2019-07-10 14:20:57', NULL, '2');
-INSERT INTO `goods` VALUES (17, '《龙族5悼亡者的归来》', '龙族五', 40.00, '3', 2, 0, '2019-07-24 15:33:38', NULL, '2');
+INSERT INTO `goods` VALUES (1, '凳子', '板凳', 1.00, 'http://47.103.18.92/pic/t4.jpg', 9, 1, '2019-07-04 11:58:06', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (2, '华为手机', '手机', 2.00, 'http://47.103.18.92/pic/t3.jpg', 0, 0, '2019-07-24 12:16:06', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (3, '三星手机', '手机', 3.00, 'http://47.103.18.92/pic/t1.jpg', 0, 0, '2019-07-24 12:16:24', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (4, '惠普笔记本', '惠普笔记本', 4.00, 'http://47.103.18.92/pic/t1.jpg', 1, 0, '2019-07-26 14:39:02', NULL, 'o028s5Lixb3AnRmrWB8cswyjECog');
+INSERT INTO `goods` VALUES (5, '铁轮椅', '轮椅', 5.00, 'http://47.103.18.92/pic/t4.jpg', 6, 1, '2019-07-07 20:34:14', NULL, 'o028s5FK4rYpsXk4Zp3psrjMxteg');
+INSERT INTO `goods` VALUES (6, '木凳子', '板凳', 5.00, 'http://47.103.18.92/pic/t3.jpg', 9, 0, '2019-07-10 22:21:41', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (7, '木桌子', '书桌', 5.00, 'http://47.103.18.92/pic/t1.jpg', 9, 0, '2019-07-23 22:23:21', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (8, '耐克鞋', '破鞋', 3.00, 'http://47.103.18.92/pic/t1.jpg', 6, 0, '2019-07-24 22:24:30', NULL, 'o028s5FK4rYpsXk4Zp3psrjMxteg');
+INSERT INTO `goods` VALUES (9, '钢铁侠手办', '钢铁侠手办', 2.00, 'http://47.103.18.92/pic/t5.jpg', 9, 0, '2019-07-03 22:25:02', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (10, '联想笔记本', '联想笔记本', 2.00, 'http://47.103.18.92/pic/t5.jpg', 1, 0, '2019-06-24 22:25:16', NULL, 'o028s5Lixb3AnRmrWB8cswyjECog');
+INSERT INTO `goods` VALUES (11, 'X洗面奶', 'X洗面奶', 2.00, 'http://47.103.18.92/pic/t5.jpg', 5, 0, '2019-07-11 22:25:34', NULL, 'o028s5FK4rYpsXk4Zp3psrjMxteg');
+INSERT INTO `goods` VALUES (12, 'ipad', 'ipad', 22.00, 'http://47.103.18.92/pic/t5.jpg', 1, 0, '2019-07-02 22:26:47', NULL, 'o028s5Lixb3AnRmrWB8cswyjECog');
+INSERT INTO `goods` VALUES (13, '《斗破苍穹》实体书', '斗破苍穹', 22.00, 'http://47.103.18.92/pic/t3.jpg', 2, 0, '2019-07-03 11:56:22', NULL, 'o028s5FK4rYpsXk4Zp3psrjMxteg');
+INSERT INTO `goods` VALUES (14, '《斗罗大陆》实体书', '斗罗大陆', 21.00, 'http://47.103.18.92/pic/t4.jpg', 2, 1, '2019-07-17 12:35:08', NULL, 'o028s5Lixb3AnRmrWB8cswyjECog');
+INSERT INTO `goods` VALUES (15, '《诛仙》实体书', '诛仙', 23.00, 'http://47.103.18.92/pic/t3.jpg', 2, 0, '2019-07-23 13:36:22', NULL, 'o028s5FK4rYpsXk4Zp3psrjMxteg');
+INSERT INTO `goods` VALUES (16, '《仙逆》实体书', '仙逆', 32.00, 'http://47.103.18.92/pic/t4.jpg', 2, 1, '2019-07-10 14:20:57', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
+INSERT INTO `goods` VALUES (17, '《龙族5悼亡者的归来》', '龙族五', 40.00, 'http://47.103.18.92/pic/t5.jpg', 2, 0, '2019-07-24 15:33:38', NULL, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4');
 
 -- ----------------------------
 -- Table structure for message
@@ -132,14 +132,13 @@ CREATE TABLE `message`  (
   INDEX `m_goodsID`(`goods_id`) USING BTREE,
   CONSTRAINT `m_goodsID` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `m_openID` FOREIGN KEY (`openID`) REFERENCES `user` (`openID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES (1, 1, '便宜卖可以吗？', '2', '2019-07-12 15:06:30', 'a1');
-INSERT INTO `message` VALUES (2, 2, '便宜卖我哇！', '2', '2019-08-02 15:06:33', 'a2');
-INSERT INTO `message` VALUES (3, 17, '二十块能卖吗?', '1', '2019-07-22 21:30:06', 'a3');
+INSERT INTO `message` VALUES (9, 1, '保熟嘛？', 'o028s5Lixb3AnRmrWB8cswyjECog', '2019-07-23 20:58:58', 'c75c3331-4fa2-4d37-b090-2339ad5f0f3d1563886738452');
+INSERT INTO `message` VALUES (10, 1, '保熟嘛？', 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4', '2019-07-23 20:58:58', 'c75c3331-4fa2-4d37-b090-2339ad5f0f3d1563886738452');
 
 -- ----------------------------
 -- Table structure for orders
@@ -182,18 +181,18 @@ CREATE TABLE `reply`  (
   `message` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复信息',
   `message_number` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT '' COMMENT '回复框编号',
   `speaker_image` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复者头像',
-  PRIMARY KEY (`reply_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+  `goods_id` int(255) NULL DEFAULT NULL COMMENT '商品id',
+  PRIMARY KEY (`reply_id`) USING BTREE,
+  INDEX `goods_id_key`(`goods_id`) USING BTREE,
+  CONSTRAINT `goods_id_key` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of reply
 -- ----------------------------
-INSERT INTO `reply` VALUES (1, 'aaa', 'bbb', '1', '2', '2019-07-22 19:40:35', '不能少了!', 'a1', 'aaa');
-INSERT INTO `reply` VALUES (2, 'aaa', 'bbb', '1', '2', '2019-07-22 19:41:34', '再少就亏大了！', 'a1', 'aaa');
-INSERT INTO `reply` VALUES (3, 'bbb', 'aaa', '1', '2', '2019-07-22 19:42:54', '你亏不了多少!', 'a1', 'bbb');
-INSERT INTO `reply` VALUES (4, 'aaa', 'bbb', '1', '2', '2019-07-22 19:44:02', '够便宜的了!', 'a2', 'aaa');
-INSERT INTO `reply` VALUES (5, 'bbb', 'aaa', '1', '2', '2019-07-22 19:45:36', '你才便宜几个钱!', 'a2', 'bbb');
-INSERT INTO `reply` VALUES (6, 'bbb', 'aaa', '2', '1', '2019-07-22 21:30:37', '不能', 'a3', 'bbb');
+INSERT INTO `reply` VALUES (8, '无处安身', 'Hello World', 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4', 'o028s5Lixb3AnRmrWB8cswyjECog', '2019-07-23 20:58:58', '保熟嘛？', 'c75c3331-4fa2-4d37-b090-2339ad5f0f3d1563886738452', 'https://wx.qlogo.cn/mmopen/vi_32/y7myPTmc5sia014QMflJxGDzJtTJrEWicT9GmOQGwibecbuZBSnomicUk5bzo276nEJKUsDOZgfInkfXynEbBW4NdQ/132', 1);
+INSERT INTO `reply` VALUES (9, '无处安身', 'Hello World', 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4', 'o028s5Lixb3AnRmrWB8cswyjECog', '2019-07-23 20:59:33', '到底保熟嘛？', 'c75c3331-4fa2-4d37-b090-2339ad5f0f3d1563886738452', 'https://wx.qlogo.cn/mmopen/vi_32/y7myPTmc5sia014QMflJxGDzJtTJrEWicT9GmOQGwibecbuZBSnomicUk5bzo276nEJKUsDOZgfInkfXynEbBW4NdQ/132', 1);
+INSERT INTO `reply` VALUES (10, 'Hello World', '无处安身', 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4', 'o028s5Lixb3AnRmrWB8cswyjECog', '2019-07-23 21:05:33', '保熟!', 'c75c3331-4fa2-4d37-b090-2339ad5f0f3d1563886738452', 'https://wx.qlogo.cn/mmopen/vi_32/NtzewX2ULcdJYf7k72z7dicicXxjcssYL8hgv4jgbupJLjduxXqLmF2PMcJ4HjohlAHxPvAiaiaciccYZlNrVTonEog/132', 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -207,12 +206,16 @@ CREATE TABLE `user`  (
   `blacklist` tinyint(255) NULL DEFAULT NULL COMMENT '用户被拉黑次数',
   PRIMARY KEY (`user_id`) USING BTREE,
   INDEX `openID`(`openID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2223 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2228 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1111, '1', 'aaa', 'aaa', 1);
-INSERT INTO `user` VALUES (2222, '2', 'bbb', 'bbb', 2);
+INSERT INTO `user` VALUES (1111, '1', 'aaa', 'https://wx.qlogo.cn/mmopen/vi_32/y7myPTmc5sia014QMflJxGDzJtTJrEWicT9GmOQGwibecbuZBSnomicUk5bzo276nEJKUsDOZgfInkfXynEbBW4NdQ/132', 1);
+INSERT INTO `user` VALUES (2222, '2', 'bbb', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLO490QGiciaiax7Xl1vfmE5wjqFVnaStibmh8toiaQjhffsFlxib4kWr64ichEYbNxmGbH4UFZBcOCiajy1Q/132', 2);
+INSERT INTO `user` VALUES (2223, 'o028s5Cn_V5Y3ymqRpafs4C5Z4T4', 'Hello World', 'https://wx.qlogo.cn/mmopen/vi_32/NtzewX2ULcdJYf7k72z7dicicXxjcssYL8hgv4jgbupJLjduxXqLmF2PMcJ4HjohlAHxPvAiaiaciccYZlNrVTonEog/132', 0);
+INSERT INTO `user` VALUES (2225, 'o028s5Lixb3AnRmrWB8cswyjECog', '无处安身', 'https://wx.qlogo.cn/mmopen/vi_32/y7myPTmc5sia014QMflJxGDzJtTJrEWicT9GmOQGwibecbuZBSnomicUk5bzo276nEJKUsDOZgfInkfXynEbBW4NdQ/132', 0);
+INSERT INTO `user` VALUES (2226, 'o028s5Iww32AxwXRy948__S8FFbc', 'D', 'https://wx.qlogo.cn/mmopen/vi_32/C2oLWYznZ4SsHB3P1UFORk2Hj8X5u5qkdBRaEuMyicFr14Fa1x2n58eNqcvzG3VpXG1xSIyyfibcc8Va1prCWsTg/132', 0);
+INSERT INTO `user` VALUES (2227, 'o028s5FK4rYpsXk4Zp3psrjMxteg', 'qwe', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLO490QGiciaiax7Xl1vfmE5wjqFVnaStibmh8toiaQjhffsFlxib4kWr64ichEYbNxmGbH4UFZBcOCiajy1Q/132', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

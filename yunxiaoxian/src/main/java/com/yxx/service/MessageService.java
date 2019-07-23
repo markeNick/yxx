@@ -10,4 +10,8 @@ public interface MessageService {
     public List<MessageCustom> selectAllMyMessage(String openID, Integer currentPage);
     //查询用户留言框分别对应的回复数量
     public List<Integer> selectOneMessageNumberForReplyCount(List<String> messageNumberList);
+    //根据goods_id,openID,message插入message表(留言)
+    public int insertMessageByMessage(Message messages);
+    //根据goodsId,openID查询留言框编号
+    String selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID);
 }

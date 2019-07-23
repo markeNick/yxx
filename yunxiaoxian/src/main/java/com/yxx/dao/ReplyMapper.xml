@@ -14,10 +14,26 @@
         <result column="create_time" property="createTime"/>
         <result column="message" property="message"/>
         <result column="message_number" property="messageNumber"/>
+        <result column="goods_id" property="goodsId" />
     </resultMap>
+    <!--查询单个留言详细信息(属于该留言的所有对话)-->
     <select id="selectDetailForOneReply" resultType="com.yxx.pojo.Reply">
        select * from reply where message_number=#{messageNumber}
         order by reply.create_time asc
         limit #{currentPage},15
     </select>
+
+    <!--根据messageNumber查询reply表中时间最早的一条记录-->
+    <select id="selectSpeakerAndListenerByMessageNumber" resultType="com.yxx.pojo.Reply" parameterType="java.lang.String">
+        select * from reply where message_number=#{messageNumber}
+        GROUP BY create_time asc
+        limit 1
+    </select>
+
+    <!--插入reply表-->
+    <insert id="insertReplyToReply" parameterType="com.yxx.pojo.Reply">
+        insert into reply set speaker=#{speaker},listener=#{listener},seller=#{seller},
+        buyer=#{buyer},create_time=#{createTime},message=#{message},message_number=#{messageNumber},
+        speaker_image=#{speakerImage},goods_id=#{goodsId}
+    </insert>
 </mapper>

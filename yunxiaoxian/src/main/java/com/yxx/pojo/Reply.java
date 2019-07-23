@@ -12,7 +12,15 @@ public class Reply {
     private Date createTime;
     private String message;
     private String messageNumber;
+    private Integer goodsId;
 
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
 
     public String getSpeakerImage() {
         return speakerImage;
