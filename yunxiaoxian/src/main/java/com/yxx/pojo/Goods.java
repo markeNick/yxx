@@ -58,11 +58,16 @@ public class Goods {
         this.goodsPrice = goodsPrice;
     }
 
+<<<<<<< HEAD
     //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
     public String getGoodsImage() {
 
         //将字符串数组转为字符串并以 “，” 作为分隔符
         return StringUtils.join(goodsImage, ",");
+=======
+    public String[] getGoodsImage() {
+        return goodsImage;
+>>>>>>> 1dda28299ff2afdecc504695af2ba0d22c63e3b7
     }
 
     public void setGoodsImage(String goodsImage) {
@@ -70,7 +75,6 @@ public class Goods {
         //将字符串转成字符串数组
         this.goodsImage = goodsImage.split(",");
     }
-    //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
 
     public Integer getCategoryId() {
         return categoryId;
