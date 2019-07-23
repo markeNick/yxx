@@ -15,7 +15,7 @@
     <!--    查询买家留言-->
     <select id="selectAllMyMessage" resultType="com.yxx.pojo.MessageCustom">
         select * from message,goods,user
-        where goods.openID=#{openID} and goods.goods_id=message.goods_id and message.openID=user.openID
+        where message.openID=#{openID} and goods.goods_id=message.goods_id and message.openID=user.openID
         order by message.create_time desc
         limit #{currentPage},10
     </select>
