@@ -49,5 +49,6 @@
         set status = 1
         where openID = #{openID}
         and goods_id = #{goodsID}
+        and status = 0;
     </update>
 </mapper>

@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("getAllCategory")
+    @RequestMapping("getAllCategory")
     @ResponseBody
     public JSONObject getAllCategory(){
         JSONObject json = new JSONObject();
-        List<Category> categoryList = new ArrayList<Category>();
 
-        categoryList = categoryService.getAllCategory();
+        List<Category> categoryList = categoryService.getAllCategory();
+
         json.put("categoryList", categoryList);
 
         return json;

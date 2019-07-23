@@ -12,7 +12,7 @@
     </resultMap>
 
     <!-- 获取物品的所有类别 -->
-    <select id="getAllCategory" resultType="Category">
+    <select id="getAllCategory" resultType="com.yxx.pojo.Category">
         select * from category
     </select>
 
