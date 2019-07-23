@@ -31,6 +31,7 @@
              and category_id=#{categoryId}
             </if>
         </where>
+        group by goods.goods_id
         order by create_time desc
         limit #{currentPage},10
 

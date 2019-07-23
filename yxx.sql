@@ -11,7 +11,7 @@
  Target Server Version : 50554
  File Encoding         : 65001
 
- Date: 23/07/2019 00:58:46
+ Date: 23/07/2019 13:38:41
 */
 
 SET NAMES utf8mb4;
@@ -177,24 +177,23 @@ CREATE TABLE `reply`  (
   `speaker` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家name',
   `listener` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '卖家name',
   `seller` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NOT NULL COMMENT '卖家openID',
-  `seller_image` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '卖家头像',
   `buyer` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家openID',
-  `buyer_image` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '买家头像',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `message` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复信息',
   `message_number` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT '' COMMENT '回复框编号',
+  `speaker_image` varchar(255) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL COMMENT '回复者头像',
   PRIMARY KEY (`reply_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of reply
 -- ----------------------------
-INSERT INTO `reply` VALUES (1, 'aaa', 'bbb', '1', 'aaa', '2', 'bbb', '2019-07-22 19:40:35', '不能少了!', 'a1');
-INSERT INTO `reply` VALUES (2, 'aaa', 'bbb', '1', 'aaa', '2', 'bbb', '2019-07-22 19:41:34', '再少就亏大了！', 'a1');
-INSERT INTO `reply` VALUES (3, 'bbb', 'aaa', '1', 'aaa', '2', 'bbb', '2019-07-22 19:42:54', '你亏不了多少!', 'a1');
-INSERT INTO `reply` VALUES (4, 'aaa', 'bbb', '1', 'aaa', '2', 'bbb', '2019-07-22 19:44:02', '够便宜的了!', 'a2');
-INSERT INTO `reply` VALUES (5, 'bbb', 'aaa', '1', 'aaa', '2', 'bbb', '2019-07-22 19:45:36', '你才便宜几个钱!', 'a2');
-INSERT INTO `reply` VALUES (6, 'bbb', 'aaa', '2', 'bbb', '1', 'aaa', '2019-07-22 21:30:37', '不能', 'a3');
+INSERT INTO `reply` VALUES (1, 'aaa', 'bbb', '1', '2', '2019-07-22 19:40:35', '不能少了!', 'a1', 'aaa');
+INSERT INTO `reply` VALUES (2, 'aaa', 'bbb', '1', '2', '2019-07-22 19:41:34', '再少就亏大了！', 'a1', 'aaa');
+INSERT INTO `reply` VALUES (3, 'bbb', 'aaa', '1', '2', '2019-07-22 19:42:54', '你亏不了多少!', 'a1', 'bbb');
+INSERT INTO `reply` VALUES (4, 'aaa', 'bbb', '1', '2', '2019-07-22 19:44:02', '够便宜的了!', 'a2', 'aaa');
+INSERT INTO `reply` VALUES (5, 'bbb', 'aaa', '1', '2', '2019-07-22 19:45:36', '你才便宜几个钱!', 'a2', 'bbb');
+INSERT INTO `reply` VALUES (6, 'bbb', 'aaa', '2', '1', '2019-07-22 21:30:37', '不能', 'a3', 'bbb');
 
 -- ----------------------------
 -- Table structure for user
