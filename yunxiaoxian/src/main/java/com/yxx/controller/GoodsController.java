@@ -28,9 +28,9 @@ public class GoodsController {
     @ResponseBody
     public JSONObject selectGoodsByGoodsDescribe(@ModelAttribute("goods")Goods goods,String goodsDescribe,Integer currentPage) throws UnsupportedEncodingException {
         Logger logger = LoggerFactory.getLogger(GoodsController.class);
- /*       if(goodsDescribe!=null){//解决搜索信息中文乱码
+        if(goodsDescribe!=null){//解决搜索信息中文乱码
             goods.setGoodsDescribe(new String(goodsDescribe.getBytes("ISO-8859-1"),"UTF-8"));
-        }*/
+        }
         JSONObject json=new JSONObject();
         List<GoodsCustom> goodslist=null;//商品信息集合
         Integer maxpage=null;//最大页数

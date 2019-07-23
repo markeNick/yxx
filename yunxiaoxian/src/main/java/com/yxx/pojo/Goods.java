@@ -56,16 +56,14 @@ public class Goods {
         this.goodsPrice = goodsPrice;
     }
 
-    //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
-    public String getGoodsImage() {
-        return goodsImage.toString();
+    public String[] getGoodsImage() {
+        return goodsImage;
     }
 
     public void setGoodsImage(String goodsImage) {
         //将字符串转成字符串数组
         this.goodsImage = goodsImage.split(",");
     }
-    //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
 
     public Integer getCategoryId() {
         return categoryId;
