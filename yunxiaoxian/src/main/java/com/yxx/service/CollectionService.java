@@ -12,4 +12,12 @@ public interface CollectionService {
      * @return
      */
     public List<GoodsCustom> selectUserCollerction(String openID, Integer currentPage);
+
+    /**
+     *
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public int insertUserCollection(String openID, Integer goodsID);
 }

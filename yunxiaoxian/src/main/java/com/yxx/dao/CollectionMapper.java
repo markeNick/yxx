@@ -15,4 +15,12 @@ public interface CollectionMapper {
      */
     public List<GoodsCustom> selectUserCollectionByOpenID(@Param("openID")String openID,
                                                           @Param("currentPage")Integer currentPage);
+
+    /**
+     * 将用户收藏物品信息存入collection表
+     * @param openID
+     * @param goodsID
+     */
+    public int insertUserCollection(@Param("openID")String openID,
+                                     @Param("goodsID")Integer goodsID);
 }

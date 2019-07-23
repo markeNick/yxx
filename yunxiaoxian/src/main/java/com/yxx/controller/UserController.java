@@ -73,26 +73,6 @@ public class UserController {
         return json;
     }
 
-    //我的收藏
-    @PostMapping("selectUserCollection")
-    @ResponseBody
-    public JSONObject selectUserCollection(String openID, Integer currentPage){
-        JSONObject json = new JSONObject();
-        List<GoodsCustom> collectionList = null;
 
-        try {
-            collectionList = collectionService.selectUserCollerction(openID, (currentPage - 1) * 10);
-        } catch (Exception e) {
-            logger.error("error:{}" + " from" + getClass(), e);
-        }
-
-        if(collectionList != null && collectionList.size() != 0){
-            json.put("collectionList", collectionList);
-            return json;
-        }
-
-        json.put("collectionList", null);
-        return json;
-    }
 
 }

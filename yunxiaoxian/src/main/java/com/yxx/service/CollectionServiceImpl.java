@@ -19,4 +19,9 @@ public class CollectionServiceImpl implements CollectionService {
 
         return collectionMapper.selectUserCollectionByOpenID(openID, currentPage);
     }
+
+    @Override
+    public int insertUserCollection(String openID, Integer goodsID) {
+        return collectionMapper.insertUserCollection(openID, goodsID);
+    }
 }

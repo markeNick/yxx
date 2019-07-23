@@ -1,0 +1,61 @@
+package com.yxx.controller;
+
+import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.GoodsCustom;
+import com.yxx.service.CollectionService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
+@Controller
+public class CollectionController {
+
+    private Logger logger = Logger.getLogger(UserController.class);
+
+    @Autowired
+    private CollectionService collectionService;
+
+    //我的收藏
+    @PostMapping("selectUserCollection")
+    @ResponseBody
+    public JSONObject selectUserCollection(String openID, Integer currentPage){
+        JSONObject json = new JSONObject();
+        List<GoodsCustom> collectionList = null;
+
+        try {
+            collectionList = collectionService.selectUserCollerction(openID, (currentPage - 1) * 10);
+        } catch (Exception e) {
+            logger.error("error:{}" + " from" + getClass(), e);
+        }
+
+        if(collectionList != null && collectionList.size() != 0){
+            json.put("collectionList", collectionList);
+            return json;
+        }
+
+        json.put("collectionList", null);
+        return json;
+    }
+
+    //收藏
+    @PostMapping("collectGoods")
+    @ResponseBody
+    public JSONObject collectGoods(String openID, Integer goodsID){
+        JSONObject json = new JSONObject();
+
+        try {
+            collectionService.insertUserCollection(openID,goodsID);
+        } catch (Exception e){
+            logger.error("error:{}" + " from class:" + this.getClass().getName() +
+                    "method:" + Thread.currentThread().getStackTrace()[1].getMethodName() +
+                    "line:" + Thread.currentThread().getStackTrace()[1].getLineNumber(), e);
+        }
+
+
+        return json;
+    }
+}

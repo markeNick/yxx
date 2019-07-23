@@ -20,4 +20,10 @@
         and collection.openID = #{openID}
         limit #{currentPage}, 10
     </select>
+    
+    <!-- 将用户收藏物品信息存入collection表 -->
+    <insert id="insertUserCollection">
+        insert into collection(openID, goods_id)
+        values(#{openID}, #{goodsID})
+    </insert>
 </mapper>
