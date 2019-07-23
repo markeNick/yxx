@@ -46,6 +46,7 @@ public class CollectionController {
     @ResponseBody
     public JSONObject collectGoods(String openID, Integer goodsID){
 
+        //调用收藏物品的Service方法
         return collectionService.insertUserCollection(openID, goodsID);
     }
 }
