@@ -1,8 +1,10 @@
 package com.yxx.pojo;
 
+import com.sun.deploy.util.StringUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Goods {
@@ -58,16 +60,12 @@ public class Goods {
         this.goodsPrice = goodsPrice;
     }
 
-<<<<<<< HEAD
-    public String[] getGoodsImage() {
-        return goodsImage;
-=======
-    //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
-    public String getGoodsImage() {
 
+
+
+    public String getGoodsImage(){
         //将字符串数组转为字符串并以 “，” 作为分隔符
-        return StringUtils.join(goodsImage, ",");
->>>>>>> feature
+        return StringUtils.join(Arrays.asList(goodsImage), ",");
     }
 
     public void setGoodsImage(String goodsImage) {
