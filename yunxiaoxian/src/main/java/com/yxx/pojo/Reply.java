@@ -5,31 +5,23 @@ import java.util.Date;
 public class Reply {
     private int replyId;
     private String speaker;
+    private String speakerImage;
     private String listener;
     private String seller;
-    private String sellerImage;
     private String buyer;
-    private String buyerImage;
     private Date createTime;
     private String message;
     private String messageNumber;
 
 
-    public String getSellerImage() {
-        return sellerImage;
+    public String getSpeakerImage() {
+        return speakerImage;
     }
 
-    public void setSellerImage(String sellerImage) {
-        this.sellerImage = sellerImage;
+    public void setSpeakerImage(String speakerImage) {
+        this.speakerImage = speakerImage;
     }
 
-    public String getBuyerImage() {
-        return buyerImage;
-    }
-
-    public void setBuyerImage(String buyerImage) {
-        this.buyerImage = buyerImage;
-    }
 
     public int getReplyId() {
         return replyId;
