@@ -22,4 +22,15 @@ public class MessageServiceImpl implements MessageService {
     public List<Integer> selectOneMessageNumberForReplyCount(List<String> messageNumberList) {
         return messageMapper.selectOneMessageNumberForReplyCount(messageNumberList);
     }
+
+    @Override
+    public int insertMessageByMessage(Message messages) {
+        return messageMapper.insertMessageByMessage(messages);
+    }
+
+    @Override
+    public String selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID) {
+        return messageMapper.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
+    }
+
 }

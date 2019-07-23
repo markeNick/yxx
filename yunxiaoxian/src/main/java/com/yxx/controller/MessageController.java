@@ -1,19 +1,26 @@
 package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.Message;
 import com.yxx.pojo.MessageCustom;
 import com.yxx.pojo.Reply;
 import com.yxx.service.MessageService;
 import com.yxx.service.ReplyService;
+import com.yxx.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class MessageController {
@@ -21,6 +28,8 @@ public class MessageController {
     private MessageService messageService;
     @Autowired
     private ReplyService replyService;
+    @Autowired
+    private UserService userService;
 
     //查询买家留言
     @PostMapping("/selectAllMyMessage")
@@ -102,6 +111,91 @@ public class MessageController {
             return json;
         }
         json.put("replylist",replylist);
+        return json;
+    }
+
+    //留言
+    @PostMapping("/doMessage")
+    @ResponseBody
+    public JSONObject doMessage(@ModelAttribute("messageCustom")MessageCustom messageCustom,
+                                @ModelAttribute("reply")Reply reply,@ModelAttribute("messages")Message messages,
+                                Integer goodsId, String openID,String message) throws ParseException {
+        Logger logger = LoggerFactory.getLogger(MessageController.class);
+        JSONObject json=new JSONObject();
+        if(openID!=null&&goodsId!=null&&message!=null&&
+                messageCustom.getUserName()!=null&&messageCustom.getUserImage()!=null){
+            UUID randomUUID = UUID.randomUUID();
+            //查询是否留言过(根据goods_id和买家openID查询是否存在留言框编号)
+            String messageNumber=null;//留言框编号
+            try {
+                messageNumber=messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
+            }catch (Exception e){
+                logger.error("error",e);
+            }
+            if(messageNumber==null||messageNumber.equals("")){//假如第一次留言
+                int i=0;
+                int j=0;
+                String firstMessageNumber=randomUUID.toString()+System.currentTimeMillis();//第一个留言框编号=随机数+时间戳
+                String dateString =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//获取时间
+                messages.setMessageNumber(firstMessageNumber);
+                messages.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString));//设置时间
+                try {//假如第一次留言
+                    i = messageService.insertMessageByMessage(messages);//插入message表 给买家存一条记录索引
+                    if(i>0){
+                        messages.setOpenID(userService.selectUserByGoodsId(goodsId).getOpenID());//插入message表
+                        i=messageService.insertMessageByMessage(messages);//给买家存一条记录索引
+                    }
+                    //插入message表 给买家存一条记录索引
+                }catch (Exception e){
+                    logger.error("error",e);
+                }
+                if(i>0){
+                    reply.setCreateTime(messages.getCreateTime());
+                    reply.setMessageNumber(firstMessageNumber);
+                    reply.setSpeaker(messageCustom.getUserName());//留言者name
+                    reply.setSpeakerImage(messageCustom.getUserImage());
+                    reply.setBuyer(openID);
+                    reply.setSeller(userService.selectUserByGoodsId(goodsId).getOpenID());
+                    reply.setListener(userService.selectUserByGoodsId(goodsId).getUserName());//卖家名
+                    try {
+                        j=replyService.insertReplyToReply(reply);
+                    }catch (Exception e){
+                        logger.error("error",e);
+                    }
+                }
+                if(j>0){//留言成功
+                    json.put("status","true");
+                }else {//留言失败
+                    json.put("status","false");
+                }
+            }else { //假如留言过就转回复 messageNumber goods_id message userName userImage 买家openID
+                String dateString =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//获取时间
+                reply.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString));//设置时间
+                reply.setMessageNumber(messageNumber);
+                reply.setSpeaker(messageCustom.getUserName());//留言者name
+                reply.setSpeakerImage(messageCustom.getUserImage());
+                reply.setSeller(userService.selectUserByGoodsId(goodsId).getOpenID());
+                //查询reply表中的说话者和听话者
+                Reply replyPackage=replyService.selectSpeakerAndListenerByMessageNumber(messageNumber);
+                if(messageCustom.getUserName().equals(replyPackage.getSpeaker())){//判断谁是说话者,谁是听话者
+                    reply.setListener(replyPackage.getListener());//卖家名
+                    reply.setBuyer(replyPackage.getBuyer());//买家openID
+                }else{
+                    reply.setListener(replyPackage.getSpeaker());//卖家名
+                    reply.setBuyer(replyPackage.getBuyer());//买家openID
+                }
+                int k=replyService.insertReplyToReply(reply);//插入reply表
+                if(k>0){//回复成功
+                    json.put("status","true");
+                }else {
+                    json.put("status","false");
+                }
+            }
+        }else{
+            json.put("status","false");
+        }
+
+
         return json;
     }
 }
