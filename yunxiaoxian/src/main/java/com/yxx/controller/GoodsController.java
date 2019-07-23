@@ -71,7 +71,7 @@ public class GoodsController {
             json.put("maxpage",maxpage);//最大页数
             json.put("count",count);//总纪录数
         }else {//没查询到,返回null
-            json.put("goodslist",new ArrayList<String>());
+            json.put("goodslist", null);
         }
             return json;
     }
