@@ -8,7 +8,7 @@ public class Goods {
     private String goodsName;
     private String goodsDescribe;
     private BigDecimal goodsPrice;
-    private String goodsImage;
+    private String[] goodsImage;
     private Integer categoryId;
     private Integer status;
     private Date createTime;
@@ -56,13 +56,16 @@ public class Goods {
         this.goodsPrice = goodsPrice;
     }
 
-    public String getGoodsImage() {
+    //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
+    public String[] getGoodsImage() {
         return goodsImage;
     }
 
     public void setGoodsImage(String goodsImage) {
-        this.goodsImage = goodsImage;
+        //将字符串转成字符串数组
+        this.goodsImage = goodsImage.split(",");
     }
+    //++++++++++++++++++++ tangruiquan +++++++++++++++++++++++++++++//
 
     public Integer getCategoryId() {
         return categoryId;
