@@ -26,4 +26,11 @@
         insert into collection(openID, goods_id)
         values(#{openID}, #{goodsID})
     </insert>
+    
+    <!-- 根据openID和goodsID查询collection中的记录 -->
+    <select id="selectCollectionByGoodsIDAndOpenID" resultType="com.yxx.pojo.Collection">
+        select * from collection
+        where openID = #{openID}
+        and goods_id = #{goodsID}
+    </select>
 </mapper>

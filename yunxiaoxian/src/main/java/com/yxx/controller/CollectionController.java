@@ -41,21 +41,11 @@ public class CollectionController {
         return json;
     }
 
-    //收藏
+    //收藏物品
     @PostMapping("collectGoods")
     @ResponseBody
     public JSONObject collectGoods(String openID, Integer goodsID){
-        JSONObject json = new JSONObject();
 
-        try {
-            collectionService.insertUserCollection(openID,goodsID);
-        } catch (Exception e){
-            logger.error("error:{}" + " from class:" + this.getClass().getName() +
-                    "method:" + Thread.currentThread().getStackTrace()[1].getMethodName() +
-                    "line:" + Thread.currentThread().getStackTrace()[1].getLineNumber(), e);
-        }
-
-
-        return json;
+        return collectionService.insertUserCollection(openID, goodsID);
     }
 }
