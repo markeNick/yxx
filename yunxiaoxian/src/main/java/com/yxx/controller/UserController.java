@@ -5,6 +5,7 @@ import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.MessageCustom;
 import com.yxx.pojo.User;
 import com.yxx.service.CollectionService;
+import com.yxx.service.OrdersService;
 import com.yxx.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserController {
 
     @Autowired
     private CollectionService collectionService;
+
+    @Autowired
+    public OrdersService ordersService;
 
     @RequestMapping(value = "/test")
     public String test(){
@@ -99,12 +103,11 @@ public class UserController {
     //删除订单
     @PostMapping("deleteOrder")
     @ResponseBody
+    @Transactional
     public JSONObject deleteOrder(String openID, Integer goodsID, Integer identity){
         JSONObject json = new JSONObject();
-        if(identity == 0){
 
-        }
-        return json;
+        return ordersService.deleteOrders(openID, identity, goodsID);
     }
 
 }
