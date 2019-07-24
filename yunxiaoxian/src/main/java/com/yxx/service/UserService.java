@@ -28,4 +28,19 @@ public interface UserService{
      */
     public int registerUser(User user);
 
+    /**
+
+     * 根据goods_id查询用户信息
+     * @param goodsId
+     * @return
+     */
+    public User selectUserByGoodsId(Integer goodsId);
+    /**
+     * 售出物品
+     * @param openID
+     * @return
+     */
+    public int soldMyGoods(String openID, Integer goodsID);
+
+
 }

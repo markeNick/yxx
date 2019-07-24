@@ -42,4 +42,20 @@
         insert into user(openID, user_name, user_image, blacklist)
         values(#{openID}, #{userName}, #{userImage}, 0)
     </insert>
+
+
+    <!--根据goods_id查询用户信息-->
+    <select id="selectUserByGoodsId" resultType="com.yxx.pojo.User" parameterType="java.lang.Integer">
+        select * from user,goods where goods.goods_id=#{goodsId} and goods.openID=user.openID
+    </select>
+
+    <!-- 更新用户在售物品状态 -->
+    <update id="updateMySoldGoodsStatus">
+        update goods
+        set status = 1
+        where openID = #{openID}
+        and goods_id = #{goodsID}
+        and status = 0;
+    </update>
+
 </mapper>

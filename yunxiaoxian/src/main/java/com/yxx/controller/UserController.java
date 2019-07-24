@@ -1,19 +1,29 @@
 package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.GoodsCustom;
+import com.yxx.pojo.MessageCustom;
 import com.yxx.pojo.User;
+import com.yxx.service.CollectionService;
 import com.yxx.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.RequestWrapper;
 import java.util.List;
+
 
 @Controller
 public class UserController {
+    private Logger logger = Logger.getLogger(UserController.class);
+
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CollectionService collectionService;
 
     @RequestMapping(value = "/test")
     public String test(){
@@ -26,6 +36,7 @@ public class UserController {
         return userslist;
     }
 
+    //修改用户或注册用户
     @PostMapping("updateUser")
     @ResponseBody
     public JSONObject updateUser(@RequestParam("openID")String openID,
@@ -48,6 +59,7 @@ public class UserController {
                 json.put("status", "true");
                 return json;
             }
+
             json.put("status", "false");
             return json;
         }
@@ -57,10 +69,42 @@ public class UserController {
             json.put("status", "true");
             return json;
         }
+
         json.put("status", "true");
         return json;
-
     }
 
+
+    //卖家售出功能
+    @PostMapping("soldMyGoods")
+    @ResponseBody
+    @Transactional
+    public JSONObject soldMyGoods(String openID, Integer goodsID){
+        JSONObject json = new JSONObject();
+
+        try {
+            if(userService.soldMyGoods(openID, goodsID) == 1){
+                json.put("status", "true");
+                return json;
+            }
+        } catch (Exception e) {
+            logger.debug("soldMyGoods--> error:{}", e);
+            throw new RuntimeException();
+        }
+
+        json.put("status", "false");
+        return json;
+    }
+
+    //删除订单
+    @PostMapping("deleteOrder")
+    @ResponseBody
+    public JSONObject deleteOrder(String openID, Integer goodsID, Integer identity){
+        JSONObject json = new JSONObject();
+        if(identity == 0){
+
+        }
+        return json;
+    }
 
 }

@@ -47,15 +47,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public boolean uploadGoods(Goods goods){
         boolean flag = false;
-        System.out.println("======================================================Name:"+goods.getGoodsName());
-        System.out.println("======================================================Describe:"+goods.getGoodsDescribe());
-        System.out.println("======================================================Image:"+goods.getGoodsImage());
-        System.out.println("======================================================Price:"+goods.getGoodsPrice());
-        System.out.println("======================================================CategoryId:"+goods.getCategoryId());
-        System.out.println("======================================================Status:"+goods.getStatus());
-        System.out.println("======================================================CreateTime:"+goods.getCreateTime());
-        System.out.println("======================================================OpenID:"+goods.getOpenID());
-
         int temp = goodsMapper.uploadGoods(goods);
         if(temp==1){
             return !flag;

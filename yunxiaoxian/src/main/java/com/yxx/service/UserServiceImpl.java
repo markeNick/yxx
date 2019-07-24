@@ -31,6 +31,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int registerUser(User user) {
+
         return userMapper.registerUser(user);
+    }
+
+    @Override
+
+    public User selectUserByGoodsId(Integer goodsId) {
+
+        return userMapper.selectUserByGoodsId(goodsId);
+    }
+    @Override
+
+    public int soldMyGoods(String openID, Integer goodsID) {
+        return userMapper.updateMySoldGoodsStatus(openID, goodsID);
     }
 }

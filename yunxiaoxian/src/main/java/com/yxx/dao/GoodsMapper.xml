@@ -31,6 +31,7 @@
              and category_id=#{categoryId}
             </if>
         </where>
+        group by goods.goods_id
         order by create_time desc
         limit #{currentPage},10
 
@@ -53,14 +54,17 @@
 
     <!--    查询单个商品的详细信息-->
     <select id="selectOneGoodsByGoodsId" resultType="com.yxx.pojo.GoodsCustom" parameterType="com.yxx.pojo.Goods">
-        select * from user,goods where goods_id=#{goodsId} and status=0 and user.openID=goods.openID;
+        select * from user,goods where goods_id=#{goodsId} and user.openID=goods.openID;
     </select>
 
     <!--    查询我卖的商品信息-->
     <select id="selectAllMySaleGoods" resultType="com.yxx.pojo.OrderCustom">
-        select * from orders,goods
-        where goods.openID=#{openID} and orders.seller=#{openID}
+        select * from orders,goods,user
+        where goods.openID=#{openID}
+        and orders.seller=#{openID}
         and goods.goods_id=orders.goods_id
+        and orders.buyer=user.openID
+        and orders.seller_status = 0
         order by orders.create_time desc
         limit #{currentPage},10
     </select>
@@ -68,7 +72,10 @@
     <!--    查询我买的商品信息-->
     <select id="selectAllMyBuyGoods" resultType="com.yxx.pojo.OrderCustom">
         select * from orders,user,goods
-        where orders.buyer=#{openID} and orders.seller=user.openID and orders.goods_id=goods.goods_id
+        where orders.buyer=#{openID}
+        and orders.seller=user.openID
+        and orders.goods_id=goods.goods_id
+        and orders.buyer_status = 0
         order by orders.create_time desc
         limit #{currentPage},10
     </select>

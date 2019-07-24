@@ -11,5 +11,21 @@
         <result column="buyer" property="buyer" />
         <result column="seller" property="seller" />
         <result column="create_time" property="createTime" />
+        <result column="buyer_status" property="buyerStatus" />
+        <result column="seller_status" property="sellerStatus" />
     </resultMap>
+
+    <!-- 修改订单表用户的状态-“删除订单” -->
+    <update id="updateOrderOfUserStatus">
+        update orders
+        <set>
+            <if test="buyerOpenID != null || buyerOpenID != ''">
+                buyer_status = 1
+            </if>
+            <if test="sellerOpenID != null || sellerOpenID != ''">
+                seller_status = 1
+            </if>
+        </set>
+        where goods_id = goodsID
+    </update>
 </mapper>
