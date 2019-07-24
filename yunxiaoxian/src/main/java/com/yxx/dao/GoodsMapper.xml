@@ -54,7 +54,7 @@
 
     <!--    查询单个商品的详细信息-->
     <select id="selectOneGoodsByGoodsId" resultType="com.yxx.pojo.GoodsCustom" parameterType="com.yxx.pojo.Goods">
-        select * from user,goods where goods_id=#{goodsId} and status=0 and user.openID=goods.openID;
+        select * from user,goods where goods_id=#{goodsId} and user.openID=goods.openID;
     </select>
 
     <!--    查询我卖的商品信息-->
