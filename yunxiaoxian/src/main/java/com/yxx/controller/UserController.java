@@ -9,6 +9,7 @@ import com.yxx.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -73,9 +74,11 @@ public class UserController {
         return json;
     }
 
+
     //卖家售出功能
     @PostMapping("soldMyGoods")
     @ResponseBody
+    @Transactional
     public JSONObject soldMyGoods(String openID, Integer goodsID){
         JSONObject json = new JSONObject();
 
@@ -86,12 +89,22 @@ public class UserController {
             }
         } catch (Exception e) {
             logger.debug("soldMyGoods--> error:{}", e);
+            throw new RuntimeException();
         }
 
         json.put("status", "false");
         return json;
     }
 
+    //删除订单
+    @PostMapping("deleteOrder")
+    @ResponseBody
+    public JSONObject deleteOrder(String openID, Integer goodsID, Integer identity){
+        JSONObject json = new JSONObject();
+        if(identity == 0){
 
+        }
+        return json;
+    }
 
 }

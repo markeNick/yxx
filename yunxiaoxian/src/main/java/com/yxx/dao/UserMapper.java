@@ -28,7 +28,19 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    public int registerUser(User user);
+
+
+    public int  registerUser(User user);
+
+    /**
+     * 根据goods_id查询用户信息
+     * @param goodsId
+     * @return
+     */
+    public User selectUserByGoodsId(@Param("goodsId")Integer goodsId);
+
+
+
 
     /**
      * 更新用户在售物品状态
@@ -38,4 +50,5 @@ public interface UserMapper {
      */
     public int updateMySoldGoodsStatus(@Param("openID")String openID,
                                  @Param("goodsID")Integer goodsID);
+
 }

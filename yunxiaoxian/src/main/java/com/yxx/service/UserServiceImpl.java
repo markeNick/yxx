@@ -36,8 +36,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int soldMyGoods(String openID, Integer goodsID) {
 
+    public User selectUserByGoodsId(Integer goodsId) {
+
+        return userMapper.selectUserByGoodsId(goodsId);
+    }
+    @Override
+
+    public int soldMyGoods(String openID, Integer goodsID) {
         return userMapper.updateMySoldGoodsStatus(openID, goodsID);
     }
 }

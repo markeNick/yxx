@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,43 +35,44 @@ public class MessageController {
     //查询买家留言
     @PostMapping("/selectAllMyMessage")
     @ResponseBody
-    public JSONObject selectAllMyMessage(String openID,Integer currentPage){
+    public JSONObject selectAllMyMessage(String openID,String userName,Integer currentPage) throws UnsupportedEncodingException {
         Logger logger = LoggerFactory.getLogger(MessageController.class);
         JSONObject json=new JSONObject();
         List<String> messageNumberList=new ArrayList<String>();//存留言框编号集合
-        List<MessageCustom> messagelist=null;
-        try {
-            if(currentPage!=null&&openID!=null){//openID和页码不为空
+        List<MessageCustom> messagelist=null;//存所有信息集合
+        List<Integer> messages=null;//存每个编号框对应的回复数
+            if(currentPage!=null&&openID!=null&&userName!=null){//openID和页码不为空
                 try {
-                    messagelist = messageService.selectAllMyMessage(openID,(currentPage-1)*10);//查询所有留言
+                    messagelist = messageService.selectAllMyMessage(openID,userName,(currentPage-1)*10);//查询所有留言
                 }catch (Exception e){
                     logger.error("error",e);
                 }
-        if(messagelist.size()>0){//假如能查到
-            int size=messagelist.size();//存集合长度
-            for(MessageCustom messageCustom:messagelist){
-                messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
-            }
-            List<Integer> messages = messageService.selectOneMessageNumberForReplyCount(messageNumberList);
-            for(int i=0;i<size;i++){//将回复别存进每个MessageCustom
-                messagelist.get(i).setCount(messages.get(i));
-            }
-        }
-            }else if(currentPage==null&&openID!=null){//openID不为空和页码为空
-                try {
-                    messagelist = messageService.selectAllMyMessage(openID, 0);//查询所有留言
-                }catch (Exception e){
-                    logger.error("error",e);
-                }
-
                 if(messagelist.size()>0){//假如能查到
                     int size=messagelist.size();//存集合长度
                     for(MessageCustom messageCustom:messagelist){
                         messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
                     }
-                    List<Integer> messages = messageService.selectOneMessageNumberForReplyCount(messageNumberList);
-                    for(int i=0;i<size;i++){//将回复数分别存进每个MessageCustom
-                        messagelist.get(i).setCount(messages.get(i));
+                    for(int len=0;len<size;len++){
+                        //查询每个编号框对应的回复数
+                        Integer messageCount=messageService.selectOneMessageNumberForReplyCount(messageNumberList.get(len));
+                        messagelist.get(len).setCount(messageCount);//将回复数分别存进每个MessageCustom
+                    }
+                }
+            }else if(currentPage==null&&openID!=null&&userName!=null){//openID不为空和页码为空
+                try {
+                    messagelist = messageService.selectAllMyMessage(openID,userName,0);//查询所有留言
+                }catch (Exception e){
+                    logger.error("error",e);
+                }
+                if(messagelist.size()>0){//假如能查到
+                    int size=messagelist.size();//存集合长度
+                    for(MessageCustom messageCustom:messagelist){
+                        messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
+                    }
+                    for(int len=0;len<size;len++){
+                       //查询每个编号框对应的回复数
+                       Integer messageCount=messageService.selectOneMessageNumberForReplyCount(messageNumberList.get(len));
+                       messagelist.get(len).setCount(messageCount);//将回复数分别存进每个MessageCustom
                     }
                 }
             }
@@ -78,9 +80,6 @@ public class MessageController {
                 json.put("messagelist",new ArrayList<String>());
                 return json;
             }
-        }catch (Exception e){
-            logger.error("error:",e);
-        }
         json.put("messagelist",messagelist);
         return json;
     }
