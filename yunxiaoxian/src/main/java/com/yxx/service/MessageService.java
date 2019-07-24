@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface MessageService {
     //查询买家留言
-    public List<MessageCustom> selectAllMyMessage(String openID, Integer currentPage);
+    public List<MessageCustom> selectAllMyMessage(String openID,String userName,Integer currentPage);
     //查询用户留言框分别对应的回复数量
-    public List<Integer> selectOneMessageNumberForReplyCount(List<String> messageNumberList);
+    public Integer selectOneMessageNumberForReplyCount(String messageNumber);
     //根据goods_id,openID,message插入message表(留言)
     public int insertMessageByMessage(Message messages);
     //根据goodsId,openID查询留言框编号

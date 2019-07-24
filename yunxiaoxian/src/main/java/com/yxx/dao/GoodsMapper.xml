@@ -59,9 +59,9 @@
 
     <!--    查询我卖的商品信息-->
     <select id="selectAllMySaleGoods" resultType="com.yxx.pojo.OrderCustom">
-        select * from orders,goods
+        select * from orders,goods,user
         where goods.openID=#{openID} and orders.seller=#{openID}
-        and goods.goods_id=orders.goods_id
+        and goods.goods_id=orders.goods_id and orders.buyer=user.openID
         order by orders.create_time desc
         limit #{currentPage},10
     </select>

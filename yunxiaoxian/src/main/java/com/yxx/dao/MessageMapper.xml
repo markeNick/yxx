@@ -14,18 +14,16 @@
     </resultMap>
     <!--    查询买家留言-->
     <select id="selectAllMyMessage" resultType="com.yxx.pojo.MessageCustom">
-        select * from message,goods,user
-        where message.openID=#{openID} and goods.goods_id=message.goods_id and message.openID=user.openID
-        order by message.create_time desc
+        select * from goods,user,reply
+        where goods.goods_id=reply.goods_id
+        and reply.listener=#{userName} and reply.speaker=user.user_name
+        order by reply.create_time desc
         limit #{currentPage},10
     </select>
+
     <!--    查询用户留言框分别对应的回复数量-->
-    <select id="selectOneMessageNumberForReplyCount" resultType="java.lang.Integer">
-         select count(*) from reply where reply.message_number in
-         <foreach collection="list" item="MessageNumber" open="(" separator="," close=")">
-         #{MessageNumber}
-        </foreach>
-        group by reply.message_number
+    <select id="selectOneMessageNumberForReplyCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+         select count(*) from reply where reply.message_number=#{messageNumber}
     </select>
 
     <!--根据goods_id,openID,message插入message表(留言)-->

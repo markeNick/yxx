@@ -14,13 +14,13 @@ public class MessageServiceImpl implements MessageService {
     private MessageMapper messageMapper;
 
     @Override
-    public List<MessageCustom> selectAllMyMessage(String openID, Integer currentPage) {
-        return messageMapper.selectAllMyMessage(openID,currentPage);
+    public List<MessageCustom> selectAllMyMessage(String openID,String userName,Integer currentPage) {
+        return messageMapper.selectAllMyMessage(openID,userName,currentPage);
     }
 
     @Override
-    public List<Integer> selectOneMessageNumberForReplyCount(List<String> messageNumberList) {
-        return messageMapper.selectOneMessageNumberForReplyCount(messageNumberList);
+    public Integer selectOneMessageNumberForReplyCount(String messageNumber) {
+        return messageMapper.selectOneMessageNumberForReplyCount(messageNumber);
     }
 
     @Override
