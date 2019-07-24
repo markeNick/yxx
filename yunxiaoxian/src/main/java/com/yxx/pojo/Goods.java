@@ -3,6 +3,7 @@ package com.yxx.pojo;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 
 public class Goods {
     private Integer goodsId;

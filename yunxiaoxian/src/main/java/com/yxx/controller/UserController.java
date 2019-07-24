@@ -82,7 +82,6 @@ public class UserController {
     //卖家售出功能
     @PostMapping("soldMyGoods")
     @ResponseBody
-    @Transactional
     public JSONObject soldMyGoods(String openID, Integer goodsID){
         JSONObject json = new JSONObject();
 
@@ -93,7 +92,6 @@ public class UserController {
             }
         } catch (Exception e) {
             logger.debug("soldMyGoods--> error:{}", e);
-            throw new RuntimeException();
         }
 
         json.put("status", "false");
@@ -103,7 +101,6 @@ public class UserController {
     //删除订单
     @PostMapping("deleteOrder")
     @ResponseBody
-    @Transactional
     public JSONObject deleteOrder(String openID, Integer goodsID, Integer identity){
         JSONObject json = new JSONObject();
 
