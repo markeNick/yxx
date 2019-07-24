@@ -80,4 +80,11 @@
         order by goods.create_time desc
         limit #{currentPage},10
     </select>
+
+    <!--    上传商品-->
+    <insert id="uploadGoods"  parameterType="com.yxx.pojo.Goods">
+        insert into goods (goods_name,goods_describe,goods_price,goods_image,category_id,status,create_time,openID)
+        values(#{goodsName},#{goodsDescribe},#{goodsPrice},#{goodsImage},#{categoryId},#{status},#{createTime},#{openID})
+    </insert>
+
 </mapper>
