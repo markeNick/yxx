@@ -216,7 +216,7 @@ public class GoodsController {
                 }
             }
 
-            goods.setGoodsImage(newNames.toString());
+            goods.setImage(newNames.toString());
         }
         goods.setGoodsName(goodsName);
         goods.setGoodsDescribe(goodsDescribe);

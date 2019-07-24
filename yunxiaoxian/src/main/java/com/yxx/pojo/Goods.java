@@ -1,6 +1,5 @@
 package com.yxx.pojo;
 
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -27,6 +26,18 @@ public class Goods {
 
     public Integer getGoodsId() {
         return goodsId;
+    }
+
+    public String[] getGoodsImage() {
+        return goodsImage;
+    }
+
+    public void setGoodsImage(String[] goodsImage) {
+        this.goodsImage = goodsImage;
+    }
+
+    public void setImage(String url){
+        this.goodsImage = url.split(",");
     }
 
     public void setGoodsId(Integer goodsId) {
@@ -57,15 +68,7 @@ public class Goods {
         this.goodsPrice = goodsPrice;
     }
 
-    public String[] getGoodsImage() {
-        //将字符串数组转为字符串并以 “，” 作为分隔符
-        return goodsImage;
-    }
 
-    public void setGoodsImage(String goodsImage) {
-        //将字符串转成字符串数组
-        this.goodsImage = goodsImage.split(",");
-    }
 
     public Integer getCategoryId() {
         return categoryId;
