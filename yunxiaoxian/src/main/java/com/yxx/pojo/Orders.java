@@ -9,6 +9,8 @@ public class Orders {
     private String buyer;
     private String seller;
     private Date createTime;
+    private Integer buyer_status;
+    private Integer seller_status;
 
     public Integer getOrdersId() {
         return ordersId;
@@ -58,7 +60,19 @@ public class Orders {
         this.createTime = createTime;
     }
 
+    public Integer getBuyer_status() {
+        return buyer_status;
+    }
 
+    public void setBuyer_status(Integer buyer_status) {
+        this.buyer_status = buyer_status;
+    }
 
+    public Integer getSeller_status() {
+        return seller_status;
+    }
 
+    public void setSeller_status(Integer seller_status) {
+        this.seller_status = seller_status;
+    }
 }

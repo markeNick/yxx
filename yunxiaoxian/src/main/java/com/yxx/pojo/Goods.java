@@ -64,7 +64,6 @@ public class Goods {
     }
 
     public void setGoodsImage(String goodsImage) {
-
         //将字符串转成字符串数组
         this.goodsImage = goodsImage.split(",");
     }
@@ -108,14 +107,5 @@ public class Goods {
     public void setOpenID(String openID) {
         this.openID = openID;
     }
-
-
-
-
-
-
-
-
-
 
 }

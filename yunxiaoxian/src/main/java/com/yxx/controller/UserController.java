@@ -92,6 +92,13 @@ public class UserController {
         return json;
     }
 
+    //删除订单
+    @PostMapping("deleteOrder")
+    @ResponseBody
+    public JSONObject deleteOrder(String openID, Integer order){
+        JSONObject json = new JSONObject();
 
+        return json;
+    }
 
 }
