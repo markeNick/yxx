@@ -10,7 +10,7 @@
         <result column="goods_name" property="goodsName" />
         <result column="goods_describe" property="goodsDescribe" />
         <result column="goods_price" property="goodsPrice" />
-        <result column="goods_image" property="goodsImage" />
+        <result column="goods_image" property="goodsImage" typeHandler="com.yxx.conversion.StringArrayTypeHandler"/>
         <result column="category_id" property="categoryId" />
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
