@@ -5,18 +5,29 @@ import com.yxx.pojo.Goods;
 import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.OrderCustom;
 import com.yxx.service.GoodsService;
+
+import org.apache.ibatis.annotations.Param;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class GoodsController {
@@ -169,6 +180,59 @@ public class GoodsController {
             json.put("mypublishlist",new ArrayList<String>());
             return json;
         }
+    }
+
+    //上传商品
+    @PostMapping("uploadGoods")
+    @ResponseBody
+    public boolean uploadGoods(HttpSession session, MultipartFile[] myfile,@Param("goodsName") String goodsName,
+                              @Param("goodsDescribe") String goodsDescribe,@Param("goodsPrice") BigDecimal goodsPrice,
+                              @Param("categoryId") Integer categoryId,@Param("openID") String openID) throws IllegalStateException, IOException  {
+        //获取随机数
+        Random rand = new Random();
+        //拼接url
+        StringBuffer newNames=new StringBuffer();
+        //将内存中的数据写入磁盘
+        String transName;
+        // 存储图片的物理路径
+        String file_path ="//opt//pic";
+        Goods goods = new Goods();
+        // 上传图片
+        if (myfile != null && myfile.length > 0) {
+            for (int i=0;i<myfile.length;i++){
+                if (i == 0){
+                    transName=rand.nextInt(9999999)+openID.substring(openID.length()-5) + 100000+myfile[i].getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis()+".");
+                    newNames.append(transName);
+                    // 将内存中的数据写入磁盘
+                    File newName  = new File(file_path + "/" + transName);
+                    myfile[i].transferTo(newName);
+                }else {
+                    transName=rand.nextInt(9999999)+openID.substring(openID.length()-5) + 100000+myfile[i].getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis()+".");
+                    newNames.append(","+transName);
+                    // 将内存中的数据写入磁盘
+                    File newName  = new File(file_path + "/" + transName);
+                    myfile[i].transferTo(newName);
+
+                }
+            }
+
+            goods.setGoodsImage(newNames.toString());
+        }
+        goods.setGoodsName(goodsName);
+        goods.setGoodsDescribe(goodsDescribe);
+        goods.setCategoryId(categoryId);
+        goods.setGoodsPrice(goodsPrice);
+        goods.setOpenID(openID);
+        goods.setStatus(0);
+        //获取系统时间
+        Date createTime= new java.sql.Date(new java.util.Date().getTime());
+        goods.setCreateTime(createTime);
+        boolean flag = false;
+        flag = goodsService.uploadGoods(goods);
+        if(flag == false){
+            return false;
+        }
+        return true;
     }
 
 }

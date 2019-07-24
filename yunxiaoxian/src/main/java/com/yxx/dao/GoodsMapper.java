@@ -20,5 +20,7 @@ public interface GoodsMapper {
     public List<OrderCustom> selectAllMyBuyGoods(@Param("openID") String openID,@Param("currentPage") Integer currentPage);
     //查询我发布的商品信息
     public List<Goods> selectAllMyPublishGoods(@Param("openID") String openID,@Param("currentPage") Integer currentPage);
+    //上传商品
+    public int uploadGoods(Goods goods);
 
 }
