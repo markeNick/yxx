@@ -1,6 +1,5 @@
 package com.yxx.pojo;
 
-import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 
@@ -8,9 +7,9 @@ public class OrderCustom extends Orders {
     private String goodsName;
     private BigDecimal goodsPrice;
     private String[] goodsImage;
-    public String getGoodsImage() {
+    public String[] getGoodsImage() {
         //将字符串数组转为字符串并以 “，” 作为分隔符
-        return StringUtils.join(goodsImage, ",");
+        return goodsImage;
     }
 
     public void setGoodsImage(String goodsImage) {
