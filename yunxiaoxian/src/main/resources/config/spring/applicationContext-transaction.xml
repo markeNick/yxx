@@ -14,6 +14,8 @@
        http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd ">
 
 
+	<!-- 开启事务注解驱动 -->
+	<tx:annotation-driven />
 	<!-- 配置Spring的事务管理器 -->
 	<bean id="transactionManger"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
