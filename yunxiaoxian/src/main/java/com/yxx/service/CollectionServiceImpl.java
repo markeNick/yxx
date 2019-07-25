@@ -48,6 +48,11 @@ public class CollectionServiceImpl implements CollectionService {
         return json;
     }
 
+    @Override
+    public List<Collection> selectCollectionByGoodsIDAndOpenID(String openID, Integer goodsID) {
+        return collectionMapper.selectCollectionByGoodsIDAndOpenID(openID,goodsID);
+    }
+
     @Transactional
     @Override
     public JSONObject cancelCollection(String openID, Integer goodsID) {

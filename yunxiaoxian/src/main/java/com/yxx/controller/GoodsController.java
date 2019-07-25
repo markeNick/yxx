@@ -1,9 +1,11 @@
 package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.Collection;
 import com.yxx.pojo.Goods;
 import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.OrderCustom;
+import com.yxx.service.CollectionService;
 import com.yxx.service.GoodsService;
 
 import com.yxx.util.Base64Util;
@@ -30,6 +32,8 @@ import java.util.Random;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private CollectionService collectionService;
 
     //搜索框   根据商品描述和页码模糊查询商品信息
     @GetMapping("selectGoodsByGoodsDescribe")
@@ -84,27 +88,37 @@ public class GoodsController {
             return json;
     }
     //返回 单个商品详细信息
-    @GetMapping("selectOneGoodsDetailMessage")
+    @RequestMapping("/selectOneGoodsDetailMessage")
     @ResponseBody
-    public JSONObject selectOneGoodsDetailMessage(@ModelAttribute("goods")Goods goods,Integer goodsId){
+    public JSONObject selectOneGoodsDetailMessage(@ModelAttribute("goods")Goods goods,
+                                                  @RequestParam("goodsId") Integer goodsId,
+                                                  @RequestParam("openID")String openID){
         Logger logger = LoggerFactory.getLogger(GoodsController.class);
         GoodsCustom goodsmessage=null;
+        List<Collection> collections=null;
         JSONObject json=new JSONObject();
-        if(goodsId!=null){//假如商品id不为null,查询商品信息
             try {
-                goodsmessage = goodsService.selectOneGoodsByGoodsId(goods);
+                goodsmessage = goodsService.selectOneGoodsByGoodsId(goods);//查询商品信息
             }catch (Exception e){
                 logger.error("selectOneGoodsByGoodsId--> error:{}:",e);
             }
-        }
         if(goodsmessage!=null){
             json.put("goodsmessage",goodsmessage);
-            return json;
+            try {
+                collections  = collectionService.selectCollectionByGoodsIDAndOpenID(openID, goodsId);//查询是否收藏
+            }catch (Exception e){
+                logger.error("selectCollectionByGoodsIDAndOpenID--> error:{}:",e);
+            }
+            if(collections.size()>0){
+                json.put("collected","true");
+            }else {
+                json.put("collected","false");
+            }
         }else {//假如没查到或者商品id为null,返回null
-            json.put("goodsmessage",new ArrayList<String>());
-            return json;
+            json.put("goodsmessage",null);
         }
 
+        return json;
     }
     //查询我卖的商品
     @PostMapping("selectAllMySaleGoods")
