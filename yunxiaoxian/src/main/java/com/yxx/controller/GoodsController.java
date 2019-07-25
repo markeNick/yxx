@@ -6,6 +6,7 @@ import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.OrderCustom;
 import com.yxx.service.GoodsService;
 
+import com.yxx.util.Base64Util;
 import org.apache.ibatis.annotations.Param;
 
 import org.slf4j.Logger;
@@ -13,10 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -185,44 +183,62 @@ public class GoodsController {
     //上传商品
     @PostMapping("uploadGoods")
     @ResponseBody
-    public boolean uploadGoods(HttpSession session, MultipartFile[] myfile,@Param("goodsName") String goodsName,
-                              @Param("goodsDescribe") String goodsDescribe,@Param("goodsPrice") BigDecimal goodsPrice,
-                              @Param("categoryId") Integer categoryId,@Param("openID") String openID) throws IllegalStateException, IOException  {
+    public JSONObject uploadGoods(@ModelAttribute("goods")Goods goods, String[] myfile,
+                                  @RequestParam(value = "openID", required = true) String openID){
+        Logger logger = LoggerFactory.getLogger(GoodsController.class);
+       JSONObject json=new JSONObject();
         //获取随机数
         Random rand = new Random();
         //拼接url
         StringBuffer newNames=new StringBuffer();
-        //将内存中的数据写入磁盘
-        String transName;
         // 存储图片的物理路径
         String file_path ="//opt//pic";
-        Goods goods = new Goods();
-        // 上传图片
-        if (myfile != null && myfile.length > 0) {
-            for (int i=0;i<myfile.length;i++){
-                if (i == 0){
-                    transName=rand.nextInt(9999999)+openID.substring(openID.length()-5) + 100000+myfile[i].getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis()+".");
-                    newNames.append(transName);
-                    // 将内存中的数据写入磁盘
-                    File newName  = new File(file_path + "/" + transName);
-                    myfile[i].transferTo(newName);
-                }else {
-                    transName=rand.nextInt(9999999)+openID.substring(openID.length()-5) + 100000+myfile[i].getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis()+".");
-                    newNames.append(","+transName);
-                    // 将内存中的数据写入磁盘
-                    File newName  = new File(file_path + "/" + transName);
-                    myfile[i].transferTo(newName);
-
+        // 解析Base64
+        for(String file:myfile){//校验
+            String dataPrefix;
+            String suffix;
+            if(file == null || "".equals(file)){
+                json.put("error","上传失败，上传图片数据为空!");
+                return json;
+            }else{
+                String [] d = file.split("base64,");
+                if(d != null && d.length == 2){
+                    dataPrefix = d[0];////data:img/jpg;base64
+                }else{
+                    json.put("error","上传失败，数据不合法!");
+                    return json;
                 }
             }
-
-            goods.setImage(newNames.toString());
+            if("data:image/jpeg;".equalsIgnoreCase(dataPrefix)){//data:image/jpeg;base64,base64编码的jpeg图片数据
+                suffix = ".jpg";
+            } else if("data:image/x-icon;".equalsIgnoreCase(dataPrefix)){//data:image/x-icon;base64,base64编码的icon图片数据
+                suffix = ".ico";
+            } else if("data:image/gif;".equalsIgnoreCase(dataPrefix)){//data:image/gif;base64,base64编码的gif图片数据
+                suffix = ".gif";
+            } else if("data:image/png;".equalsIgnoreCase(dataPrefix)){//data:image/png;base64,base64编码的png图片数据
+                suffix = ".png";
+            }else{
+                json.put("error","上传图片格式不合法!");
+                return json;
+            }
+            // 解析Base64 重新命名
+            MultipartFile multipartFile = Base64Util.base64ToMultipart(file);
+            //将内存中的数据写入磁盘
+            String transName;
+            transName=(rand.nextInt(9999999)+100000)+openID.substring(openID.length()-5)+multipartFile.getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis()+".");
+            newNames.append(transName);
+            // 将内存中的数据写入磁盘
+            File newName  = new File(file_path + "/" + transName);
+            try {
+                multipartFile.transferTo(newName);
+            } catch (IOException e) {
+               logger.error("IOException",e.getMessage());
+                json.put("error","图片存入服务器失败!");
+                return json;
+            }
         }
-        goods.setGoodsName(goodsName);
-        goods.setGoodsDescribe(goodsDescribe);
-        goods.setCategoryId(categoryId);
-        goods.setGoodsPrice(goodsPrice);
-        goods.setOpenID(openID);
+        // 上传图片
+        goods.setImage(newNames.toString());
         goods.setStatus(0);
         //获取系统时间
         Date createTime= new java.sql.Date(new java.util.Date().getTime());
@@ -230,9 +246,11 @@ public class GoodsController {
         boolean flag = false;
         flag = goodsService.uploadGoods(goods);
         if(flag == false){
-            return false;
+            json.put("status","false");
+            return json;
         }
-        return true;
+        json.put("status","true");
+        return json;
     }
 
 }

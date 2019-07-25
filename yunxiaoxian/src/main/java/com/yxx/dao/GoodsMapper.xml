@@ -94,4 +94,29 @@
         values(#{goodsName},#{goodsDescribe},#{goodsPrice},#{goodsImage},#{categoryId},#{status},#{createTime},#{openID})
     </insert>
 
+    <!--根据商品所有信息修改更新商品信息-->
+    <update id="updateGoodsByGoods" parameterType="com.yxx.pojo.Goods">
+        update goods
+        <set>
+            <if test="goodsName!= null and goodsName != '' ">
+                goods_name=#{goodsName},
+            </if>
+            <if test="goodsDescribe!= null and goodsDescribe != '' ">
+                goods_describe=#{goodsDescribe},
+            </if>
+            <if test="goodsPrice!= null and goodsPrice != '' ">
+                goods_price=#{goodsPrice},
+            </if>
+            <if test="goodsImage!= null">
+                goods_image=#{goodsImage},
+            </if>
+            <if test="categoryId!= null">
+                category_id=#{categoryId},
+            </if>
+            <if test="createTime!= null">
+                create_time=#{createTime}
+            </if>
+        </set>
+         where openID=#{openID} and goods_id=#{goodsId}
+    </update>
 </mapper>

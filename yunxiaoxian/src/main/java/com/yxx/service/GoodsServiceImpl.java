@@ -53,4 +53,15 @@ public class GoodsServiceImpl implements GoodsService {
         }
         return flag;
     }
+
+    @Override
+    public boolean updateGoodsByGoods(Goods goods) {
+        boolean flag = false;
+        int temp =  goodsMapper.uploadGoods(goods);
+        if(temp==1){
+            return !flag;
+        }
+        return flag;
+
+    }
 }

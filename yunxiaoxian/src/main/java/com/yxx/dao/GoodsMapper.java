@@ -22,5 +22,7 @@ public interface GoodsMapper {
     public List<Goods> selectAllMyPublishGoods(@Param("openID") String openID,@Param("currentPage") Integer currentPage);
     //上传商品
     public int uploadGoods(Goods goods);
+    //根据商品所有信息修改更新商品信息
+    public int updateGoodsByGoods(Goods goods);
 
 }
