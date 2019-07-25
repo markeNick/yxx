@@ -33,4 +33,11 @@
         where openID = #{openID}
         and goods_id = #{goodsID}
     </select>
+
+    <!-- 取消收藏 -->
+    <delete id="cancelCollection">
+        delete from collection
+        where goods_id = #{goodsID}
+        and openID = #{openID}
+    </delete>
 </mapper>

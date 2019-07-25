@@ -26,7 +26,15 @@ public class OrdersServiceImpl implements OrdersService {
                 }
             } catch (Exception e){
                 logger.debug("error:{}-->", e);
-                throw new RuntimeException();
+            }
+        } else if(identity == 1){
+            try {
+                if(1 ==ordersMapper.updateOrderOfUserStatus(null, openID, goodsID)){
+                    json.put("status", "true");
+                    return json;
+                }
+            } catch (Exception e){
+                logger.debug("error:{}-->", e);
             }
         }
 

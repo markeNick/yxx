@@ -23,5 +23,12 @@ public interface CollectionService {
      */
     public JSONObject insertUserCollection(String openID, Integer goodsID);
 
+    /**
+     * 取消收藏
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public JSONObject cancelCollection(String openID, Integer goodsID);
 
 }

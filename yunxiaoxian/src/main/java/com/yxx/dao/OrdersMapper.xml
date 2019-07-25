@@ -19,13 +19,13 @@
     <update id="updateOrderOfUserStatus">
         update orders
         <set>
-            <if test="buyerOpenID != null || buyerOpenID != ''">
+            <if test="buyerOpenID != null">
                 buyer_status = 1
             </if>
-            <if test="sellerOpenID != null || sellerOpenID != ''">
+            <if test="sellerOpenID != null">
                 seller_status = 1
             </if>
         </set>
-        where goods_id = goodsID
+        where goods_id = #{goodsID}
     </update>
 </mapper>

@@ -49,4 +49,12 @@ public class CollectionController {
         //调用收藏物品的Service方法
         return collectionService.insertUserCollection(openID, goodsID);
     }
+
+    //取消收藏
+    @PostMapping("cancelCollection")
+    @ResponseBody
+    public JSONObject cancelCollection(String openID, Integer goodsID){
+
+        return collectionService.cancelCollection(openID, goodsID);
+    }
 }
