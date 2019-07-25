@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -37,7 +36,7 @@ public class GoodsController {
     @ResponseBody
     public JSONObject selectGoodsByGoodsDescribe(@ModelAttribute("goods")Goods goods,String goodsDescribe,Integer currentPage) throws UnsupportedEncodingException {
         Logger logger = LoggerFactory.getLogger(GoodsController.class);
- /*       if(goodsDescribe!=null){//解决搜索信息中文乱码
+/*        if(goodsDescribe!=null){//解决搜索信息中文乱码
             goods.setGoodsDescribe(new String(goodsDescribe.getBytes("ISO-8859-1"),"UTF-8"));
         }*/
         JSONObject json=new JSONObject();
@@ -193,6 +192,7 @@ public class GoodsController {
         StringBuffer newNames=new StringBuffer();
         // 存储图片的物理路径
         String file_path ="//opt//pic";
+        Integer stringSize=myfile.length;
         // 解析Base64
         for(String file:myfile){//校验
             String dataPrefix;
@@ -201,7 +201,7 @@ public class GoodsController {
                 json.put("error","上传失败，上传图片数据为空!");
                 return json;
             }else{
-                String [] d = file.split("base64,");
+                String [] d = file.split("base64+");
                 if(d != null && d.length == 2){
                     dataPrefix = d[0];////data:img/jpg;base64
                 }else{
@@ -211,7 +211,10 @@ public class GoodsController {
             }
             if("data:image/jpeg;".equalsIgnoreCase(dataPrefix)){//data:image/jpeg;base64,base64编码的jpeg图片数据
                 suffix = ".jpg";
-            } else if("data:image/x-icon;".equalsIgnoreCase(dataPrefix)){//data:image/x-icon;base64,base64编码的icon图片数据
+            }else if("data:image/jpg;".equalsIgnoreCase(dataPrefix)){//data:image/jpeg;base64,base64编码的jpg图片数据
+                suffix = ".jpg";
+            }
+            else if("data:image/x-icon;".equalsIgnoreCase(dataPrefix)){//data:image/x-icon;base64,base64编码的icon图片数据
                 suffix = ".ico";
             } else if("data:image/gif;".equalsIgnoreCase(dataPrefix)){//data:image/gif;base64,base64编码的gif图片数据
                 suffix = ".gif";
@@ -226,7 +229,7 @@ public class GoodsController {
             //将内存中的数据写入磁盘
             String transName;
             transName=(rand.nextInt(9999999)+100000)+openID.substring(openID.length()-5)+multipartFile.getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis()+".");
-            newNames.append(transName);
+            newNames.append(transName+",");
             // 将内存中的数据写入磁盘
             File newName  = new File(file_path + "/" + transName);
             try {
@@ -238,7 +241,7 @@ public class GoodsController {
             }
         }
         // 上传图片
-        goods.setImage(newNames.toString());
+        goods.setImage(newNames.toString().substring(0,newNames.toString().length()-1));
         goods.setStatus(0);
         //获取系统时间
         Date createTime= new java.sql.Date(new java.util.Date().getTime());

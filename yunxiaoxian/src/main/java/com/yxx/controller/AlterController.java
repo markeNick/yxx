@@ -126,7 +126,7 @@ public class AlterController {
                     json.put("error", "上传失败，上传图片数据为空!");
                     return true;
                 } else {
-                    String[] d = file.split("base64,");
+                    String[] d = file.split("base64+");
                     if (d != null && d.length == 2) {
                         dataPrefix = d[0];////data:img/jpg;base64
                     } else {
@@ -135,6 +135,8 @@ public class AlterController {
                     }
                 }
                 if ("data:image/jpeg;".equalsIgnoreCase(dataPrefix)) {//data:image/jpeg;base64,base64编码的jpeg图片数据
+                    suffix = ".jpg";
+                }else if("data:image/jpg;".equalsIgnoreCase(dataPrefix)){//data:image/jpeg;base64,base64编码的jpg图片数据
                     suffix = ".jpg";
                 } else if ("data:image/x-icon;".equalsIgnoreCase(dataPrefix)) {//data:image/x-icon;base64,base64编码的icon图片数据
                     suffix = ".ico";
@@ -151,7 +153,7 @@ public class AlterController {
                 //将内存中的数据写入磁盘
                 String transName;
                 transName = (rand.nextInt(9999999)+100000) + openID.substring(openID.length() - 5)+multipartFile.getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis() + ".");
-                newNames.append(transName);
+                newNames.append(transName+",");
                 // 将内存中的数据写入磁盘
                 File newName = new File(file_path + "/" + transName);
                 try {
@@ -162,7 +164,7 @@ public class AlterController {
                     return true;
                 }
             }
-            goods.setImage(newNames.toString());
+            goods.setImage(newNames.toString().substring(0,newNames.toString().length()-1));
         }
         return false;
     }
