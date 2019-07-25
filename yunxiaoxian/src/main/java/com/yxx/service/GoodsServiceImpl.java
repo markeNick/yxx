@@ -43,4 +43,14 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> selectAllMyPublishGoods(String openID, Integer currentPage) {
         return goodsMapper.selectAllMyPublishGoods(openID,currentPage);
     }
+
+    @Override
+    public boolean uploadGoods(Goods goods){
+        boolean flag = false;
+        int temp = goodsMapper.uploadGoods(goods);
+        if(temp==1){
+            return !flag;
+        }
+        return flag;
+    }
 }

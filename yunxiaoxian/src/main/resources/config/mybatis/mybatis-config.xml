@@ -8,5 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
-
+	<typeHandlers>
+		<typeHandler handler="com.yxx.conversion.StringArrayTypeHandler"/>
+	</typeHandlers>
 </configuration>

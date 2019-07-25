@@ -5,7 +5,9 @@ import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.MessageCustom;
 import com.yxx.pojo.User;
 import com.yxx.service.CollectionService;
+import com.yxx.service.OrdersService;
 import com.yxx.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class UserController {
 
     @Autowired
     private CollectionService collectionService;
+
+    @Autowired
+    public OrdersService ordersService;
 
     @RequestMapping(value = "/test")
     public String test(){
@@ -78,7 +83,6 @@ public class UserController {
     //卖家售出功能
     @PostMapping("soldMyGoods")
     @ResponseBody
-    @Transactional
     public JSONObject soldMyGoods(String openID, Integer goodsID){
         JSONObject json = new JSONObject();
 
@@ -89,7 +93,6 @@ public class UserController {
             }
         } catch (Exception e) {
             logger.debug("soldMyGoods--> error:{}", e);
-            throw new RuntimeException();
         }
 
         json.put("status", "false");
@@ -101,10 +104,28 @@ public class UserController {
     @ResponseBody
     public JSONObject deleteOrder(String openID, Integer goodsID, Integer identity){
         JSONObject json = new JSONObject();
-        if(identity == 0){
 
+        return ordersService.deleteOrders(openID, identity, goodsID);
+    }
+
+    //根据openID查询用户信息
+    @PostMapping("/selectUserByopenID")
+    @ResponseBody
+    public JSONObject selectUserByopenID(@RequestParam(value="openID",required = true) String openID){
+        JSONObject json = new JSONObject();
+        User user=null;
+        try {
+            user = userService.selectUserByOpenID(openID);
+        } catch (Exception e) {
+            logger.debug("selectUserByopenID--> error:{}", e);
         }
-        return json;
+        if(user!=null){
+            json.put("user",user);
+            return json;
+        }else {
+            json.put("user",null);
+            return json;
+        }
     }
 
 }
