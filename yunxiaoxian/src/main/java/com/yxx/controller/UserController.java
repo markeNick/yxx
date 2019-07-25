@@ -7,6 +7,7 @@ import com.yxx.pojo.User;
 import com.yxx.service.CollectionService;
 import com.yxx.service.OrdersService;
 import com.yxx.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,6 +106,26 @@ public class UserController {
         JSONObject json = new JSONObject();
 
         return ordersService.deleteOrders(openID, identity, goodsID);
+    }
+
+    //根据openID查询用户信息
+    @PostMapping("/selectUserByopenID")
+    @ResponseBody
+    public JSONObject selectUserByopenID(@RequestParam(value="openID",required = true) String openID){
+        JSONObject json = new JSONObject();
+        User user=null;
+        try {
+            user = userService.selectUserByOpenID(openID);
+        } catch (Exception e) {
+            logger.debug("selectUserByopenID--> error:{}", e);
+        }
+        if(user!=null){
+            json.put("user",user);
+            return json;
+        }else {
+            json.put("user",null);
+            return json;
+        }
     }
 
 }

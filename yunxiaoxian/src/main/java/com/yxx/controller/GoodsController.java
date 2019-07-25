@@ -51,20 +51,20 @@ public class GoodsController {
                 try {
                     goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
                 }catch (Exception e){
-                    logger.error("error:",e);
+                    logger.error("selectGoodsByGoodsDescribe--> error:{}:",e);
                 }
             }else{//假如没发送页码,返回第一页的数据
                 goods.setCurrentPage(0);
                 try {
                     goodslist=goodsService.selectGoodsByGoodsDescribe(goods);//查询相应所有商品信息
                 }catch (Exception e){
-                    logger.error("error:",e);
+                    logger.error("selectGoodsByGoodsDescribe--> error:{}:",e);
                 }
             }
         try {
             count= goodsService.selectCountByGoods(goods);//查询相应所有商品信息总记录数
         }catch (Exception e){
-            logger.error("error:",e);
+            logger.error("selectCountByGoods--> error:{}:",e);
         }
         if(count!=null){
             if(count/10==0&&count%10>0){//1-9条记录数
@@ -97,7 +97,7 @@ public class GoodsController {
             try {
                 goodsmessage = goodsService.selectOneGoodsByGoodsId(goods);
             }catch (Exception e){
-                logger.error("error:",e);
+                logger.error("selectOneGoodsByGoodsId--> error:{}:",e);
             }
         }
         if(goodsmessage!=null){
@@ -123,7 +123,7 @@ public class GoodsController {
                 mysalelist = goodsService.selectAllMySaleGoods(openID,0);
             }
         }catch (Exception e){
-            logger.error("error:",e);
+            logger.error("selectAllMySaleGoods--> error:{}:",e);
         }
         if(mysalelist!=null&&mysalelist.size()!=0){//假如查询到我卖出的商品返回
             json.put("mysalelist",mysalelist);
@@ -147,7 +147,7 @@ public class GoodsController {
                 mybuylist = goodsService.selectAllMyBuyGoods(openID,0);
             }
         }catch (Exception e){
-            logger.error("error:",e);
+            logger.error("selectAllMyBuyGoods--> error:{}:",e);
         }
         if(mybuylist!=null&&mybuylist.size()!=0){//假如查询到我买的商品返回
             json.put("mybuylist",mybuylist);
@@ -171,7 +171,7 @@ public class GoodsController {
                 mypublishlist = goodsService.selectAllMyPublishGoods(openID,0);
             }
         }catch (Exception e){
-            logger.error("error:",e);
+            logger.error("selectAllMyPublishGoods--> error:{}:",e);
         }
         if(mypublishlist!=null&&mypublishlist.size()!=0){//假如查询到我发布的商品返回
             json.put("mypublishlist",mypublishlist);

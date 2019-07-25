@@ -45,7 +45,7 @@ public class MessageController {
                 try {
                     messagelist = messageService.selectAllMyMessage(openID,userName,(currentPage-1)*10);//查询所有留言
                 }catch (Exception e){
-                    logger.error("error",e);
+                    logger.error("selectAllMyMessage--> error:{}",e);
                 }
                 if(messagelist.size()>0){//假如能查到
                     int size=messagelist.size();//存集合长度
@@ -62,7 +62,7 @@ public class MessageController {
                 try {
                     messagelist = messageService.selectAllMyMessage(openID,userName,0);//查询所有留言
                 }catch (Exception e){
-                    logger.error("error",e);
+                    logger.error("selectAllMyMessage--> error:{}",e);
                 }
                 if(messagelist.size()>0){//假如能查到
                     int size=messagelist.size();//存集合长度
@@ -96,13 +96,13 @@ public class MessageController {
             try {
                 replylist = replyService.selectDetailForOneReply(messageNumber,(currentPage-1)*10);//查询回复信息
             }catch (Exception e){
-                logger.error("error",e);
+                logger.error("selectDetailForOneReply--> error:{}",e);
             }
         }else if(currentPage==null&&messageNumber!=null){//messageNumber不为空和页码为空
             try {
                 replylist = replyService.selectDetailForOneReply(messageNumber,0);//查询回复信息
             }catch (Exception e){
-                logger.error("error",e);
+                logger.error("selectDetailForOneReply--> error:{}",e);
             }
         }
         else {//messageNumber为空
@@ -129,7 +129,7 @@ public class MessageController {
             try {
                 messageNumber=messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
             }catch (Exception e){
-                logger.error("error",e);
+                logger.error("selectMessageNumberByGoodsIDAndOpenID--> error:{}",e);
             }
             if(messageNumber==null||messageNumber.equals("")){//假如第一次留言
                 int i=0;
@@ -146,7 +146,7 @@ public class MessageController {
                     }
                     //插入message表 给买家存一条记录索引
                 }catch (Exception e){
-                    logger.error("error",e);
+                    logger.error("selectUserByGoodsId,insertMessageByMessage--> error:{}",e);
                 }
                 if(i>0){
                     reply.setCreateTime(messages.getCreateTime());
@@ -159,7 +159,7 @@ public class MessageController {
                     try {
                         j=replyService.insertReplyToReply(reply);
                     }catch (Exception e){
-                        logger.error("error",e);
+                        logger.error("selectUserByGoodsId--> error:{}",e);
                     }
                 }
                 if(j>0){//留言成功
