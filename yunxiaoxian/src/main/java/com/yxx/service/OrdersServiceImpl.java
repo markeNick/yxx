@@ -26,7 +26,6 @@ public class OrdersServiceImpl implements OrdersService {
                 }
             } catch (Exception e){
                 logger.debug("error:{}-->", e);
-                throw new RuntimeException();
             }
         } else if(identity == 1){
             try {
@@ -36,7 +35,6 @@ public class OrdersServiceImpl implements OrdersService {
                 }
             } catch (Exception e){
                 logger.debug("error:{}-->", e);
-                throw new RuntimeException();
             }
         }
 
