@@ -58,4 +58,32 @@
         and status = 0;
     </update>
 
+    <!-- 擦亮物品 -->
+    <update id="updateGoodsCreateTime">
+        update goods
+        set create_time = #{newTime}
+        where goods_id = #{goodsID}
+        and openID = #{openID}
+        and timestampdiff(hour, create_time, #{newTime}) &gt;= 24
+    </update>
+
+    <!-- 下架或上架 -->
+    <update id="updateGoodsStatus">
+        update goods
+        <if test="flag == true">
+            set status = 2
+        </if>
+        <if test="flag == false">
+            set status = 0
+        </if>
+        where openID = #{openID}
+        and goods_id = #{goodsID}
+    </update>
+
+    <!-- 删除物品 -->
+    <delete id="deleteGoods">
+        delete from goods
+        where goods_id = #{goodsID}
+        and openID = #{openID}
+    </delete>
 </mapper>

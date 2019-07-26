@@ -19,4 +19,8 @@ public interface GoodsService {
     public List<OrderCustom> selectAllMyBuyGoods(String openID,Integer currentPage);
     //查询我发布的商品信息
     public List<Goods> selectAllMyPublishGoods(String openID,Integer currentPage);
+    //上传商品
+    public boolean uploadGoods(Goods goods);
+    //根据商品所有信息修改更新商品信息
+    public boolean updateGoodsByGoods(Goods goods);
 }
