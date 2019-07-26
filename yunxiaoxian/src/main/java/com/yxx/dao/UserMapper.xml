@@ -58,4 +58,12 @@
         and status = 0;
     </update>
 
+    <!-- 擦亮物品 -->
+    <update id="updateGoodsCreateTime">
+        update goods
+        set create_time = #{newTime}
+        where goods_id = #{goodsID}
+        and openID = #{openID}
+        and timestampdiff(hour, create_time, #{newTime}) &gt;= 24
+    </update>
 </mapper>

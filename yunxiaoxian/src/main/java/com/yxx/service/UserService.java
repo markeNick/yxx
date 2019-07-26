@@ -1,6 +1,7 @@
 package com.yxx.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.yxx.pojo.User;
 
 import java.util.List;
@@ -42,5 +43,12 @@ public interface UserService{
      */
     public int soldMyGoods(String openID, Integer goodsID);
 
+    /**
+     * 擦亮物品
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public JSONObject updateGoodsCreateTime(String openID, Integer goodsID);
 
 }

@@ -1,8 +1,10 @@
 package com.yxx.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yxx.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserMapper {
@@ -51,4 +53,13 @@ public interface UserMapper {
     public int updateMySoldGoodsStatus(@Param("openID")String openID,
                                  @Param("goodsID")Integer goodsID);
 
+    /**
+     * 擦亮物品
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public int updateGoodsCreateTime(@Param("openID")String openID,
+                                     @Param("goodsID")Integer goodsID,
+                                     @Param("newTime")Date newTime);
 }
