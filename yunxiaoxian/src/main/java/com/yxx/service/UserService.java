@@ -51,4 +51,20 @@ public interface UserService{
      */
     public JSONObject updateGoodsCreateTime(String openID, Integer goodsID);
 
+    /**
+     * 下架--上架
+     * @param openID
+     * @param goodsID
+     * @param flag  //true为下架，false为上架
+     * @return
+     */
+    public JSONObject updateGoodsStatus(String openID, Integer goodsID, boolean flag);
+
+    /**
+     * 删除物品
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public JSONObject deleteGoods(String openID, Integer goodsID);
 }

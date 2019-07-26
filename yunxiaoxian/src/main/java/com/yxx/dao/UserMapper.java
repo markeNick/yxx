@@ -62,4 +62,24 @@ public interface UserMapper {
     public int updateGoodsCreateTime(@Param("openID")String openID,
                                      @Param("goodsID")Integer goodsID,
                                      @Param("newTime")Date newTime);
+
+    /**
+     * 下架--上架
+     * @param openID
+     * @param goodsID
+     * @param flag  //true为下架，false为上架
+     * @return
+     */
+    public int updateGoodsStatus(@Param("openID")String openID,
+                                 @Param("goodsID")Integer goodsID,
+                                 @Param("flag")boolean flag);
+
+    /**
+     * 删除物品
+     * @param openID
+     * @param goodsID
+     * @return
+     */
+    public int deleteGoods(@Param("openID")String openID,
+                           @Param("goodsID")Integer goodsID);
 }

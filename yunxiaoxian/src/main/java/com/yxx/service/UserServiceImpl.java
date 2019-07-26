@@ -73,4 +73,35 @@ public class UserServiceImpl implements UserService {
         return json;
     }
 
+    @Override
+    public JSONObject updateGoodsStatus(String openID, Integer goodsID, boolean flag) {
+        JSONObject json = new JSONObject();
+        try {
+            if(1 == userMapper.updateGoodsStatus(openID, goodsID, flag)){
+                json.put("status", "true");
+                return json;
+            }
+        } catch (RuntimeException r){
+            logger.debug("error{}", r);
+        }
+
+        json.put("status", "false");
+        return json;
+    }
+
+    @Override
+    public JSONObject deleteGoods(String openID, Integer goodsID) {
+        JSONObject json = new JSONObject();
+        try {
+            if(1 == userMapper.deleteGoods(openID, goodsID)){
+                json.put("status", "true");
+                return json;
+            }
+        } catch (RuntimeException r){
+            logger.debug("error{}", r);
+        }
+
+        json.put("status", "false");
+        return json;
+    }
 }

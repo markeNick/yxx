@@ -136,4 +136,27 @@ public class UserController {
         return userService.updateGoodsCreateTime(openID, goodsID);
     }
 
+    //下架物品
+    @PostMapping("pullOffShelves")
+    @ResponseBody
+    public JSONObject pullOffShelves(String openID, Integer goodsID){
+
+        return userService.updateGoodsStatus(openID, goodsID, true);
+    }
+
+    //上架物品
+    @PostMapping("pullOnShelves")
+    @ResponseBody
+    public JSONObject pullOnShelves(String openID, Integer goodsID){
+
+        return userService.updateGoodsStatus(openID, goodsID, false);
+    }
+
+    //删除物品
+    @PostMapping("deleteGoods")
+    @ResponseBody
+    public JSONObject deleteGoods(String openID, Integer goodsID){
+
+        return userService.deleteGoods(openID, goodsID);
+    }
 }
