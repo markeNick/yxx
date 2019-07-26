@@ -128,4 +128,12 @@ public class UserController {
         }
     }
 
+    //刷新物品创建时间
+    @PostMapping("polishGoods")
+    @ResponseBody
+    public JSONObject polishGoods(String openID, Integer goodsID){
+
+        return userService.updateGoodsCreateTime(openID, goodsID);
+    }
+
 }
