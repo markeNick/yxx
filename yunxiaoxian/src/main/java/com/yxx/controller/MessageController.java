@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
@@ -87,27 +88,24 @@ public class MessageController {
     //查看留言详细记录
     @PostMapping("/selectDetailForReply")
     @ResponseBody
-    public JSONObject selectDetailForReply(String messageNumber,Integer currentPage){
+    public JSONObject selectDetailForReply(@RequestParam("openID") String openID,
+                                           @RequestParam("goodsId")Integer goodsId, Integer currentPage){
         Logger logger = LoggerFactory.getLogger(MessageController.class);
         JSONObject json=new JSONObject();
         List<Reply> replylist=null;
 
-        if(currentPage!=null&&messageNumber!=null){//messageNumber和页码不为空
+        if(currentPage!=null){//openID
             try {
-                replylist = replyService.selectDetailForOneReply(messageNumber,(currentPage-1)*10);//查询回复信息
+                replylist = replyService.selectDetailForOneReply(openID,goodsId,(currentPage-1)*10);//查询回复信息
             }catch (Exception e){
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
-        }else if(currentPage==null&&messageNumber!=null){//messageNumber不为空和页码为空
+        }else if(currentPage==null){//openID
             try {
-                replylist = replyService.selectDetailForOneReply(messageNumber,0);//查询回复信息
+                replylist = replyService.selectDetailForOneReply(openID,goodsId,0);//查询回复信息
             }catch (Exception e){
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
-        }
-        else {//messageNumber为空
-            json.put("replylist",new ArrayList<String>());
-            return json;
         }
         json.put("replylist",replylist);
         return json;

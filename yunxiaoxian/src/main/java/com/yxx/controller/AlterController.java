@@ -32,17 +32,16 @@ public class AlterController {
     @PostMapping("/updateGoodsByGoods")
     @ResponseBody
     public JSONObject updateGoodsByGoods(@ModelAttribute("goods") Goods goods, String[] myfile,
-                                         @RequestParam(value = "openID", required = true) String openID,
-                                         @RequestParam(value = "theKey", required = true) Integer theKey,
-                                         @RequestParam(value = "imageString", required = true) String imageString)
+                                         @RequestParam(value = "openID") String openID,
+                                         @RequestParam(value = "theKey") Integer theKey,
+                                         @RequestParam(value = "imageStrings",required = false) String[] imageStrings)
                                         throws IllegalStateException, IOException {
         Logger logger = LoggerFactory.getLogger(AlterController.class);
         JSONObject json = new JSONObject();
         boolean result = false;
         if (theKey == 1) {
-            boolean b = myfile != null && myfile.length > 0 && theKey == 1 && imageString != null && !imageString.equals("");
+            boolean b = myfile != null && myfile.length > 0 && theKey == 1 && imageStrings != null && imageStrings.length>0;
             //判断图片名字是否改变过
-            String[] imageStrings = imageString.split(",");//将图片名分割
             //查询数据库中图片名
             GoodsCustom goodsmessage = null;
             try {
@@ -66,7 +65,6 @@ public class AlterController {
                     //获取系统时间
                     Date createTime= new java.sql.Date(new java.util.Date().getTime());
                     goods.setCreateTime(createTime);
-                    goods.setImage(imageString);//存入图片字符串
                     try {
                         result = goodsService.updateGoodsByGoods(goods);
                     } catch (Exception e) {
@@ -95,7 +93,6 @@ public class AlterController {
             //获取系统时间
             Date createTime= new java.sql.Date(new java.util.Date().getTime());
             goods.setCreateTime(createTime);
-            goods.setImage(imageString);//存入图片字符串
             try {
                 result = goodsService.updateGoodsByGoods(goods);
             } catch (Exception e) {
@@ -124,14 +121,14 @@ public class AlterController {
                 String suffix;
                 if (file == null || "".equals(file)) {
                     json.put("error", "上传失败，上传图片数据为空!");
-                    return true;
+                    return false;
                 } else {
                     String[] d = file.split("base64+");
                     if (d != null && d.length == 2) {
                         dataPrefix = d[0];////data:img/jpg;base64
                     } else {
                         json.put("error", "上传失败，数据不合法!");
-                        return true;
+                        return false;
                     }
                 }
                 if ("data:image/jpeg;".equalsIgnoreCase(dataPrefix)) {//data:image/jpeg;base64,base64编码的jpeg图片数据
@@ -146,13 +143,13 @@ public class AlterController {
                     suffix = ".png";
                 } else {
                     json.put("error", "上传图片格式不合法!");
-                    return true;
+                    return false;
                 }
                 // 解析Base64 重新命名
                 MultipartFile multipartFile = Base64Util.base64ToMultipart(file);
                 //将内存中的数据写入磁盘
                 String transName;
-                transName = (rand.nextInt(9999999)+100000) + openID.substring(openID.length() - 5)+multipartFile.getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis() + ".");
+                transName = (rand.nextInt(9999999)+100000) + openID+multipartFile.getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis() + ".");
                 newNames.append(transName+",");
                 // 将内存中的数据写入磁盘
                 File newName = new File(file_path + "/" + transName);
@@ -161,11 +158,11 @@ public class AlterController {
                 } catch (IOException e) {
                     logger.error("IOException", e.getMessage());
                     json.put("error", "图片存入服务器失败!");
-                    return true;
+                    return false;
                 }
             }
             goods.setImage(newNames.toString().substring(0,newNames.toString().length()-1));
         }
-        return false;
+        return true;
     }
 }

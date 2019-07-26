@@ -11,9 +11,10 @@ public class ReplyServiceImpl implements ReplyService{
     @Autowired
     private ReplyMapper replyMapper;
 
+
     @Override
-    public List<Reply> selectDetailForOneReply(String messageNumber, Integer currentPage) {
-        return replyMapper.selectDetailForOneReply(messageNumber,currentPage);
+    public List<Reply> selectDetailForOneReply(String openID, Integer goodsId, Integer currentPage) {
+        return replyMapper.selectDetailForOneReply(openID,goodsId,currentPage);
     }
 
     @Override

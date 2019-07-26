@@ -18,7 +18,7 @@
     </resultMap>
     <!--查询单个留言详细信息(属于该留言的所有对话)-->
     <select id="selectDetailForOneReply" resultType="com.yxx.pojo.Reply">
-       select * from reply where message_number=#{messageNumber}
+       select * from reply where goods_id=#{goodsId} and buyer=#{openID}
         order by reply.create_time asc
         limit #{currentPage},15
     </select>
