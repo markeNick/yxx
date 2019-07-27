@@ -39,6 +39,8 @@ public class AlterController {
         JSONObject json = new JSONObject();
         boolean result = false;
         if (theKey == 1) {
+            // 存储图片的物理路径
+            String file_path = "//opt//pic";
             boolean b = myfile != null && myfile.length > 0 && theKey == 1 && imageStrings != null && imageStrings.length>0;
             //判断图片名字是否改变过
             //查询数据库中图片名
@@ -70,22 +72,10 @@ public class AlterController {
                         logger.error("updateGoodsByGoods--> error:{}:", e);
                     }
                 } else {//假如匹配成功次数不等于图片个数则图片换了 上传图片
-                    if (upGoodsImages(goods, myfile, openID, logger, json, b)) {
-                        try {//更新商品
-                            result = goodsService.updateGoodsByGoods(goods);
-                        } catch (Exception e) {
-                            logger.error("updateGoodsByGoods--> error:{}:", e);
-                        }
-                    }
+                    result = upLoadImageAndDeteleImage(goods, myfile, openID, logger, json, result, b, oldGoodsImage,file_path);
                 }
             } else {//假如图片名个数不一样 上传图片
-                if (upGoodsImages(goods, myfile, openID, logger, json, b)) {
-                    try {//更新商品
-                        result = goodsService.updateGoodsByGoods(goods);
-                    } catch (Exception e) {
-                        logger.error("updateGoodsByGoods--> error:{}:", e);
-                    }
-                }
+                result = upLoadImageAndDeteleImage(goods, myfile, openID, logger, json, result,b, oldGoodsImage,file_path);
             }
         }else {
             //图片没换
@@ -106,14 +96,30 @@ public class AlterController {
         return json;
     }
 
-    private boolean upGoodsImages(@ModelAttribute("goods") Goods goods, String[] myfile, @Param("openID") String openID, Logger logger, JSONObject json, boolean b) {
+    private boolean upLoadImageAndDeteleImage(@ModelAttribute("goods") Goods goods, String[] myfile, @RequestParam("openID") String openID, Logger logger, JSONObject json, boolean result,boolean b, String[] oldGoodsImage,String file_path) {
+        if (upGoodsImages(goods, myfile, openID, logger, json, b,file_path)) {
+            //新图片上传成功 删除旧图片
+            for (String image:oldGoodsImage){
+                System.out.println(file_path+"/"+image);
+                File file=new File(file_path+"/"+image);
+                    System.gc();
+                file.delete();
+            }
+            try {//更新商品
+                result = goodsService.updateGoodsByGoods(goods);
+            } catch (Exception e) {
+                logger.error("updateGoodsByGoods--> error:{}:", e);
+            }
+        }
+        return result;
+    }
+
+    private boolean upGoodsImages(@ModelAttribute("goods") Goods goods, String[] myfile, @Param("openID") String openID, Logger logger, JSONObject json, boolean b,String file_path) {
         if (b) {
             //获取随机数
             Random rand = new Random();
             //拼接url
             StringBuffer newNames = new StringBuffer();
-            // 存储图片的物理路径
-            String file_path = "//opt//pic";
             // 解析Base64
             for (String file : myfile) {//校验
                 String dataPrefix;
