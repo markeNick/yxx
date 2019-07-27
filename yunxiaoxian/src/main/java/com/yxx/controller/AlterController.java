@@ -89,9 +89,9 @@ public class AlterController {
             }
         }
         if (result) {
-            json.put("status", "true");
+            json.put("status", true);
         } else {
-            json.put("status", "false");
+            json.put("status", false);
         }
         return json;
     }
@@ -100,7 +100,6 @@ public class AlterController {
         if (upGoodsImages(goods, myfile, openID, logger, json, b,file_path)) {
             //新图片上传成功 删除旧图片
             for (String image:oldGoodsImage){
-                System.out.println(file_path+"/"+image);
                 File file=new File(file_path+"/"+image);
                     System.gc();
                 file.delete();
@@ -126,6 +125,7 @@ public class AlterController {
                 String suffix;
                 if (file == null || "".equals(file)) {
                     json.put("error", "上传失败，上传图片数据为空!");
+                    json.put("status",false);
                     return false;
                 } else {
                     String[] d = file.split("base64+");
@@ -133,6 +133,7 @@ public class AlterController {
                         dataPrefix = d[0];////data:img/jpg;base64
                     } else {
                         json.put("error", "上传失败，数据不合法!");
+                        json.put("status",false);
                         return false;
                     }
                 }
@@ -148,6 +149,7 @@ public class AlterController {
                     suffix = ".png";
                 } else {
                     json.put("error", "上传图片格式不合法!");
+                    json.put("status",false);
                     return false;
                 }
                 // 解析Base64 重新命名
@@ -163,6 +165,7 @@ public class AlterController {
                 } catch (IOException e) {
                     logger.error("IOException", e.getMessage());
                     json.put("error", "图片存入服务器失败!");
+                    json.put("status",false);
                     return false;
                 }
             }

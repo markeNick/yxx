@@ -78,7 +78,7 @@ public class MessageController {
                 }
             }
             else {//openID为空
-                json.put("messagelist",new ArrayList<String>());
+                json.put("messagelist",null);
                 return json;
             }
         json.put("messagelist",messagelist);
@@ -161,9 +161,9 @@ public class MessageController {
                     }
                 }
                 if(j>0){//留言成功
-                    json.put("status","true");
+                    json.put("status",true);
                 }else {//留言失败
-                    json.put("status","false");
+                    json.put("status",false);
                 }
             }else { //假如留言过就转回复 messageNumber goods_id message userName userImage 买家openID
                 String dateString =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//获取时间
@@ -183,13 +183,13 @@ public class MessageController {
                 }
                 int k=replyService.insertReplyToReply(reply);//插入reply表
                 if(k>0){//回复成功
-                    json.put("status","true");
+                    json.put("status",true);
                 }else {
-                    json.put("status","false");
+                    json.put("status",false);
                 }
             }
         }else{
-            json.put("status","false");
+            json.put("status",false);
         }
 
 

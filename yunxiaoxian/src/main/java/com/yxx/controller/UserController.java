@@ -61,21 +61,21 @@ public class UserController {
         if(temp != null){
             if(userService.updateUser(user) == 1){  //如果更新成功返回true，否则返回false
                 System.out.println("更新");
-                json.put("status", "true");
+                json.put("status", true);
                 return json;
             }
 
-            json.put("status", "false");
+            json.put("status", false);
             return json;
         }
         //如果user用户不存在,则注册用户
         if(userService.registerUser(user) == 1){    //如果注册成功返回true，否则返回false
             System.out.println("注册");
-            json.put("status", "true");
+            json.put("status", true);
             return json;
         }
 
-        json.put("status", "true");
+        json.put("status", true);
         return json;
     }
 
@@ -88,14 +88,14 @@ public class UserController {
 
         try {
             if(userService.soldMyGoods(openID, goodsID) == 1){
-                json.put("status", "true");
+                json.put("status", true);
                 return json;
             }
         } catch (Exception e) {
             logger.debug("soldMyGoods--> error:{}", e);
         }
 
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 
