@@ -21,7 +21,7 @@ public class OrdersServiceImpl implements OrdersService {
         if(identity == 0){  //如果是买家
             try {
                 if(1 ==ordersMapper.updateOrderOfUserStatus(openID,null, goodsID)){
-                    json.put("status", "true");
+                    json.put("status", true);
                     return json;
                 }
             } catch (Exception e){
@@ -30,7 +30,7 @@ public class OrdersServiceImpl implements OrdersService {
         } else if(identity == 1){
             try {
                 if(1 ==ordersMapper.updateOrderOfUserStatus(null, openID, goodsID)){
-                    json.put("status", "true");
+                    json.put("status", true);
                     return json;
                 }
             } catch (Exception e){
@@ -38,7 +38,7 @@ public class OrdersServiceImpl implements OrdersService {
             }
         }
 
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 }

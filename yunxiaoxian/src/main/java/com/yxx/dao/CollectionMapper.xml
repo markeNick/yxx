@@ -25,8 +25,11 @@
     <select id="selectCollectByOpenIdAndGoodsId">
         select count(*) from collection where openID=#{openID} and goods_id=#{goodsId}
     </select>
-    
 
+    <!--将用户收藏物品信息存入collection表-->
+    <insert id="insertUserCollection">
+        insert into collection(goods_id,openID) values (#{goodsId},#{openID})
+    </insert>
     
     <!-- 根据openID和goodsID查询collection中的记录 -->
     <select id="selectCollectionByGoodsIDAndOpenID" resultType="com.yxx.pojo.Collection">

@@ -62,14 +62,14 @@ public class UserServiceImpl implements UserService {
 
         try {
             if(1 == userMapper.updateGoodsCreateTime(openID, goodsID, newTime)){
-                json.put("status", "true");
+                json.put("status", true);
                 return json;
             }
         } catch (RuntimeException r){
             logger.debug("error{}", r);
         }
 
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 
@@ -78,14 +78,14 @@ public class UserServiceImpl implements UserService {
         JSONObject json = new JSONObject();
         try {
             if(1 == userMapper.updateGoodsStatus(openID, goodsID, flag)){
-                json.put("status", "true");
+                json.put("status", true);
                 return json;
             }
         } catch (RuntimeException r){
             logger.debug("error{}", r);
         }
 
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 
@@ -94,14 +94,14 @@ public class UserServiceImpl implements UserService {
         JSONObject json = new JSONObject();
         try {
             if(1 == userMapper.deleteGoods(openID, goodsID)){
-                json.put("status", "true");
+                json.put("status", true);
                 return json;
             }
         } catch (RuntimeException r){
             logger.debug("error{}", r);
         }
 
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 }
