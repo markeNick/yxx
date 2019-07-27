@@ -28,7 +28,7 @@
 
     <!--将用户收藏物品信息存入collection表-->
     <insert id="insertUserCollection">
-        insert into collection(goods_id,openID) values (#{goodsId},#{openID})
+        insert into collection(goods_id,openID) values (#{goodsID},#{openID})
     </insert>
     
     <!-- 根据openID和goodsID查询collection中的记录 -->
