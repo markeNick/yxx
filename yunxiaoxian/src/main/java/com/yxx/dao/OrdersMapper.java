@@ -13,4 +13,13 @@ public interface OrdersMapper {
     public int updateOrderOfUserStatus(@Param("buyerOpenID")String buyerOpenID,
                                        @Param("sellerOpenID")String sellerOpenID,
                                        @Param("goodsID")Integer goodsID);
+
+    //交易记录，并且没拉黑过
+    public int blacklist(@Param("openID1")String openID1,
+                         @Param("openID2")String openID2);
+
+    //交易记录
+    public int tradingRecord(@Param("openID1")String openID1,
+                            @Param("openID2")String openID2);
+
 }
