@@ -82,4 +82,7 @@ public interface UserMapper {
      */
     public int deleteGoods(@Param("openID")String openID,
                            @Param("goodsID")Integer goodsID);
+
+    public int updateBlacklist(@Param("openID2")String openID2);
+
 }

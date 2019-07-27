@@ -28,4 +28,17 @@
         </set>
         where goods_id = #{goodsID}
     </update>
+
+
+    <select id="blacklist" resultType="Integer" parameterType="String">
+        select count(orders_id) from orders
+        where (buyer = #{openID1} AND seller=#{openID2} AND buyer_status !=2)
+        OR (buyer = #{openID2} AND seller=#{openID1} AND seller_status !=2)
+    </select>
+
+    <select id="tradingRecord" resultType="Integer" parameterType="String">
+        select count(orders_id) from orders
+        where (buyer = #{openID1} AND seller=#{openID2} )
+        OR (buyer = #{openID2} AND seller=#{openID1})
+    </select>
 </mapper>
