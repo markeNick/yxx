@@ -110,9 +110,9 @@ public class GoodsController {
                 logger.error("selectCollectionByGoodsIDAndOpenID--> error:{}:",e);
             }
             if(collections.size()>0){
-                json.put("collected","true");
+                json.put("collected",true);
             }else {
-                json.put("collected","false");
+                json.put("collected",false);
             }
         }else {//假如没查到或者商品id为null,返回null
             json.put("goodsmessage",null);
@@ -140,7 +140,7 @@ public class GoodsController {
             json.put("mysalelist",mysalelist);
             return json;
         }else {//没查询到我卖出的商品返回空
-            json.put("mysalelist",new ArrayList<String>());
+            json.put("mysalelist",null);
             return json;
         }
     }
@@ -164,7 +164,7 @@ public class GoodsController {
             json.put("mybuylist",mybuylist);
             return json;
         }else {//没查询到我买的商品返回空
-            json.put("mybuylist",new ArrayList<String>());
+            json.put("mybuylist",null);
             return json;
         }
     }
@@ -188,7 +188,7 @@ public class GoodsController {
             json.put("mypublishlist",mypublishlist);
             return json;
         }else {//没查询到我发布的商品返回空
-            json.put("mypublishlist",new ArrayList<String>());
+            json.put("mypublishlist",null);
             return json;
         }
     }
@@ -213,6 +213,7 @@ public class GoodsController {
             String suffix;
             if(file == null || "".equals(file)){
                 json.put("error","上传失败，上传图片数据为空!");
+                json.put("status",false);
                 return json;
             }else{
                 String [] d = file.split("base64+");
@@ -220,6 +221,7 @@ public class GoodsController {
                     dataPrefix = d[0];////data:img/jpg;base64
                 }else{
                     json.put("error","上传失败，数据不合法!");
+                    json.put("status",false);
                     return json;
                 }
             }
@@ -236,6 +238,7 @@ public class GoodsController {
                 suffix = ".png";
             }else{
                 json.put("error","上传图片格式不合法!");
+                json.put("status",false);
                 return json;
             }
             // 解析Base64 重新命名
@@ -251,6 +254,7 @@ public class GoodsController {
             } catch (IOException e) {
                logger.error("IOException",e.getMessage());
                 json.put("error","图片存入服务器失败!");
+                json.put("status",false);
                 return json;
             }
         }
@@ -263,10 +267,10 @@ public class GoodsController {
         boolean flag = false;
         flag = goodsService.uploadGoods(goods);
         if(flag == false){
-            json.put("status","false");
+            json.put("status",false);
             return json;
         }
-        json.put("status","true");
+        json.put("status",true);
         return json;
     }
 
