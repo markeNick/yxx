@@ -33,6 +33,8 @@
             <param-value>classpath:config/spring/springmvc-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <!-- 支持异步 -->
+        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
