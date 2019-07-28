@@ -35,7 +35,7 @@ public class CollectionServiceImpl implements CollectionService {
             //则将openID和goodsID存入数据库，并返回true
             try {
                 if(1 == collectionMapper.insertUserCollection(openID, goodsID)){
-                    json.put("status", "true");
+                    json.put("status", true);
                     return json;
                 }
             } catch (Exception e){
@@ -44,7 +44,7 @@ public class CollectionServiceImpl implements CollectionService {
         }
 
         //如果用户收藏过该物品，并返回false
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 
@@ -59,7 +59,7 @@ public class CollectionServiceImpl implements CollectionService {
         JSONObject json = new JSONObject();
         try {
             if(1 == collectionMapper.cancelCollection(openID, goodsID)){
-                json.put("status", "true");
+                json.put("status", true);
                 return json;
             }
         } catch (RuntimeException r){
@@ -67,7 +67,7 @@ public class CollectionServiceImpl implements CollectionService {
             throw r;
         }
 
-        json.put("status", "false");
+        json.put("status", false);
         return json;
     }
 }

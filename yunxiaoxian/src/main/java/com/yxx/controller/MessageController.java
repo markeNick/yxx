@@ -26,6 +26,7 @@ import java.util.UUID;
 
 @Controller
 public class MessageController {
+    private static Logger logger = LoggerFactory.getLogger(MessageController.class);
     @Autowired
     private MessageService messageService;
     @Autowired
@@ -37,7 +38,6 @@ public class MessageController {
     @PostMapping("/selectAllMyMessage")
     @ResponseBody
     public JSONObject selectAllMyMessage(String openID,String userName,Integer currentPage) throws UnsupportedEncodingException {
-        Logger logger = LoggerFactory.getLogger(MessageController.class);
         JSONObject json=new JSONObject();
         List<String> messageNumberList=new ArrayList<String>();//存留言框编号集合
         List<MessageCustom> messagelist=null;//存所有信息集合
@@ -78,7 +78,7 @@ public class MessageController {
                 }
             }
             else {//openID为空
-                json.put("messagelist",new ArrayList<String>());
+                json.put("messagelist",null);
                 return json;
             }
         json.put("messagelist",messagelist);
@@ -90,7 +90,7 @@ public class MessageController {
     @ResponseBody
     public JSONObject selectDetailForReply(@RequestParam("openID") String openID,
                                            @RequestParam("goodsId")Integer goodsId, Integer currentPage){
-        Logger logger = LoggerFactory.getLogger(MessageController.class);
+        
         JSONObject json=new JSONObject();
         List<Reply> replylist=null;
 
@@ -117,7 +117,7 @@ public class MessageController {
     public JSONObject doMessage(@ModelAttribute("messageCustom")MessageCustom messageCustom,
                                 @ModelAttribute("reply")Reply reply,@ModelAttribute("messages")Message messages,
                                 Integer goodsId, String openID,String message) throws ParseException {
-        Logger logger = LoggerFactory.getLogger(MessageController.class);
+        
         JSONObject json=new JSONObject();
         if(openID!=null&&goodsId!=null&&message!=null&&
                 messageCustom.getUserName()!=null&&messageCustom.getUserImage()!=null){
@@ -161,9 +161,9 @@ public class MessageController {
                     }
                 }
                 if(j>0){//留言成功
-                    json.put("status","true");
+                    json.put("status",true);
                 }else {//留言失败
-                    json.put("status","false");
+                    json.put("status",false);
                 }
             }else { //假如留言过就转回复 messageNumber goods_id message userName userImage 买家openID
                 String dateString =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//获取时间
@@ -183,13 +183,13 @@ public class MessageController {
                 }
                 int k=replyService.insertReplyToReply(reply);//插入reply表
                 if(k>0){//回复成功
-                    json.put("status","true");
+                    json.put("status",true);
                 }else {
-                    json.put("status","false");
+                    json.put("status",false);
                 }
             }
         }else{
-            json.put("status","false");
+            json.put("status",false);
         }
 
 

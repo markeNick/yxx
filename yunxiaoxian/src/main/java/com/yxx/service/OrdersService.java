@@ -10,4 +10,7 @@ public interface OrdersService {
      */
     public JSONObject deleteOrders(String openID, Integer identity, Integer goodsID);
 
+    //拉黑
+    public boolean blacklist(String openID1,String openID2);
+
 }

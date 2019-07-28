@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReplyController {
+    private static Logger logger = LoggerFactory.getLogger(ReplyController.class);
     @Autowired
     private ReplyService replyService;
     @Autowired
@@ -25,7 +26,6 @@ public class ReplyController {
     @ResponseBody
     //speaker,speaker_image,-listener，seller，buyer，-create_time，message，message_number，goods_id
     public JSONObject doReply(@ModelAttribute("reply")Reply reply){
-        Logger logger = LoggerFactory.getLogger(ReplyController.class);
         JSONObject json = new JSONObject();
         User user=null;
         try {

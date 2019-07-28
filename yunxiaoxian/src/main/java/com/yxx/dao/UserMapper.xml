@@ -86,4 +86,10 @@
         where goods_id = #{goodsID}
         and openID = #{openID}
     </delete>
+
+    <update id="updateBlacklist">
+        update user
+        set blacklist = blacklist + 1
+        where openID = #{openID2}
+    </update>
 </mapper>

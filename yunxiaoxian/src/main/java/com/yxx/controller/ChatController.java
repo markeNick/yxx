@@ -1,19 +1,17 @@
 package com.yxx.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.yxx.pojo.image;
 import com.yxx.service.ChatService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class ChatController {
-
+    private static Logger logger = LoggerFactory.getLogger(ChatController.class);
     @Autowired
     private ChatService chatService;
 
