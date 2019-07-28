@@ -32,7 +32,8 @@ public class AlterController {
     //降价,编辑 按钮(根据商品id和openID等编辑商品信息)
     @PostMapping("/updateGoodsByGoods")
     @ResponseBody
-    public JSONObject updateGoodsByGoods(@ModelAttribute("goods") Goods goods, String[] myfile,
+    public JSONObject updateGoodsByGoods(@ModelAttribute("goods") Goods goods,
+                                         @RequestParam(value = "myfile", required = false) String[] myfile,
                                          @RequestParam(value = "openID") String openID,
                                          @RequestParam(value = "theKey") Integer theKey,
                                          @RequestParam(value = "imageStrings", required = false) String[] imageStrings)
