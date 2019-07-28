@@ -109,7 +109,11 @@ public class MessageController {
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
         }
-        json.put("replylist",replylist);
+        if(replylist!=null&&replylist.size()>0){
+            json.put("replylist",replylist);
+        }else {
+            json.put("replylist",null);
+        }
         return json;
     }
 
