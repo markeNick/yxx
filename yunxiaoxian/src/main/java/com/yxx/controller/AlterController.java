@@ -68,6 +68,7 @@ public class AlterController {
                     //获取系统时间
                     Date createTime = new java.sql.Date(new java.util.Date().getTime());
                     goods.setCreateTime(createTime);
+                    goods.setGoodsImage(imageStrings);
                     try {
                         result = goodsService.updateGoodsByGoods(goods);
                     } catch (Exception e) {
