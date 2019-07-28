@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 public class CategoryController {
-    private Logger logger = Logger.getLogger(CategoryController.class);
+    private static Logger logger = Logger.getLogger(CategoryController.class);
 
     @Autowired
     private CategoryService categoryService;
