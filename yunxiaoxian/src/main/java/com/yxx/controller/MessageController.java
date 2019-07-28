@@ -89,20 +89,22 @@ public class MessageController {
     @PostMapping("/selectDetailForReply")
     @ResponseBody
     public JSONObject selectDetailForReply(@RequestParam("openID") String openID,
-                                           @RequestParam("goodsId")Integer goodsId, Integer currentPage){
+                                           @RequestParam("goodsId")Integer goodsId,
+                                           @RequestParam("messageNumber")String messageNumber,
+                                           Integer currentPage){
         
         JSONObject json=new JSONObject();
         List<Reply> replylist=null;
 
         if(currentPage!=null){//openID
             try {
-                replylist = replyService.selectDetailForOneReply(openID,goodsId,(currentPage-1)*10);//查询回复信息
+                replylist = replyService.selectDetailForOneReply(openID,goodsId,messageNumber,(currentPage-1)*10);//查询回复信息
             }catch (Exception e){
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
         }else if(currentPage==null){//openID
             try {
-                replylist = replyService.selectDetailForOneReply(openID,goodsId,0);//查询回复信息
+                replylist = replyService.selectDetailForOneReply(openID,goodsId,messageNumber,0);//查询回复信息
             }catch (Exception e){
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
