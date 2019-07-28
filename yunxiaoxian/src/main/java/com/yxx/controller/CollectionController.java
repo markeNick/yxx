@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class CollectionController {
 
-    private static Logger logger = Logger.getLogger(UserController.class);
+    private static Logger logger = Logger.getLogger(CollectionController.class);
 
     @Autowired
     private CollectionService collectionService;
