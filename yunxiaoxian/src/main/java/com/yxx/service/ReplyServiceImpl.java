@@ -13,8 +13,8 @@ public class ReplyServiceImpl implements ReplyService{
 
 
     @Override
-    public List<Reply> selectDetailForOneReply(String openID, Integer goodsId,String messageNumber,Integer currentPage) {
-        return replyMapper.selectDetailForOneReply(openID,goodsId,messageNumber,currentPage);
+    public List<Reply> selectDetailForOneReply(String messageNumber,Integer currentPage,Integer counts) {
+        return replyMapper.selectDetailForOneReply(messageNumber,currentPage,counts);
     }
 
     @Override
@@ -27,8 +27,4 @@ public class ReplyServiceImpl implements ReplyService{
         return replyMapper.insertReplyToReply(reply);
     }
 
-    @Override
-    public List<Reply> selectReplyDetailByMessageNumber(String messageNumber) {
-        return replyMapper.selectReplyDetailByMessageNumber(messageNumber);
-    }
 }

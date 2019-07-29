@@ -88,23 +88,21 @@ public class MessageController {
     //查看留言详细记录
     @PostMapping("/selectDetailForReply")
     @ResponseBody
-    public JSONObject selectDetailForReply(@RequestParam("openID") String openID,
-                                           @RequestParam("goodsId")Integer goodsId,
-                                           @RequestParam("messageNumber")String messageNumber,
-                                           Integer currentPage){
+    public JSONObject selectDetailForReply(@RequestParam("messageNumber")String messageNumber,
+                                           @RequestParam(value = "currentPage",required = false)Integer currentPage){
         
         JSONObject json=new JSONObject();
         List<Reply> replylist=null;
 
         if(currentPage!=null){//openID
             try {
-                replylist = replyService.selectDetailForOneReply(openID,goodsId,messageNumber,(currentPage-1)*10);//查询回复信息
+                replylist = replyService.selectDetailForOneReply(messageNumber,(currentPage-1)*15,null);//查询回复信息
             }catch (Exception e){
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
         }else if(currentPage==null){//openID
             try {
-                replylist = replyService.selectDetailForOneReply(openID,goodsId,messageNumber,0);//查询回复信息
+                replylist = replyService.selectDetailForOneReply(messageNumber,0,null);//查询回复信息
             }catch (Exception e){
                 logger.error("selectDetailForOneReply--> error:{}",e);
             }
@@ -131,7 +129,7 @@ public class MessageController {
             //查询是否留言过(根据goods_id和买家openID查询是否存在留言框编号)
             List<String> messageNumbers=null;//留言框编号
             try {
-                messageNumbers=messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
+                messageNumbers=messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID,0);
             }catch (Exception e){
                 logger.error("selectMessageNumberByGoodsIDAndOpenID--> error:{}",e);
             }

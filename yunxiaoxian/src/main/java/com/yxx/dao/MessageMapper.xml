@@ -44,6 +44,9 @@
             </if>
         </where>
         ORDER BY create_time DESC
+        <if test="currentPage != null">
+            limit #{currentPage},3
+        </if>
     </select>
 
 </mapper>
