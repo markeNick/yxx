@@ -29,7 +29,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public String selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID) {
+    public List<String> selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID) {
         return messageMapper.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
     }
 

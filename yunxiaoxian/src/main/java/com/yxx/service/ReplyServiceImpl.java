@@ -26,4 +26,9 @@ public class ReplyServiceImpl implements ReplyService{
     public int insertReplyToReply(Reply reply) {
         return replyMapper.insertReplyToReply(reply);
     }
+
+    @Override
+    public List<Reply> selectReplyDetailByMessageNumber(String messageNumber) {
+        return replyMapper.selectReplyDetailByMessageNumber(messageNumber);
+    }
 }

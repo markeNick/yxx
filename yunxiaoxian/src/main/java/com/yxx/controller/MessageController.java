@@ -122,20 +122,20 @@ public class MessageController {
     @ResponseBody
     public JSONObject doMessage(@ModelAttribute("messageCustom")MessageCustom messageCustom,
                                 @ModelAttribute("reply")Reply reply,@ModelAttribute("messages")Message messages,
-                                Integer goodsId, String openID,String message) throws ParseException {
+                                Integer goodsId, String openID,String message,String messageNumber) throws ParseException {
         
         JSONObject json=new JSONObject();
         if(openID!=null&&goodsId!=null&&message!=null&&
                 messageCustom.getUserName()!=null&&messageCustom.getUserImage()!=null){
             UUID randomUUID = UUID.randomUUID();
             //查询是否留言过(根据goods_id和买家openID查询是否存在留言框编号)
-            String messageNumber=null;//留言框编号
+            List<String> messageNumbers=null;//留言框编号
             try {
-                messageNumber=messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
+                messageNumbers=messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
             }catch (Exception e){
                 logger.error("selectMessageNumberByGoodsIDAndOpenID--> error:{}",e);
             }
-            if(messageNumber==null||messageNumber.equals("")){//假如第一次留言
+            if(messageNumbers==null||messageNumbers.size()==0){//假如第一次留言
                 int i=0;
                 int j=0;
                 String firstMessageNumber=randomUUID.toString()+System.currentTimeMillis();//第一个留言框编号=随机数+时间戳
@@ -174,7 +174,6 @@ public class MessageController {
             }else { //假如留言过就转回复 messageNumber goods_id message userName userImage 买家openID
                 String dateString =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//获取时间
                 reply.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString));//设置时间
-                reply.setMessageNumber(messageNumber);
                 reply.setSpeaker(messageCustom.getUserName());//留言者name
                 reply.setSpeakerImage(messageCustom.getUserImage());
                 reply.setSeller(userService.selectUserByGoodsId(goodsId).getOpenID());

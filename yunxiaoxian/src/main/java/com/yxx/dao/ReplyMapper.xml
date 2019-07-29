@@ -36,4 +36,9 @@
         buyer=#{buyer},create_time=#{createTime},message=#{message},message_number=#{messageNumber},
         speaker_image=#{speakerImage},goods_id=#{goodsId}
     </insert>
+
+    <!--查询用户留言框编号查询对应所有回复信息-->
+    <select id="selectReplyDetailByMessageNumber" resultType="com.yxx.pojo.Reply" parameterType="java.lang.String">
+         select * from reply where message_number=#{messageNumber} order by create_time asc
+    </select>
 </mapper>
