@@ -21,7 +21,7 @@
        select * from reply where message_number=#{messageNumber}
         order by create_time asc
         <if test="counts != null">
-            limit 2
+            limit 3
         </if>
         <if test="currentPage != null">
             limit #{currentPage},15

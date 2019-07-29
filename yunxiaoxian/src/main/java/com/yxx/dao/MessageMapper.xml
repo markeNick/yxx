@@ -45,7 +45,7 @@
         </where>
         ORDER BY create_time DESC
         <if test="currentPage != null">
-            limit #{currentPage},3
+            limit #{currentPage},6
         </if>
     </select>
 
