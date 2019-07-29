@@ -67,4 +67,11 @@ public interface UserService{
      * @return
      */
     public JSONObject deleteGoods(String openID, Integer goodsID);
+
+    /**
+     * 我的下架物品
+     * @param openID
+     * @return
+     */
+    public JSONObject OffShelvesGoods(String openID);
 }

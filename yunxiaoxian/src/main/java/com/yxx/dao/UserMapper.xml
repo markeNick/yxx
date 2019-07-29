@@ -92,4 +92,11 @@
         set blacklist = blacklist + 1
         where openID = #{openID2}
     </update>
+
+    <!-- 我的下架物品 -->
+    <select id="OffShelvesGoods" resultType="com.yxx.pojo.Goods" parameterType="string">
+        select * from goods
+        where openID = #{openID}
+        and status = 2
+    </select>
 </mapper>

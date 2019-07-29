@@ -104,4 +104,16 @@ public class UserServiceImpl implements UserService {
         json.put("status", false);
         return json;
     }
+
+    @Override
+    public JSONObject OffShelvesGoods(String openID) {
+        JSONObject json = new JSONObject();
+        try {
+            List<Goods> offGoodsList = userMapper.OffShelvesGoods(openID);
+            json.put("offGoodsList", offGoodsList);
+        } catch (RuntimeException r){
+            logger.error("error:{}", r);
+        }
+        return json;
+    }
 }

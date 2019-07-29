@@ -1,6 +1,7 @@
 package com.yxx.dao;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.Goods;
 import com.yxx.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -84,5 +85,12 @@ public interface UserMapper {
                            @Param("goodsID")Integer goodsID);
 
     public int updateBlacklist(@Param("openID2")String openID2);
+
+    /**
+     * 我的下架物品
+     * @param openID
+     * @return
+     */
+    public List<Goods> OffShelvesGoods(@Param("openID")String openID);
 
 }
