@@ -29,8 +29,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<String> selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID) {
-        return messageMapper.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID);
+    public List<String> selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID,Integer currentPage) {
+        return messageMapper.selectMessageNumberByGoodsIDAndOpenID(goodsId,openID,currentPage);
     }
 
 }

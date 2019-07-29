@@ -96,7 +96,8 @@ public class GoodsController {
     @ResponseBody
     public JSONObject selectOneGoodsDetailMessage(@ModelAttribute("goods") Goods goods,
                                                   @RequestParam("goodsId") Integer goodsId,
-                                                  @RequestParam("openID") String openID) {
+                                                  @RequestParam("openID") String openID,
+                                                  @RequestParam("currentPage") Integer currentPage) {
 
         GoodsCustom goodsmessage = null;
         List<Collection> collections = null;
@@ -125,7 +126,11 @@ public class GoodsController {
         //查询留言回复信息
         List<String> numberList=null;
         try {//查询留言框编号集合
-            numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null);
+            if(currentPage==null){
+                numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,0);
+            }else {
+                numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,(currentPage-1)*3);
+            }
         }catch (Exception e){
             logger.error("selectMessageNumberByGoodsIDAndOpenID--> error:{}:", e);
         }
@@ -134,12 +139,11 @@ public class GoodsController {
             for (String number:numberList){
                 List<Reply> replies=null;
                 try {//根据留言框编号查询留言信息
-                    replies = replyService.selectReplyDetailByMessageNumber(number);
+                        replies = replyService.selectDetailForOneReply(number,null,0);
                 }catch (Exception e){
                     logger.error("selectReplyDetailByMessageNumber--> error:{}:", e);
                 }
                 if(replies!=null&&replies.size()>0){
-                    System.out.println(replies.toString());
                     replylist.add(replies);
                 }
             }
