@@ -3,6 +3,7 @@ package com.yxx.service;
 import com.alibaba.fastjson.JSONObject;
 import com.yxx.dao.UserMapper;
 import com.yxx.pojo.Goods;
+import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,10 +107,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JSONObject OffShelvesGoods(String openID) {
+    public JSONObject OffShelvesGoods(String openID, Integer currentPage) {
         JSONObject json = new JSONObject();
         try {
-            List<Goods> offGoodsList = userMapper.OffShelvesGoods(openID);
+            List<Goods> offGoodsList = userMapper.OffShelvesGoods(openID, currentPage);
             json.put("offGoodsList", offGoodsList);
         } catch (RuntimeException r){
             logger.error("error:{}", r);
