@@ -12,5 +12,7 @@ public interface ReplyMapper {
     public Reply selectSpeakerAndListenerByMessageNumber(@Param("messageNumber")String messageNumber);
     //插入reply表
     public int insertReplyToReply(Reply reply);
+    //查询用户留言框编号查询对应所有回复信息
+    public List<Reply> selectReplyDetailByMessageNumber(@Param("messageNumber")String messageNumber);
 
 }

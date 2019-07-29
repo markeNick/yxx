@@ -15,5 +15,5 @@ public interface MessageMapper {
     //根据goods_id,openID,message插入message表(留言)
     public int insertMessageByMessage(Message messages);
     //根据goodsId,openID查询留言框编号
-   public String selectMessageNumberByGoodsIDAndOpenID(@Param("goodsId")Integer goodsId,@Param("openID")String openID);
+   public List<String> selectMessageNumberByGoodsIDAndOpenID(@Param("goodsId")Integer goodsId,@Param("openID")String openID);
 }
