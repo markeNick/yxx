@@ -2,6 +2,7 @@ package com.yxx.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yxx.pojo.Goods;
+import com.yxx.pojo.GoodsCustom;
 import com.yxx.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -91,6 +92,7 @@ public interface UserMapper {
      * @param openID
      * @return
      */
-    public List<Goods> OffShelvesGoods(@Param("openID")String openID);
+    public List<Goods> OffShelvesGoods(@Param("openID")String openID,
+                                             @Param("currentPage")Integer currentPage);
 
 }

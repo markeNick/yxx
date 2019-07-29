@@ -73,5 +73,5 @@ public interface UserService{
      * @param openID
      * @return
      */
-    public JSONObject OffShelvesGoods(String openID);
+    public JSONObject OffShelvesGoods(String openID, Integer currentPage);
 }
