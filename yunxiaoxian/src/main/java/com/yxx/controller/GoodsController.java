@@ -129,7 +129,7 @@ public class GoodsController {
             if(currentPage==null){
                 numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,0);
             }else {
-                numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,(currentPage-1)*3);
+                numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,(currentPage-1)*6);
             }
         }catch (Exception e){
             logger.error("selectMessageNumberByGoodsIDAndOpenID--> error:{}:", e);
@@ -149,7 +149,7 @@ public class GoodsController {
             }
             json.put("replylist",replylist);
         }else {//假如没有留言
-            json.put("replylist",null);
+            json.put("replylist",new ArrayList<List<Reply>>());
         }
 
         return json;
