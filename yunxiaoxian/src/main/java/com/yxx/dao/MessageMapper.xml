@@ -23,7 +23,7 @@
 
     <!--    查询用户留言框分别对应的回复数量-->
     <select id="selectOneMessageNumberForReplyCount" resultType="java.lang.Integer" parameterType="java.lang.String">
-         select count(*) from reply where reply.message_number=#{messageNumber}
+         select count(*) from reply where message_number=#{messageNumber}
     </select>
 
     <!--根据goods_id,openID,message插入message表(留言)-->
@@ -34,6 +34,19 @@
 
     <!--根据goodsId,openID查询留言框编号-->
     <select id="selectMessageNumberByGoodsIDAndOpenID" resultType="java.lang.String">
-        select message_number from message where openID=#{openID} and goods_id=#{goodsId}
+        select DISTINCT(message_number) from message
+        <where>
+            <if test="goodsId != null">
+                goods_id=#{goodsId}
+            </if>
+            <if test="openID != null and openID != ''">
+                and openID=#{openID}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        <if test="currentPage != null">
+            limit #{currentPage},6
+        </if>
     </select>
+
 </mapper>

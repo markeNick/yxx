@@ -159,4 +159,12 @@ public class UserController {
 
         return userService.deleteGoods(openID, goodsID);
     }
+
+    //我的下架物品
+    @PostMapping("OffShelvesGoods")
+    @ResponseBody
+    public JSONObject OffShelvesGoods(String openID, Integer currentPage){
+
+        return userService.OffShelvesGoods(openID, (currentPage - 1) * 10);
+    }
 }

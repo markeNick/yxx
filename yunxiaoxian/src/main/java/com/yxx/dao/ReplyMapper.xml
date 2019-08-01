@@ -18,9 +18,15 @@
     </resultMap>
     <!--查询单个留言详细信息(属于该留言的所有对话)-->
     <select id="selectDetailForOneReply" resultType="com.yxx.pojo.Reply">
-       select * from reply where goods_id=#{goodsId} and buyer=#{openID}
-        order by reply.create_time asc
-        limit #{currentPage},15
+       select * from reply where message_number=#{messageNumber}
+        order by create_time asc
+        <if test="counts != null">
+            limit 3
+        </if>
+        <if test="currentPage != null">
+            limit #{currentPage},15
+        </if>
+
     </select>
 
     <!--根据messageNumber查询reply表中时间最早的一条记录-->
@@ -36,4 +42,5 @@
         buyer=#{buyer},create_time=#{createTime},message=#{message},message_number=#{messageNumber},
         speaker_image=#{speakerImage},goods_id=#{goodsId}
     </insert>
+
 </mapper>

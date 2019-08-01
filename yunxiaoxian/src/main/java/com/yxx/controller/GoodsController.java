@@ -1,13 +1,12 @@
 package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yxx.pojo.Collection;
-import com.yxx.pojo.Goods;
-import com.yxx.pojo.GoodsCustom;
-import com.yxx.pojo.OrderCustom;
+import com.yxx.pojo.*;
 import com.yxx.service.CollectionService;
 import com.yxx.service.GoodsService;
 
+import com.yxx.service.MessageService;
+import com.yxx.service.ReplyService;
 import com.yxx.util.Base64Util;
 import org.apache.ibatis.annotations.Param;
 
@@ -35,6 +34,10 @@ public class GoodsController {
     private GoodsService goodsService;
     @Autowired
     private CollectionService collectionService;
+    @Autowired
+    private ReplyService replyService;
+    @Autowired
+    private MessageService messageService;
 
     //搜索框   根据商品描述和页码模糊查询商品信息
     @GetMapping("selectGoodsByGoodsDescribe")
@@ -88,12 +91,13 @@ public class GoodsController {
         return json;
     }
 
-    //返回 单个商品详细信息
+    //返回 单个商品详细信息和留言回复
     @RequestMapping("/selectOneGoodsDetailMessage")
     @ResponseBody
     public JSONObject selectOneGoodsDetailMessage(@ModelAttribute("goods") Goods goods,
                                                   @RequestParam("goodsId") Integer goodsId,
-                                                  @RequestParam("openID") String openID) {
+                                                  @RequestParam("openID") String openID,
+                                                  @RequestParam("currentPage") Integer currentPage) {
 
         GoodsCustom goodsmessage = null;
         List<Collection> collections = null;
@@ -117,6 +121,35 @@ public class GoodsController {
             }
         } else {//假如没查到或者商品id为null,返回null
             json.put("goodsmessage", null);
+            return json;
+        }
+        //查询留言回复信息
+        List<String> numberList=null;
+        try {//查询留言框编号集合
+            if(currentPage==null){
+                numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,0);
+            }else {
+                numberList = messageService.selectMessageNumberByGoodsIDAndOpenID(goodsId, null,(currentPage-1)*6);
+            }
+        }catch (Exception e){
+            logger.error("selectMessageNumberByGoodsIDAndOpenID--> error:{}:", e);
+        }
+        if(numberList!=null&&numberList.size()>0){
+            List<List<Reply>> replylist=new ArrayList<List<Reply>>();//存查询出来的多个List<Reply>
+            for (String number:numberList){
+                List<Reply> replies=null;
+                try {//根据留言框编号查询留言信息
+                        replies = replyService.selectDetailForOneReply(number,null,0);
+                }catch (Exception e){
+                    logger.error("selectReplyDetailByMessageNumber--> error:{}:", e);
+                }
+                if(replies!=null&&replies.size()>0){
+                    replylist.add(replies);
+                }
+            }
+            json.put("replylist",replylist);
+        }else {//假如没有留言
+            json.put("replylist",new ArrayList<List<Reply>>());
         }
 
         return json;

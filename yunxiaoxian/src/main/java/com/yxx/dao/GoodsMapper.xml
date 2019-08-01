@@ -84,6 +84,7 @@
     <select id="selectAllMyPublishGoods" resultType="com.yxx.pojo.Goods">
         select * from goods
         where goods.openID=#{openID}
+        and status != 2
         order by goods.create_time desc
         limit #{currentPage},10
     </select>

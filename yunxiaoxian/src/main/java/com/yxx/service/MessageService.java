@@ -13,5 +13,5 @@ public interface MessageService {
     //根据goods_id,openID,message插入message表(留言)
     public int insertMessageByMessage(Message messages);
     //根据goodsId,openID查询留言框编号
-    String selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID);
+    public List<String> selectMessageNumberByGoodsIDAndOpenID(Integer goodsId, String openID,Integer currentPage);
 }
