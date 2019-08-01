@@ -49,7 +49,7 @@ public class MessageController {
             } catch (Exception e) {
                 logger.error("selectAllMyMessage--> error:{}", e);
             }
-            if (messagelist.size() > 0) {//假如能查到
+/*            if (messagelist.size() > 0) {//假如能查到
                 int size = messagelist.size();//存集合长度
                 for (MessageCustom messageCustom : messagelist) {
                     messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
@@ -59,14 +59,14 @@ public class MessageController {
                     Integer messageCount = messageService.selectOneMessageNumberForReplyCount(messageNumberList.get(len));
                     messagelist.get(len).setCount(messageCount);//将回复数分别存进每个MessageCustom
                 }
-            }
+            }*/
         } else if (currentPage == null && openID != null && userName != null) {//openID不为空和页码为空
             try {
                 messagelist = messageService.selectAllMyMessage(openID, userName, 0);//查询所有留言
             } catch (Exception e) {
                 logger.error("selectAllMyMessage--> error:{}", e);
             }
-            if (messagelist.size() > 0) {//假如能查到
+/*            if (messagelist.size() > 0) {//假如能查到
                 int size = messagelist.size();//存集合长度
                 for (MessageCustom messageCustom : messagelist) {
                     messageNumberList.add(messageCustom.getMessageNumber());//存留言框编号
@@ -76,7 +76,7 @@ public class MessageController {
                     Integer messageCount = messageService.selectOneMessageNumberForReplyCount(messageNumberList.get(len));
                     messagelist.get(len).setCount(messageCount);//将回复数分别存进每个MessageCustom
                 }
-            }
+            }*/
         } else {//openID为空
             json.put("messagelist", null);
             return json;
