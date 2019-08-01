@@ -1,31 +1,35 @@
 package com.yxx.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.yxx.service.ChatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
 public class ChatController {
-    private static Logger logger = LoggerFactory.getLogger(ChatController.class);
+
     @Autowired
     private ChatService chatService;
 
-//    public static void main(String[] args) {
-//        JSONObject json = new JSONObject();
-//        List<image> list = new ArrayList<image>();
-//        String[] str = {"test","test","test"};
-//        image temp = new image();
-//        temp.setUrl(str);
-//        temp.setTest(str);
-//
-//        list.add(temp);
-//        String str1=json.toJSON(list).toString();
-//        System.out.println(str1);
-//    }
+    //获取聊天列表
+    @PostMapping("getChatList")
+    @ResponseBody
+    public JSONObject getChatList(String openID, Integer currentPage){
 
+        return chatService.getChatList(openID, (currentPage - 1) * 15);
+    }
+
+    //删除聊天列表
+    @PostMapping("deleteChatList")
+    @ResponseBody
+    public JSONObject deleteChatList(String A_openID, String B_openID){
+
+        return chatService.deleteChatList(A_openID, B_openID);
+    }
 }
