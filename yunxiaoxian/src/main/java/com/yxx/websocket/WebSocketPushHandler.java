@@ -63,9 +63,18 @@ public class WebSocketPushHandler extends AbstractWebSocketHandler {
         //sendMessagesToUsers(msg);
         // 给指定用户群发消息
         //sendMessageToUser(userId, msg);
+
+        //fromUser, toUser, msg, content, theTime
+
+        //1.获取接收者的openID
         String msg = message.getPayload().toString();
-        System.out.println(msg);
         JSONObject json = JSON.parseObject(msg);
+        String openID = json.getString("toUser");
+        //2.检查该openID对应的session是否存在
+            //2.1如果存在则转发信息
+
+            //2.2如果不存在则把聊天记录存到数据库
+        //3.转发信息
 
 
 

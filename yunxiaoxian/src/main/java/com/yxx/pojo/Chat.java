@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Chat {
     private Integer chatId;
-    private String AOpenID;
-    private String BOpenID;
+    private String fromUser;
+    private String toUser;
     private String content;
     private Date theTime;
 
@@ -17,20 +17,20 @@ public class Chat {
         this.chatId = chatId;
     }
 
-    public String getAOpenID() {
-        return AOpenID;
+    public String getFromUser() {
+        return fromUser;
     }
 
-    public void setAOpenID(String AOpenID) {
-        this.AOpenID = AOpenID;
+    public void setFromUser(String fromUser) {
+        this.fromUser = fromUser;
     }
 
-    public String getBOpenID() {
-        return BOpenID;
+    public String getToUser() {
+        return toUser;
     }
 
-    public void setBOpenID(String BOpenID) {
-        this.BOpenID = BOpenID;
+    public void setToUser(String toUser) {
+        this.toUser = toUser;
     }
 
     public String getContent() {
