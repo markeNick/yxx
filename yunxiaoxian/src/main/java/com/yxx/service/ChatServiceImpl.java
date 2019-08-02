@@ -36,7 +36,7 @@ public class ChatServiceImpl implements ChatService {
         TextMessage message = new TextMessage(json.toJSONString());
 
         //发送信息
-        if (chatList != null && chatList.size() != 0){
+        if (chatList != null && chatList.size() != 0 && session.isOpen()){
             try {
                 session.sendMessage(message);
             } catch (IOException e){
@@ -78,5 +78,14 @@ public class ChatServiceImpl implements ChatService {
 
         json.put("status", false);
         return json;
+    }
+
+    @Override
+    public void insertChatMessage(Chat chat) {
+        try {
+            chatMapper.insertChatMessage(chat);
+        } catch (Exception e) {
+            logger.error("insertChatMessage error:{}", e);
+        }
     }
 }

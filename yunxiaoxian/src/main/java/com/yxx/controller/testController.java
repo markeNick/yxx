@@ -20,17 +20,14 @@ public class testController {
     @RequestMapping("login")
     //@ResponseBody
     public String test(HttpSession session, @RequestParam("openID")String openID){
+
+        System.out.println(session.getAttribute("openID"));
+
         session.setAttribute("openID", openID);
         System.out.println(session.getId()+"=========这是控制器的");
+
+        System.out.println(session.getAttribute("openID"));
         return "websocket";
-    }
-
-    @GetMapping("websocket/sendToUser")
-    @ResponseBody
-    public String sendtouser(String AopenID, String BopenID, String msg){
-
-        webSocketPushHandler.sendmsg(AopenID, BopenID, msg);
-        return "success";
     }
 
 

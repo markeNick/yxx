@@ -36,4 +36,10 @@ public interface ChatMapper {
      */
     public void deleteChatList(@Param("A_openID")String A_openID,
                                @Param("B_openID")String B_openID);
+
+    /**
+     * 保存聊天记录
+     * @param chat
+     */
+    public void insertChatMessage(Chat chat);
 }

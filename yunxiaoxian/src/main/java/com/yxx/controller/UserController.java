@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -46,7 +48,9 @@ public class UserController {
     @ResponseBody
     public JSONObject updateUser(@RequestParam("openID")String openID,
                                  @RequestParam("userName")String userName,
-                                 @RequestParam("userImage")String userImage){
+                                 @RequestParam("userImage")String userImage,
+                                 HttpSession session){
+        session.setAttribute("openID", openID);
 
         JSONObject json = new JSONObject();
 
