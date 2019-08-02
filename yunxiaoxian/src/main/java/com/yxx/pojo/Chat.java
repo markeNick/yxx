@@ -1,10 +1,13 @@
 package com.yxx.pojo;
 
+import java.util.Date;
+
 public class Chat {
     private Integer chatId;
     private String AOpenID;
     private String BOpenID;
     private String content;
+    private Date theTime;
 
     public Integer getChatId() {
         return chatId;
@@ -36,5 +39,13 @@ public class Chat {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Date getTheTime() {
+        return theTime;
+    }
+
+    public void setTheTime(Date theTime) {
+        this.theTime = theTime;
     }
 }

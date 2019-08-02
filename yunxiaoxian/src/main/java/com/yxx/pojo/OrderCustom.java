@@ -7,6 +7,7 @@ public class OrderCustom extends Orders {
     private String goodsName;
     private BigDecimal goodsPrice;
     private String[] goodsImage;
+
     public String[] getGoodsImage() {
         return goodsImage;
     }

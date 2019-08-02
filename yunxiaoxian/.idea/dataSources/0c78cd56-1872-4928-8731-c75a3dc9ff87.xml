@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="yxx@localhost">
+<dataSource name="MySQL - yxx@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.15">
     <root id="1">
       <ServerVersion>5.5.54</ServerVersion>
@@ -18,7 +18,6 @@
     </schema>
     <schema id="5" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
-      <Substituted>1</Substituted>
     </schema>
     <schema id="6" parent="1" name="jsp">
       <Collation>gbk_chinese_ci</Collation>

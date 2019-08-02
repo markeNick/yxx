@@ -14,9 +14,11 @@
     </resultMap>
     <!--    查询买家留言-->
     <select id="selectAllMyMessage" resultType="com.yxx.pojo.MessageCustom">
-        select * from goods,user,reply
+        select goods.goods_id,goods.goods_image,goods.goods_name,
+        reply.message,reply.create_time,reply.message_number,reply.speaker,
+        reply.speaker_image,reply.buyer,reply.listener from goods,reply
         where goods.goods_id=reply.goods_id
-        and reply.listener=#{userName} and reply.speaker=user.user_name
+        and reply.listener=#{userName}
         order by reply.create_time desc
         limit #{currentPage},10
     </select>
