@@ -10,10 +10,8 @@ import com.yxx.dao.ChatMapper;
 import com.yxx.pojo.Chat;
 import com.yxx.service.ChatService;
 import org.apache.log4j.Logger;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketMessage;
-import org.springframework.web.socket.WebSocketSession;
+import org.springframework.stereotype.Component;
+import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 import javax.annotation.Resource;
 
@@ -21,7 +19,8 @@ import javax.annotation.Resource;
 /**
  * 处理器
  */
-public class WebSocketPushHandler extends AbstractWebSocketHandler {
+@Component
+public class WebSocketPushHandler implements WebSocketHandler {
 
     private static final Logger logger = Logger.getLogger(WebSocketPushHandler.class);
 
@@ -39,8 +38,10 @@ public class WebSocketPushHandler extends AbstractWebSocketHandler {
     // 用户连接上websocket后发送离线消息
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+
         //获取当前用户的session
         String openID = this.getUserSession(session);
+        session.sendMessage(new TextMessage(openID + "连接成功" + "-->" + session.getId()));
         if(openID != null) {
             //将用户session按照<openID, session>存起来
             mapUserSession.put(openID, session);
@@ -49,7 +50,7 @@ public class WebSocketPushHandler extends AbstractWebSocketHandler {
         } else {
             session.sendMessage(new TextMessage("{\"error\": \"the session of openID is null\"}"));
         }
-
+        System.out.println("连接-->afterConnectionEstablished");
     }
 
 

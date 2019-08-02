@@ -28,15 +28,17 @@
 
 <script type="text/javascript">
     var websocket = null;
+    var hostname = document.location.hostname;
+
     if ('WebSocket' in window) {
         //Websocket的连接
-        //websocket = new WebSocket("ws://localhost:8080/yunxiaoxian/websocket");//WebSocket对应的地址
-        websocket = new WebSocket("ws://47.103.18.92/api/websocket");//WebSocket对应的地址
+        websocket = new WebSocket("ws://localhost:8080/yunxiaoxian/websocket");//WebSocket对应的地址
+        //websocket = new WebSocket("ws://47.103.18.92/api/websocket");//WebSocket对应的地址
     }
     else if ('MozWebSocket' in window) {
         //Websocket的连接
-        //websocket = new MozWebSocket("ws://localhost:8080/yunxiaoxian/websocket");//SockJS对应的地址
-        websocket = new MozWebSocket("ws://47.103.18.92/api/websocket");//WebSocket对应的地址
+        websocket = new MozWebSocket("ws://localhost:8080/yunxiaoxian/websocket");//SockJS对应的地址
+        //websocket = new MozWebSocket("ws://47.103.18.92/api/websocket");//WebSocket对应的地址
     }
     else {
         //SockJS的连接

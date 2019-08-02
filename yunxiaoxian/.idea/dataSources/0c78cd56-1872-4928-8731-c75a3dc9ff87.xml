@@ -18,7 +18,6 @@
     </schema>
     <schema id="5" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
-      <Substituted>1</Substituted>
     </schema>
     <schema id="6" parent="1" name="jsp">
       <Collation>gbk_chinese_ci</Collation>
