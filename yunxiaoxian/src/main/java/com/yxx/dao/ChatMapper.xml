@@ -46,4 +46,10 @@
         where A_openID = #{A_openID}
         and B_openID = #{B_openID}
     </delete>
+
+    <!-- 保存聊天记录 -->
+    <insert id="insertChatMessage">
+        insert into chat(fromUser, toUser, content, theTime)
+        values(#{fromUser}, #{toUser}, #{content}, #{theTime})
+    </insert>
 </mapper>

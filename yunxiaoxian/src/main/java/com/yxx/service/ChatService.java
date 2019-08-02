@@ -1,6 +1,7 @@
 package com.yxx.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.Chat;
 import org.springframework.web.socket.WebSocketSession;
 
 
@@ -26,4 +27,10 @@ public interface ChatService {
      * @return
      */
     public JSONObject deleteChatList(String A_openID, String B_openID);
+
+    /**
+     * 保存聊天记录
+     * @param chat
+     */
+    public void insertChatMessage(Chat chat);
 }
