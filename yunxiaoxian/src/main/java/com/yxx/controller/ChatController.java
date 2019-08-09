@@ -28,8 +28,24 @@ public class ChatController {
     //删除聊天列表
     @PostMapping("deleteChatList")
     @ResponseBody
-    public JSONObject deleteChatList(String A_openID, String B_openID){
+    public JSONObject deleteChatList(String A_openID, String B_openID, Integer goodsID){
 
-        return chatService.deleteChatList(A_openID, B_openID);
+        return chatService.deleteChatList(A_openID, B_openID, goodsID);
+    }
+
+    //“我想要”按钮--添加到聊天列表
+    @PostMapping("iWant")
+    @ResponseBody
+    public JSONObject iWant(String A_openID, String B_openID, Integer goodsID){
+
+        return chatService.iWant(A_openID, B_openID, goodsID);
+    }
+
+    //上传聊天图片
+    @PostMapping("uploadPicture")
+    @ResponseBody
+    public JSONObject uploadPicture(String myFile){
+
+        return chatService.uploadPicture(myFile);
     }
 }

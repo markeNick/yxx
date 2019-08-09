@@ -33,8 +33,8 @@ public class MyWebSocketInterceptor implements HandshakeInterceptor {
                 }
                 //将用户标识放入参数列表后，下一步的websocket处理器可以读取这里面的数据
                 attributes.put("openID", openID);
-                System.out.println(openID + "成功连接");
-                System.out.println(session.getId() + "这是拦截器的");
+                //System.out.println(openID + "成功连接");
+                //System.out.println(session.getId() + "这是拦截器的");
             }
         }
 

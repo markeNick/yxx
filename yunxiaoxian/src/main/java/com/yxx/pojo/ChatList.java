@@ -3,21 +3,17 @@ package com.yxx.pojo;
 import java.util.Date;
 
 public class ChatList {
-    private Integer chatListId;
+
     private String AOpenID;
     private String BOpenID;
     private Date modifyTime;
+    private Integer goodsID;
+    private Integer goodsStatus;
 
+    //B（卖家）的用户名和头像
     private String userName;
     private String userImage;
 
-    public Integer getChatListId() {
-        return chatListId;
-    }
-
-    public void setChatListId(Integer chatListId) {
-        this.chatListId = chatListId;
-    }
 
     public String getAOpenID() {
         return AOpenID;
@@ -41,6 +37,22 @@ public class ChatList {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public Integer getGoodsID() {
+        return goodsID;
+    }
+
+    public void setGoodsID(Integer goodsID) {
+        this.goodsID = goodsID;
+    }
+
+    public Integer getGoodsStatus() {
+        return goodsStatus;
+    }
+
+    public void setGoodsStatus(Integer goodsStatus) {
+        this.goodsStatus = goodsStatus;
     }
 
     public String getUserName() {

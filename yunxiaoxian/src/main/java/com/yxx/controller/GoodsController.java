@@ -262,6 +262,7 @@ public class GoodsController {
                     return json;
                 }
             }
+
             if ("data:image/jpeg;".equalsIgnoreCase(dataPrefix)) {//data:image/jpeg;base64,base64编码的jpeg图片数据
                 suffix = ".jpg";
             } else if ("data:image/jpg;".equalsIgnoreCase(dataPrefix)) {//data:image/jpeg;base64,base64编码的jpg图片数据
@@ -277,11 +278,13 @@ public class GoodsController {
                 json.put("status", false);
                 return json;
             }
+
             // 解析Base64 重新命名
             MultipartFile multipartFile = Base64Util.base64ToMultipart(file);
             //将内存中的数据写入磁盘
             String transName;
-            transName = (rand.nextInt(9999999) + 100000) + openID + multipartFile.getOriginalFilename().replaceAll(".+\\.", System.currentTimeMillis() + ".");
+            transName = (rand.nextInt(9999999) + 100000) + openID +
+                    multipartFile.getName().replaceAll(".+\\.", System.currentTimeMillis() + ".");
             newNames.append(transName + ",");
             // 将内存中的数据写入磁盘
             File newName = new File(file_path + "/" + transName);
