@@ -34,8 +34,10 @@ public class UserController {
 
     @RequestMapping(value = "/test")
     public String test(){
+
         return "index";
     }
+
     @RequestMapping(value = "/selectAllUser")
     @ResponseBody
     public List<User> selectAllUser(){
@@ -82,7 +84,6 @@ public class UserController {
         json.put("status", true);
         return json;
     }
-
 
     //卖家售出功能
     @PostMapping("soldMyGoods")

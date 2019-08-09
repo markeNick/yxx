@@ -21,12 +21,12 @@ public class testController {
     //@ResponseBody
     public String test(HttpSession session, @RequestParam("openID")String openID){
 
-        System.out.println(session.getAttribute("openID"));
+        //System.out.println(session.getAttribute("openID"));
 
         session.setAttribute("openID", openID);
-        System.out.println(session.getId()+"=========这是控制器的");
+        //System.out.println(session.getId()+"=========这是控制器的");
 
-        System.out.println(session.getAttribute("openID"));
+        //System.out.println(session.getAttribute("openID"));
         return "websocket";
     }
 

@@ -24,13 +24,30 @@ public interface ChatService {
      * 删除聊天列表
      * @param A_openID
      * @param B_openID
+     * @param goodsID
      * @return
      */
-    public JSONObject deleteChatList(String A_openID, String B_openID);
+    public JSONObject deleteChatList(String A_openID, String B_openID, Integer goodsID);
 
     /**
      * 保存聊天记录
      * @param chat
      */
     public void insertChatMessage(Chat chat);
+
+    /**
+     * “我想要”按钮--插入聊天列表
+     * @param AOpenID
+     * @param BOpenID
+     * @param goodsID
+     * @return
+     */
+    public JSONObject iWant(String AOpenID, String BOpenID, Integer goodsID);
+
+    /**
+     * 上传聊天图片
+     * @param myFile
+     * @return
+     */
+    public JSONObject uploadPicture(String myFile);
 }

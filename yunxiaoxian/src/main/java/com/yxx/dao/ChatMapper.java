@@ -4,6 +4,7 @@ import com.yxx.pojo.Chat;
 import com.yxx.pojo.ChatList;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ChatMapper {
@@ -35,11 +36,30 @@ public interface ChatMapper {
      * @param B_openID   //对方的openID
      */
     public void deleteChatList(@Param("A_openID")String A_openID,
-                               @Param("B_openID")String B_openID);
+                               @Param("B_openID")String B_openID,
+                               @Param("goodsID")Integer goodsID);
 
     /**
      * 保存聊天记录
      * @param chat
      */
     public void insertChatMessage(Chat chat);
+
+    /**
+     * 增加聊天列表
+     * @param AOpenID
+     * @param BOpenID
+     * @param goodsID
+     * @param modifyTime
+     */
+    public void insertChatList(@Param("AOpenID")String AOpenID,
+                               @Param("BOpenID")String BOpenID,
+                               @Param("goodsID")Integer goodsID,
+                               @Param("modifyTime")Date modifyTime);
+
+    /**
+     * 上传聊天图片
+     * @param imageName
+     */
+    public void insertImage(@Param("imageName")String imageName);
 }

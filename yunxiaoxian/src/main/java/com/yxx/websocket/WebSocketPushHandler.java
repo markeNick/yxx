@@ -41,7 +41,7 @@ public class WebSocketPushHandler implements WebSocketHandler {
 
         //获取当前用户的session
         String openID = this.getUserSession(session);
-        session.sendMessage(new TextMessage(openID + "连接成功" + "-->" + session.getId()));
+        //session.sendMessage(new TextMessage(openID + "连接成功" + "-->" + session.getId()));
         if(openID != null) {
             //将用户session按照<openID, session>存起来
             mapUserSession.put(openID, session);
@@ -50,7 +50,7 @@ public class WebSocketPushHandler implements WebSocketHandler {
         } else {
             session.sendMessage(new TextMessage("{\"error\": \"the session of openID is null\"}"));
         }
-        System.out.println("连接-->afterConnectionEstablished");
+        //System.out.println("连接-->afterConnectionEstablished");
     }
 
 
