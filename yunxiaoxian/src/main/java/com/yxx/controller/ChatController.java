@@ -2,13 +2,13 @@ package com.yxx.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.yxx.pojo.ChatRecord;
 import com.yxx.service.ChatService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -47,5 +47,21 @@ public class ChatController {
     public JSONObject uploadPicture(String myFile){
 
         return chatService.uploadPicture(myFile);
+    }
+
+    //上传聊天记录
+    @RequestMapping(value = "uploadChatRecord", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject uploadChatRecord(@RequestBody List<ChatRecord> chatRecords){
+
+        return chatService.uploadChatRecord(chatRecords);
+    }
+
+    //获取聊天记录
+    @PostMapping("getChatRecord")
+    @ResponseBody
+    public JSONObject getChatRecord(String A_openID, Integer goodsId, Integer currentPage){
+
+        return chatService.getChatRecord(A_openID, goodsId, (currentPage - 1) * 20);
     }
 }

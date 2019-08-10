@@ -2,6 +2,7 @@ package com.yxx.dao;
 
 import com.yxx.pojo.Chat;
 import com.yxx.pojo.ChatList;
+import com.yxx.pojo.ChatRecord;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -62,4 +63,31 @@ public interface ChatMapper {
      * @param imageName
      */
     public void insertImage(@Param("imageName")String imageName);
+
+    /**
+     * 上传聊天记录
+     * @param chatRecords
+     * @param openID
+     */
+    public void uploadChatRecord(@Param("chatRecords")List<ChatRecord> chatRecords,
+                                 @Param("openID")String openID);
+
+    /**
+     * 获取聊天记录
+     * @param A_openID
+     * @param goodsId
+     * @param currentPage
+     * @return
+     */
+    public List<ChatRecord> getChatRecordList(@Param("A_openID")String A_openID,
+                                              @Param("goodsId")Integer goodsId,
+                                              @Param("currentPage")Integer currentPage);
+
+    /**
+     * 删除聊天记录
+     * @param A_openID
+     * @param goodsId
+     */
+    public void deleteChatRecord(@Param("A_openID")String A_openID,
+                                 @Param("goodsId")Integer goodsId);
 }
