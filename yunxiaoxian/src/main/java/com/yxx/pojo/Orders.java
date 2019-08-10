@@ -5,12 +5,12 @@ import java.util.Date;
 public class Orders {
     private Integer ordersId;
     private Integer goodsId;
-    private Integer status;
+    private Integer orderStatus;
     private String buyer;
     private String seller;
     private Date createTime;
-    private Integer buyer_status;
-    private Integer seller_status;
+    private Integer buyerStatus;
+    private Integer sellerStatus;
 
     public Integer getOrdersId() {
         return ordersId;
@@ -28,12 +28,12 @@ public class Orders {
         this.goodsId = goodsId;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public String getBuyer() {
@@ -60,19 +60,19 @@ public class Orders {
         this.createTime = createTime;
     }
 
-    public Integer getBuyer_status() {
-        return buyer_status;
+    public Integer getBuyerStatus() {
+        return buyerStatus;
     }
 
-    public void setBuyer_status(Integer buyer_status) {
-        this.buyer_status = buyer_status;
+    public void setBuyerStatus(Integer buyerStatus) {
+        this.buyerStatus = buyerStatus;
     }
 
-    public Integer getSeller_status() {
-        return seller_status;
+    public Integer getSellerStatus() {
+        return sellerStatus;
     }
 
-    public void setSeller_status(Integer seller_status) {
-        this.seller_status = seller_status;
+    public void setSellerStatus(Integer sellerStatus) {
+        this.sellerStatus = sellerStatus;
     }
 }

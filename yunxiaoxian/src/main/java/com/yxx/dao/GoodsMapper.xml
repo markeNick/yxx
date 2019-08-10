@@ -59,10 +59,10 @@
 
     <!--    查询我卖的商品信息-->
     <select id="selectAllMySaleGoods" resultType="com.yxx.pojo.OrderCustom">
-        select * from orders,goods,user
-        where goods.openID=#{openID}
-        and orders.seller=#{openID}
-        and goods.goods_id=orders.goods_id
+        select * from orders, goods, user
+        where goods.openID = #{openID}
+        and orders.seller = #{openID}
+        and goods.goods_id = orders.goods_id
         and orders.buyer=user.openID
         and orders.seller_status = 0
         order by orders.create_time desc
@@ -71,10 +71,10 @@
 
     <!--    查询我买的商品信息-->
     <select id="selectAllMyBuyGoods" resultType="com.yxx.pojo.OrderCustom">
-        select * from orders,user,goods
-        where orders.buyer=#{openID}
-        and orders.seller=user.openID
-        and orders.goods_id=goods.goods_id
+        select * from orders, user, goods
+        where orders.buyer = #{openID}
+        and orders.seller = user.openID
+        and orders.goods_id = goods.goods_id
         and orders.buyer_status = 0
         order by orders.create_time desc
         limit #{currentPage},10

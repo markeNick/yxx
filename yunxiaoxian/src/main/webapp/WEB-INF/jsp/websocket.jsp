@@ -11,9 +11,11 @@
 <script type="text/javascript" src="http://cdn.bootcss.com/sockjs-client/1.1.1/sockjs.js"></script>
 
     <br><br>
-    请输入本人openID：<input type="text" id = "fromUser" /><br><br><br>
+    请输入本人openID：<input type="text" id = "fromUser" value="${sessionScope.openID}"/><br><br><br>
     请输入对方openID：<input type="text" id = "toUser" /><br><br><br>
+    请输入物品goodsId：<input type="text" id = "goodsId" /><br><br><br>
     请输入消息：<textarea rows="3" cols="100" id="content" name="content" ></textarea><br><br>
+
     时间：<h3>自动获取当前时间！！输入的信息转为json并发送，请在控制台查看格式!</h3>
     <button onclick="doSend()">发送</button><br><br>
 
@@ -70,12 +72,15 @@
         var toUser = $("#toUser").val();
         var content = $("#content").val();
         var theTime = new Date().Format("yyyy-MM-dd HH:mm:ss");
+        var goodsId = $("#goodsId").val();
 
         var object = {};
         object['fromUser'] = fromUser;
         object['toUser'] = toUser;
         object['content'] = content;
         object['theTime'] = theTime;
+        object['goodsId'] = goodsId;
+        object['isPic'] = false;
 
         var json = JSON.stringify(object);
 
@@ -83,6 +88,8 @@
         console.log("toUser" + toUser);
         console.log("content" + content);
         console.log("theTime" + theTime);
+        console.log("goodsId" + goodsId);
+        console.log("isPic" + "false");
         console.log("拼接的json:" + json);
 
 

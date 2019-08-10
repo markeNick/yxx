@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yxx.dao.ChatMapper;
 import com.yxx.pojo.Chat;
 import com.yxx.pojo.ChatList;
+import com.yxx.pojo.ChatRecord;
 import com.yxx.service.ChatService;
 import com.yxx.util.Base64Util;
 import org.apache.log4j.Logger;
@@ -76,6 +77,7 @@ public class ChatServiceImpl implements ChatService {
         JSONObject json = new JSONObject();
         try {
             chatMapper.deleteChatList(A_openID, B_openID, goodsID);
+            chatMapper.deleteChatRecord(A_openID, goodsID);
             json.put("status", true);
             return json;
         } catch (Exception e){
@@ -188,5 +190,50 @@ public class ChatServiceImpl implements ChatService {
         return json;
     }
 
+    @Override
+    public JSONObject uploadChatRecord(List<ChatRecord> chatRecords) {
+        JSONObject json = new JSONObject();
 
+        String openID = null;
+
+        for(int i = 0; i < chatRecords.size(); i++){
+            if(chatRecords.get(i).getIsSelf()){
+                openID = chatRecords.get(i).getFromUser();
+                break;
+            }
+        }
+
+        if(openID == null || openID == ""){
+            json.put("status", false);
+            return json;
+        }
+
+        try {
+            chatMapper.uploadChatRecord(chatRecords, openID);
+            json.put("status", true);
+            return json;
+        } catch (Exception e) {
+            logger.error("uploadChatRecord error:{}", e);
+        }
+
+        json.put("status", false);
+        return json;
+    }
+
+    @Override
+    public JSONObject getChatRecord(String A_openID, Integer goodsId, Integer currentPage) {
+
+        JSONObject json = new JSONObject();
+
+        try {
+            List<ChatRecord> chatRecordList = chatMapper.getChatRecordList(A_openID, goodsId, currentPage);
+            json.put("chatRecordList", chatRecordList);
+            return json;
+        } catch (Exception e){
+            logger.error("getChatRecord > error:{}", e);
+        }
+
+        json.put("chatRecordList", null);
+        return json;
+    }
 }

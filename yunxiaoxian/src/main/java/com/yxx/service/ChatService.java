@@ -2,7 +2,10 @@ package com.yxx.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yxx.pojo.Chat;
+import com.yxx.pojo.ChatRecord;
 import org.springframework.web.socket.WebSocketSession;
+
+import java.util.List;
 
 
 public interface ChatService {
@@ -50,4 +53,20 @@ public interface ChatService {
      * @return
      */
     public JSONObject uploadPicture(String myFile);
+
+    /**
+     * 上传聊天记录
+     * @param chatRecords
+     * @return
+     */
+    public JSONObject uploadChatRecord(List<ChatRecord> chatRecords);
+
+    /**
+     * 获取聊天记录
+     * @param A_openID
+     * @param goodsId
+     * @param currentPage
+     * @return
+     */
+    public JSONObject getChatRecord(String A_openID, Integer goodsId, Integer currentPage);
 }

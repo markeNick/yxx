@@ -4,23 +4,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
-public class Chat {
+public class ChatRecord {
 
-    private Integer chatId;
+    private Integer chatRecordId;
+
+    @JsonProperty("fromUser")
     private String fromUser;
+
+    @JsonProperty("toUser")
     private String toUser;
+
+    @JsonProperty("content")
     private String content;
+
+    @JsonProperty("theTime")
     private Date theTime;
+
+    @JsonProperty("goodsId")
     private Integer goodsId;
+
+    @JsonProperty("isPic")
     private boolean isPic;
 
+    @JsonProperty("isSelf")
+    private boolean isSelf;
 
-    public Integer getChatId() {
-        return chatId;
+
+    public Integer getChatRecordId() {
+        return chatRecordId;
     }
 
-    public void setChatId(Integer chatId) {
-        this.chatId = chatId;
+    public void setChatRecordId(Integer chatRecordId) {
+        this.chatRecordId = chatRecordId;
     }
 
     public String getFromUser() {
@@ -71,5 +86,11 @@ public class Chat {
         this.isPic = isPic;
     }
 
+    public boolean getIsSelf() {
+        return isSelf;
+    }
 
+    public void setIsSelf(boolean isSelf) {
+        this.isSelf = isSelf;
+    }
 }
