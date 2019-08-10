@@ -51,8 +51,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int soldMyGoods(String openID, Integer goodsID) {
-        return userMapper.updateMySoldGoodsStatus(openID, goodsID);
+    public JSONObject soldMyGoods(String buyer, String seller, Integer goodsId) {
+
+        JSONObject json = new JSONObject();
+
+        try {
+            Date create_time = new Date();
+            userMapper.updateMySoldGoodsStatus(seller, goodsId);
+            userMapper.insertOrders(buyer, seller, goodsId, create_time);
+            json.put("status", true);
+            return json;
+        } catch (Exception e) {
+            logger.error("soldMyGoods > error:{}", e);
+        }
+
+        json.put("status", false);
+        return json;
     }
 
     @Override

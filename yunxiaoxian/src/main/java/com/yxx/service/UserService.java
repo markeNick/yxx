@@ -36,12 +36,15 @@ public interface UserService{
      * @return
      */
     public User selectUserByGoodsId(Integer goodsId);
+
     /**
      * 售出物品
-     * @param openID
+     * @param buyer
+     * @param seller
+     * @param goodsId
      * @return
      */
-    public int soldMyGoods(String openID, Integer goodsID);
+    public JSONObject soldMyGoods(String buyer, String seller, Integer goodsId);
 
     /**
      * 擦亮物品

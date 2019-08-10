@@ -49,11 +49,23 @@ public interface UserMapper {
     /**
      * 更新用户在售物品状态
      * @param openID
-     * @param goodsID
+     * @param goodsId
      * @return
      */
     public int updateMySoldGoodsStatus(@Param("openID")String openID,
-                                 @Param("goodsID")Integer goodsID);
+                                       @Param("goodsId")Integer goodsId);
+
+    /**
+     * 添加订单
+     * @param buyer
+     * @param seller
+     * @param goodsId
+     * @param create_time
+     */
+    public void insertOrders(@Param("buyer")String buyer,
+                             @Param("seller")String seller,
+                             @Param("goodsId")Integer goodsId,
+                             @Param("create_time")Date create_time);
 
     /**
      * 擦亮物品
