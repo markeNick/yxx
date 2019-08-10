@@ -54,9 +54,15 @@
         update goods
         set status = 1
         where openID = #{openID}
-        and goods_id = #{goodsID}
+        and goods_id = #{goodsId}
         and status = 0;
     </update>
+    
+    <!-- 增加订单 -->
+    <insert id="insertOrders">
+        insert into orders(goods_id, order_status, buyer, seller, create_time, buyer_status, seller_status)
+        values(#{goodsId}, 0, #{buyer}, #{seller}, #{create_time}, 0, 0)
+    </insert>
 
     <!-- 擦亮物品 -->
     <update id="updateGoodsCreateTime">
