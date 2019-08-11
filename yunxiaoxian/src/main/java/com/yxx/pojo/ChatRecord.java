@@ -29,6 +29,8 @@ public class ChatRecord {
     @JsonProperty("isSelf")
     private boolean isSelf;
 
+    @JsonProperty("type")
+    private boolean type;
 
     public Integer getChatRecordId() {
         return chatRecordId;
@@ -92,5 +94,13 @@ public class ChatRecord {
 
     public void setIsSelf(boolean isSelf) {
         this.isSelf = isSelf;
+    }
+
+    public boolean getType() {
+        return type;
+    }
+
+    public void setType(boolean type) {
+        this.type = type;
     }
 }

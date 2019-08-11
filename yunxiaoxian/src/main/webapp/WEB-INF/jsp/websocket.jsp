@@ -6,6 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Java API for WebSocket (JSR-356)</title>
 </head>
+<style>
+    pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+    .string { color: green; }
+    .number { color: darkorange; }
+    .boolean { color: blue; }
+    .null { color: magenta; }
+    .key { color: red; }
+</style>
 <body>
 <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.bootcss.com/sockjs-client/1.1.1/sockjs.js"></script>
@@ -14,6 +22,11 @@
     请输入本人openID：<input type="text" id = "fromUser" value="${sessionScope.openID}"/><br><br><br>
     请输入对方openID：<input type="text" id = "toUser" /><br><br><br>
     请输入物品goodsId：<input type="text" id = "goodsId" /><br><br><br>
+    请输入交易状态type：
+        <select id="type" >
+            <option value="false">false</option>
+            <option value="true">true</option>
+        </select><br><br><br>
     请输入消息：<textarea rows="3" cols="100" id="content" name="content" ></textarea><br><br>
 
     时间：<h3>自动获取当前时间！！输入的信息转为json并发送，请在控制台查看格式!</h3>
@@ -21,9 +34,9 @@
 
     <hr />
     <p>这是接收到的消息：</p><br>
-    <div id="msg">
+    <pre id="msg">
 
-    </div>
+    </pre>
     <hr />
 
 </body>
@@ -58,7 +71,7 @@
 
     function onMessage(evt) {
 
-        $("#msg").append(evt.data+"<br>"); // 接收后台发送的消息
+        $("#msg").append(showbyjson(evt.data+"<br><br><br>")); // 接收后台发送的消息
 
     }
     function onError() {
@@ -73,6 +86,7 @@
         var content = $("#content").val();
         var theTime = new Date().Format("yyyy-MM-dd HH:mm:ss");
         var goodsId = $("#goodsId").val();
+        var type = $("#type").val();
 
         var object = {};
         object['fromUser'] = fromUser;
@@ -82,6 +96,13 @@
         object['goodsId'] = goodsId;
         object['isPic'] = false;
 
+        if(type == "true"){
+            object['type'] = true;
+        } else {
+            object['type'] = false;
+        }
+
+
         var json = JSON.stringify(object);
 
         console.log("fromUser:" + fromUser);
@@ -90,6 +111,7 @@
         console.log("theTime" + theTime);
         console.log("goodsId" + goodsId);
         console.log("isPic" + "false");
+        console.log("type" + type);
         console.log("拼接的json:" + json);
 
 
@@ -122,6 +144,29 @@
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
+    }
+
+
+    function showbyjson(json) {
+        if (typeof json != 'string') {
+            json = JSON.stringify(json, null, 2);
+        }
+        json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+            var cls = 'number';
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                } else {
+                    cls = 'string';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
+        });
     }
 </script>
 
