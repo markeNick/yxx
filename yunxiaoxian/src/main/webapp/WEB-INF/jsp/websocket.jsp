@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+
+<%
+    String path = request.getContextPath();
+    String basepath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String name = request.getParameter("openID");
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,7 +14,7 @@
     <title>Java API for WebSocket (JSR-356)</title>
 </head>
 <style>
-    pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+    .msg {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
     .string { color: green; }
     .number { color: darkorange; }
     .boolean { color: blue; }
@@ -15,11 +22,11 @@
     .key { color: red; }
 </style>
 <body>
-<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdn.bootcss.com/sockjs-client/1.1.1/sockjs.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/sockjs-client/1.1.1/sockjs.js"></script>
 
     <br><br>
-    请输入本人openID：<input type="text" id = "fromUser" value="${sessionScope.openID}"/><br><br><br>
+    请输入本人openID：<input type="text" id = "fromUser" value="<%=name%>"/><br><br><br>
     请输入对方openID：<input type="text" id = "toUser" /><br><br><br>
     请输入物品goodsId：<input type="text" id = "goodsId" /><br><br><br>
     请输入交易状态type：
@@ -34,9 +41,9 @@
 
     <hr />
     <p>这是接收到的消息：</p><br>
-    <pre id="msg">
+    <div id="msg">
 
-    </pre>
+    </div>
     <hr />
 
 </body>
@@ -44,20 +51,24 @@
 <script type="text/javascript">
     var websocket = null;
     var hostname = document.location.hostname;
+    var myopenID = $("#fromUser").val()
 
     if ('WebSocket' in window) {
         //Websocket的连接
-        //websocket = new WebSocket("ws://localhost:8080/yunxiaoxian/websocket");//WebSocket对应的地址
-        websocket = new WebSocket("ws://47.103.18.92/yunxiaoxian-1.0-SNAPSHOT/websocket");//WebSocket对应的地址
+        //websocket = new WebSocket("ws://localhost:8080/yunxiaoxian/websocket?openID=" + myopenID);//WebSocket对应的地址
+        //websocket = new WebSocket("ws://47.103.18.92/yunxiaoxian-1.0-SNAPSHOT/websocket");//WebSocket对应的地址
+        websocket = new WebSocket("wss://www.yxxcloud.cn/yunxiaoxian-1.0-SNAPSHOT/websocket?openID=" + myopenID);//WebSocket对应的地址
     }
     else if ('MozWebSocket' in window) {
         //Websocket的连接
-        //websocket = new MozWebSocket("ws://localhost:8080/yunxiaoxian/websocket");//SockJS对应的地址
-        websocket = new MozWebSocket("ws://47.103.18.92/yunxiaoxian-1.0-SNAPSHOT/websocket");//WebSocket对应的地址
+        //websocket = new MozWebSocket("ws://localhost:8080/yunxiaoxian/websocket?openID=" + myopenID);//SockJS对应的地址
+        //websocket = new MozWebSocket("ws://47.103.18.92/yunxiaoxian-1.0-SNAPSHOT/websocket");//WebSocket对应的地址
+        websocket = new WebSocket("wss://www.yxxcloud.cn/yunxiaoxian-1.0-SNAPSHOT/websocket?openID=" + myopenID);//WebSocket对应的地址
     }
     else {
         //SockJS的连接
-        websocket = new SockJS("ws://47.103.18.92/yunxiaoxian-1.0-SNAPSHOT/sockjs");    //SockJS对应的地址
+        //websocket = new SockJS("wss://47.103.18.92/yunxiaoxian-1.0-SNAPSHOT/sockjs");    //SockJS对应的地址
+        websocket = new WebSocket("wss://www.yxxcloud.cn/yunxiaoxian-1.0-SNAPSHOT/sockjs?openID=" + myopenID);//SocketJS对应的地址
     }
 
     websocket.onopen = onOpen;

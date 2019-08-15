@@ -3,6 +3,7 @@ package com.yxx.websocket;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -40,28 +41,49 @@ public class WebSocketPushHandler implements WebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
         //获取当前用户的session
-        String openID = this.getUserSession(session);
+        //String openID = this.getUserSession(session);
+
+        Map<String, Object> attributes = session.getAttributes();
+
+        String openID = (String) attributes.get("openID");
+        //System.out.println(openID);
+        //System.out.println(session.getAttributes());
+        //System.out.println(attributes.toString());
+        //System.out.println(session.getAttributes());
         //session.sendMessage(new TextMessage(openID + "连接成功" + "-->" + session.getId()));
         if(openID != null) {
             //将用户session按照<openID, session>存起来
             mapUserSession.put(openID, session);
             //发送离线消息
             chatService.offLineMessage(openID, session);
-        } else {
-            session.sendMessage(new TextMessage("{\"error\": \"the session of openID is null\"}"));
         }
+
+        //} else {
+            //session.sendMessage(new TextMessage("{\"error\": \"the session of openID is null\"}"));
+        //}
         //System.out.println("连接-->afterConnectionEstablished");
     }
 
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-        //1.获取接收者的openID
+        //获取消息
         String msg = message.getPayload().toString();
+
+        //将消息转为将消息转为JSONObjec类型
         JSONObject json = JSON.parseObject(msg);
+
+        //获取接收者的openID
         String openID = json.getString("toUser");
+
+        //将JSONObjec对象转为Chat类
         Chat chat = JSON.parseObject(msg, Chat.class);
+
+        //获取接收者的WebsocketSession
         WebSocketSession toUserSession = mapUserSession.get(chat.getToUser());
+
+        //session.sendMessage(message);
+
         //2.检查该openID对应的session是否存在
         //2.1如果存在则转发信息
         //2.2如果不存在则把聊天记录存到数据库
@@ -111,6 +133,7 @@ public class WebSocketPushHandler implements WebSocketHandler {
     private String getUserSession(WebSocketSession session){
         try {
             String openID = (String) session.getAttributes().get("openID");
+            //System.out.println(openID);
             return openID;
         } catch (Exception e){
             logger.error("error by getUserSession:{}", e);

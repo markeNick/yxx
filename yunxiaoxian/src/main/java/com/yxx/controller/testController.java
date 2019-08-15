@@ -28,7 +28,7 @@ public class testController {
 
         //System.out.println(session.getAttribute("openID"));
 
-        session.setAttribute("openID", openID);
+        //session.setAttribute("openID", openID);
         //System.out.println(session.getId()+"=========这是控制器的");
 
         //System.out.println(session.getAttribute("openID"));

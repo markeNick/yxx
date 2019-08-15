@@ -63,7 +63,7 @@
 
             $.ajax({
                 type:"post",
-                url:"http://localhost:8080/yunxiaoxian/uploadChatRecord",
+                url:"https://www.yxxcloud.cn/api/uploadChatRecord",
 
                 data: chatRecords,
                 contentType : 'application/json',
