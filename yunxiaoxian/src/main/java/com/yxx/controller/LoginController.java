@@ -24,8 +24,8 @@ public class LoginController {
             return jsonResult;
         }
 
-        String app_id = "wxe07ebf182de62b43";
-        String app_secret = "be3568c6e5af041a29db4a1595889cf3";
+        String app_id = "wx532214a71369972b";
+        String app_secret = "083cb56106baa296eec98ebdae1cd94e";
 
         //授权码
         String grant_type= "authorization_code";
