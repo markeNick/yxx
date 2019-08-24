@@ -13,6 +13,7 @@ public class Chat {
     private Date theTime;
     private Integer goodsId;
     private boolean isPic;
+    private boolean type;
 
 
     public Integer getChatId() {
@@ -71,5 +72,11 @@ public class Chat {
         this.isPic = isPic;
     }
 
+    public boolean getType() {
+        return type;
+    }
 
+    public void setType(boolean type) {
+        this.type = type;
+    }
 }

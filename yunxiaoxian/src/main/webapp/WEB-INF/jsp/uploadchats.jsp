@@ -46,22 +46,24 @@
     $(function () {
         $("#uploadchats").click(function () {
 
-            // var json = {};
-            // //json.openID = "test-A";
-            // json.chats = [];
-             var h = {fromUser:"test-A", toUser:"test-B", content:"haha",theTime: "2019-08-01 23:25:22", goodsId: 1, isPic: false, isSelf: true};
-            //
-            // json.chats.push(h);
-            //
-            // var chatRecords = JSON.stringify(json);
 
+            var h = {
+                "fromUser":"test-A",
+                "toUser":"test-B",
+                "content":"haha",
+                "theTime": "2019-08-01 23:25:22",
+                "goodsId": 1,
+                "isPic" : false,
+                "isSelf": true,
+                "type":false
+            };
             var json = new Array();
             json.push(h);
             var chatRecords = JSON.stringify(json);
 
             $.ajax({
                 type:"post",
-                url:"http://localhost:8080/yunxiaoxian/uploadChatRecord",
+                url:"https://www.yxxcloud.cn/api/uploadChatRecord",
 
                 data: chatRecords,
                 contentType : 'application/json',

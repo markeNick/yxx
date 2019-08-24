@@ -199,6 +199,7 @@ public class ChatServiceImpl implements ChatService {
         for(int i = 0; i < chatRecords.size(); i++){
             if(chatRecords.get(i).getIsSelf()){
                 openID = chatRecords.get(i).getFromUser();
+                System.out.println(chatRecords.get(i));
                 break;
             }
         }
