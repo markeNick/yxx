@@ -3,13 +3,12 @@ package com.yxx.service;
 import com.alibaba.fastjson.JSONObject;
 import com.yxx.dao.UserMapper;
 import com.yxx.pojo.Goods;
-import com.yxx.pojo.GoodsCustom;
+
 import com.yxx.pojo.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

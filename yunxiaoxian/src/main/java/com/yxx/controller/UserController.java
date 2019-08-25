@@ -1,10 +1,6 @@
 package com.yxx.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yxx.util.AesCbcUtil;
-import com.yxx.util.HttpRequest;
-import com.yxx.pojo.GoodsCustom;
-import com.yxx.pojo.MessageCustom;
 import com.yxx.pojo.User;
 import com.yxx.service.CollectionService;
 import com.yxx.service.OrdersService;
@@ -30,9 +26,6 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private CollectionService collectionService;
-
-    @Autowired
     public OrdersService ordersService;
 
     @RequestMapping(value = "/test")
@@ -40,8 +33,6 @@ public class UserController {
 
         return "index";
     }
-
-
 
     @RequestMapping(value = "/selectAllUser")
     @ResponseBody

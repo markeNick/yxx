@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ReplyController {
     private static Logger logger = LoggerFactory.getLogger(ReplyController.class);
-    @Autowired
-    private ReplyService replyService;
+
     @Autowired
     private UserService userService;
 

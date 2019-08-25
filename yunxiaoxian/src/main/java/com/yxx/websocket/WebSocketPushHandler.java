@@ -7,13 +7,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.yxx.dao.ChatMapper;
 import com.yxx.pojo.Chat;
 import com.yxx.service.ChatService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
-import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 import javax.annotation.Resource;
 
 

@@ -49,8 +49,7 @@ public class OrdersServiceImpl implements OrdersService {
     //拉黑
     @Override
     public boolean blacklist(String openID1,String openID2){
-        System.out.println("================================================ser"+openID1);
-        System.out.println("================================================ser"+openID2);
+
         //交易过，并且没拉黑过
         int countb = ordersMapper.blacklist(openID1,openID2);
         //交易记录

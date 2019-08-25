@@ -1,12 +1,10 @@
 package com.yxx.service;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yxx.dao.ChatMapper;
 import com.yxx.pojo.Chat;
 import com.yxx.pojo.ChatList;
 import com.yxx.pojo.ChatRecord;
-import com.yxx.service.ChatService;
 import com.yxx.util.Base64Util;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;

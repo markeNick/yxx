@@ -18,8 +18,7 @@ public class OrdersController {
     @PostMapping("blacklist")
     @ResponseBody
     public boolean blacklist(String openID1, String openID2){
-        System.out.println("================================================con"+openID1);
-        System.out.println("================================================con"+openID2);
+
         if(ordersService.blacklist(openID1, openID2) == true){
             return true;
         }else {
