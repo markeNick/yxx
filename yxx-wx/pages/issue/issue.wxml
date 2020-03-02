@@ -1,0 +1,32 @@
+<!-- fabu -->
+<view class="issue">
+    <form class="" bindsubmit="issusGoods">
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            <input class="goods-title" name="title" value="{{goodsName}}" type="text" placeholder="请输入标题内容" maxlength="40"></input>
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            <textarea class="goods-info" name="info" value="{{goodsDescribe}}" placeholder="请输入商品的详细介绍" maxlength="250"></textarea>
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            <image class="add-pic" src="../../public/images/add.png" mode="widthFix" bindtap="addImage"/>
+            <view class="image-box" wx:for="{{images}}" wx:key="{{index}}" hover-class="none" hover-stop-propagation="false">
+                <image class="goods-image" src="{{item}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+                <image class="close-image" src="../../public/images/close.png" mode="widthFix" data-index="{{index}}" bindtap="deleteImage" />                
+            </view>
+        </view>
+        <view class="price-box" hover-class="none" hover-stop-propagation="false">
+            <label class="price-unit" wx:if="{{priceHaveNo}}">
+                ￥
+            </label>
+            <input class="goods-price" name="price" placeholder="价格" value="{{goodsPrice}}" bindinput="addPrice" bindfocus="changestatus" bindblur="addPrice" type="digit"></input>
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            <picker class="goods-type" name="type" value="{{index}}" range="{{types}}" bindchange="bindPickerChange" range-key="{{'type'}}">
+                {{index!=-1 ? types[index].type : '类别'}}
+            </picker>
+        </view>
+        <view class="" hover-class="none" hover-stop-propagation="false">
+            <button class="default" form-type="submit">发布</button>
+        </view>
+    </form>
+</view>

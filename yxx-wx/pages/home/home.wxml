@@ -1,0 +1,37 @@
+<view class="home" hover-class="none" hover-stop-propagation="false">
+    <!-- 存放用户的信息 -->
+    <view>
+        <navigator class="my-data" url="" hover-class="navigator-hover">
+            <image class="" src="{{userHead}}" mode="widthFix"/>    
+            <text>
+                {{userName}}
+            </text>         
+        </navigator>
+    </view>
+    <view>
+        <navigator class="line-box" url="/pages/myIssue/myIssue" hover-class="navigator-hover">
+            我发布的
+        </navigator>
+    </view>
+    <view>
+        <navigator class="line-box" url="/pages/mySale/mySale" hover-class="navigator-hover">
+            我卖出的
+        </navigator>
+    </view>
+    <view>
+       <navigator class="line-box" url="/pages/myBuy/myBuy" hover-class="navigator-hover">
+            我买到的
+       </navigator>
+    </view>
+    <view>
+        <navigator class="line-box" url="/pages/myCollect/myCollect" hover-class="navigator-hover">
+            我收藏的
+        </navigator>
+    </view>
+    <view>
+        <navigator class="line-box" url="/pages/mySoldOut/mySoldOut" hover-class="navigator-hover">
+            我下架的
+        </navigator>
+    </view>
+      
+</view>

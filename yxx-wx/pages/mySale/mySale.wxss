@@ -1,0 +1,67 @@
+.my-sale {
+    background-color: #f2f2f2;
+    height: 100%;
+}
+
+.sale-box {
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    /* padding: 0 30rpx; */
+}
+
+.sale-hd {
+    display: flex;
+    padding: 15rpx 30rpx;
+    border-bottom: 2rpx solid #f2f2f2
+}
+
+.goods-pic {
+    width: 125rpx;
+    height: 125rpx;
+    border-radius: 5rpx;
+    margin-right: 30rpx;
+}
+
+.goods-title {
+    font-size: 34rpx;
+    font-weight: 600;
+    margin-top: 8rpx;
+    margin-bottom: 20rpx;
+    width: 450rpx;
+    height: 44rpx;
+    overflow: hidden;
+}
+
+.goods-price {
+    color: #cc0000;
+    font-size: 32rpx;
+}
+
+.sale-bd {
+    height: 80rpx;
+    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-between
+}
+
+.link-buyer,
+.icon-bubble2 {
+    display: inline-block;
+    line-height: 80rpx;
+    font-size: 24rpx;
+    color: #7f7f7f
+}
+
+.icon-bubble2 {
+    font-size: 32rpx;
+    margin-right: 4rpx;
+}
+
+.operation {
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 10rpx 25rpx 10rpx 0;
+    font-size: 30rpx;
+    border-radius: 5rpx;
+    background-color: #fff;
+}

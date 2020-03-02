@@ -1,0 +1,20 @@
+<!-- 通用头部 -->
+<view class='common-head'>
+  <!-- logo -->
+  <view class="logo">
+    <navigator hover-class="none">
+      <image src='../../public/images/logo.png' mode="center"></image>
+    </navigator>
+  </view>
+  <!-- 搜索 -->
+  <view class="search">
+    <input placeholder="输入要搜索的商品名字" maxlength="20" value="{{searchInfo}}" bindinput="updateSearch" bindconfirm="" />
+    <icon class="icon-search" type="search" size="20" catch:touchstart="searchThing"></icon>
+  </view>
+  <!-- 用户头像 -->
+  <!-- <view class="user-head">
+    <navigator class="" target="" url="" hover-class="navigator-hover" open-type="navigate">
+      <image class="" src="../../public/images/user-head.png" />
+    </navigator>
+  </view> -->
+</view>

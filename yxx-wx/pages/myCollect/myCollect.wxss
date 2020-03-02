@@ -1,0 +1,73 @@
+.my-collect {
+    height: 100%;
+    background-color: #f2f2f2;
+    color:rgb(208,208,208)
+}
+
+.collect-box {
+    background-color: #fff;
+    margin-bottom: 19rpx;
+}
+
+.user-box {
+    display: flex;
+    padding: 15rpx 30rpx 10rpx;
+    height: 60rpx;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: inline-flex;
+    align-items: center;
+    font-size: 32rpx;
+}
+
+.user-head {
+    height: 60px;
+    width: 60rpx;
+    border-radius: 4rpx;
+}
+
+.goods-price {
+    line-height: 60rpx;
+    color: #cc0000
+}
+
+.goods-box {
+    padding: 0 10rpx 0 30rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+}
+
+.pic-box {
+    white-space: nowrap;
+    overflow: auto;
+}
+
+.goods-pics {
+    width: 125rpx;
+    height: 125rpx;
+    margin-right: 15rpx;
+    border: 2rpx solid #ececec;
+}
+
+.goods-name {
+    padding: 10rpx 0 10rpx 10rpx;
+    font-size: 28rpx;
+    font-weight: 600;
+}
+
+.operation-box {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 30rpx;
+    padding:10rpx 5rpx;
+}
+
+.operation-button {
+    height: 70rpx;
+    line-height: 70rpx;
+    border-radius: 4rpx;
+    margin: 0;
+    font-size: 32rpx;
+    background-color: #fff;
+}

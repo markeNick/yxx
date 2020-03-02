@@ -1,0 +1,208 @@
+.my-issue {
+    background-color: #f2f2f2;
+    height: 100%;
+}
+
+.logo {
+    width: 100%;
+}
+
+.issue-box {
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    /* padding: 0 30rpx; */
+}
+
+.issue-hd {
+    display: flex;
+    padding: 15rpx 30rpx;
+    border-bottom: 2rpx solid #f2f2f2
+}
+
+.goods-pic {
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 5rpx;
+    margin-right: 30rpx;
+}
+
+.goods-title {
+    font-size: 34rpx;
+    font-weight: 600;
+    margin-top: 8rpx;
+    width: 450rpx;
+    height: 44rpx;
+    overflow: hidden;
+}
+
+.goods-price {
+    color: #cc0000;
+    font-size: 32rpx;
+    margin: 15rpx 0 10rpx;
+}
+
+.goods-status {
+    font-size: 26rpx;
+    color: #7f7f7f;
+}
+
+.issue-bd {
+    height: 80rpx;
+    padding: 0 0rpx 0 30rpx;
+    display: flex;
+}
+
+.issue-time {
+    display: inline-block;
+    line-height: 80rpx;
+    font-size: 24rpx;
+    width: 120rpx;
+    text-align: center;
+    padding-left: 14rpx;
+    padding-right: 6rpx;
+    color: #7f7f7f
+}
+
+.operation {
+    display: inline-flex;
+    flex-direction: row
+}
+
+.operation button {
+    width: 120rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 10rpx 0 10rpx 20rpx;
+    font-size: 30rpx;
+    border-radius: 5rpx;
+    background-color: #fff;
+}
+
+.task {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .2)
+}
+
+.change-price {
+    position: fixed;
+    padding: 30rpx;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    height: 305rpx;
+    width: 500rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+
+.good-name {
+    width: 500rpx;
+    height: 50rpx;
+    overflow: hidden;
+}
+
+.old-price {
+    padding-top: 15rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    color: #5e5b5b
+}
+
+.new-price {
+    display: flex;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.change-input {
+    padding: 15rpx 0 0 20rpx;
+    display: inline-block;
+    width: 300rpx;
+    color: #cc0000;
+}
+
+.button-box {
+    display: flex;
+    justify-content: space-between
+}
+
+.change-button {
+    margin-top: 20rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 200rpx;
+}
+
+
+/* 修改全部界面 */
+
+.change-all {
+    padding: 30rpx;
+    position: fixed;
+    height: 100%;
+    width: 92%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.change-all-title {
+    height: 70rpx;
+    border-bottom: 4rpx solid #d6cfcfa8;
+    padding: 10rpx 4rpx;
+    font-size: 34rpx;
+    color: rgb(124, 133, 133)
+}
+
+.change-all-info {
+    margin-top: 10rpx;
+    padding: 10rpx 4rpx;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 34rpx;
+    color: rgb(124, 133, 133)
+}
+
+.add-pic {
+    width: 150rpx;
+    height: 150rpx;
+}
+
+.change-all-image-box {
+    display: inline-block;
+    position: relative;
+}
+
+.change-all-close-image {
+    position: absolute;
+    top: 10rpx;
+    right: 10rpx;
+    height: 50rpx;
+    width: 50rpx;
+}
+
+.change-all-image {
+    height: 200rpx;
+    width: 200rpx;
+    border-radius: 10rpx;
+}
+
+.change-all-price-box {
+    display: flex;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 34rpx;
+}
+
+.change-all-price,
+.change-all-type {
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 10rpx 20rpx;
+    color: rgb(124, 133, 133);
+}

@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "common-head": "../../components/CommonHead/CommonHead"
+    },
+    "navigationBarTitleText": "商品列表"
+}

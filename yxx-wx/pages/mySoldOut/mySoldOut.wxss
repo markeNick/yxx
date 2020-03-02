@@ -1,0 +1,61 @@
+/* pages/mySoldOut.wxss */
+
+.my-sold-out {
+    background-color: #f2f2f2;
+    height: 100%;
+}
+
+.logo {
+    width: 100%;
+}
+
+.sold-out-box {
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    /* padding: 0 30rpx; */
+}
+
+.sold-out-hd {
+    display: flex;
+    padding: 15rpx 30rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+    position: relative;
+}
+
+.goods-pic {
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 5rpx;
+    margin-right: 30rpx;
+}
+
+.goods-title {
+    font-size: 34rpx;
+    font-weight: 600;
+    margin-top: 8rpx;
+    width: 450rpx;
+    height: 44rpx;
+    overflow: hidden;
+}
+
+.goods-price {
+    color: #cc0000;
+    font-size: 32rpx;
+    margin: 15rpx 0 10rpx;
+}
+
+.goods-status {
+    font-size: 26rpx;
+    color: #7f7f7f;
+}
+
+.operation {
+    position: absolute;
+    right: 40rpx;
+}
+
+.operation button {
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-top: 7rpx;
+}

@@ -1,0 +1,47 @@
+<!-- index.wxml -->
+<view class="main">
+  <common-head></common-head>
+  <!-- 轮播图 -->
+  <view class="swiper-box" hover-class="none" hover-stop-propagation="false">
+    <swiper class="swiper" indicator-dots="true" autoplay="true" circular="true">
+      <swiper-item class="" item-id="" wx:for="{{4}}">
+        <navigator class="" target="" url="" hover-class="none" open-type="navigate">
+          <image class="" src="https://www.yxxcloud.cn/lunbo/lunbo.webp" mode="widthFix"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 导航条 -->
+  <view class="navbar">
+    <!-- 循环输出导航内容 -->
+    <view class="navbar-content" wx:for="{{navBar}}" wx:key="{{item.categoryId}}">
+      <navigator url="/pages/goodsList/goodsList?type={{item.categoryId}}" hover-class="none">
+        <!-- 矢量图标 -->
+        <view class="{{item.className}} vector-pic"></view>
+        <view class="navbar-type">{{item.category}}</view>
+      </navigator>
+    </view>
+  </view>
+  <!-- 最新商品 -->
+  <view class="newest">
+    <view class="newest-box" wx:for="{{goodsList}}" wx:key="{{item.goodsName}}">
+      <navigator url="/pages/goodsDetail/goodsDetail?sid={{item.goodsId}}" hover-class="none">
+        <view class="">
+          <image class="goods-pic" src="{{url}}{{item.goodsImage[0]}}" mode="scaleToFill" lazy-load="false"></image>
+          <view class="goods-title">{{item.goodsName}}</view>
+          <view class="goods-price">￥{{item.goodsPrice}}</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <view class="nothing" style="display:{{atLast?'block':'none'}}">
+    到底了，什么都没了0.0
+  </view>
+</view>
+<!-- 授权窗口 -->
+<view class="authorization" wx:if="{{isAuthorization}}">
+  <button class="au-button" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+    微信登录
+  </button>
+  <image class="au-bg" src="../../public/images/logo-bg.jpg" bindload="" binderror=""></image>
+</view>

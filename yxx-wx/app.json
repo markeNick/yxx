@@ -1,0 +1,52 @@
+{
+    "pages": ["pages/index/index",
+        "pages/chatInterface/chatInterface",
+
+        "pages/goodsList/goodsList",
+        "pages/goodsDetail/goodsDetail",
+        "pages/issue/issue",
+        "pages/news/news",
+        "pages/home/home",
+
+        "pages/myBuy/myBuy",
+        "pages/myCollect/myCollect",
+        "pages/myIssue/myIssue",
+        "pages/mySale/mySale",
+        "pages/otherIssue/otherIssue",
+        "pages/mySoldOut/mySoldOut"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [{
+                "pagePath": "pages/index/index",
+                "iconPath": "./public/images/shouye.png",
+                "selectedIconPath": "./public/images/shouye1.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/issue/issue",
+                "iconPath": "./public/images/fabu.png",
+                "selectedIconPath": "./public/images/fabu1.png",
+                "text": "发布"
+            },
+            {
+                "pagePath": "pages/news/news",
+                "iconPath": "./public/images/xiaoxi.png",
+                "selectedIconPath": "./public/images/xiaoxi1.png",
+                "text": "消息"
+            },
+            {
+                "pagePath": "pages/home/home",
+                "iconPath": "./public/images/wode.png",
+                "selectedIconPath": "./public/images/wode1.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}

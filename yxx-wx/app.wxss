@@ -1,0 +1,27 @@
+    /**app.wxss**/
+    
+    Page {
+        height: 100%;
+    }
+    
+    .nothing {
+        background-color: #fff;
+        text-align: center;
+        padding: 5rpx 0 20rpx
+    }
+    
+    .all-nothing {
+        height: 400rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+    /* 隐藏滚动条 */
+    
+     ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        color: transparent;
+    }
+    
+    @import "./public/fonts/stylesheet.wxss";

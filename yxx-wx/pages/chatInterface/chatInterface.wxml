@@ -1,0 +1,87 @@
+<!-- 聊天界面 -->
+<view class="chat-interface">
+    <!-- 商品信息 -->
+    <view class="goods-box">
+        <view>
+            <navigator class="goods" target="" url="/pages/goodsDetail/goodsDetail?sid={{good.goodId}}" hover-class="none" open-type="navigate">
+                <view wx:if="{{good.goodImage}}">
+                    <image class="goods-pic" src="{{url+good.goodImage}}" mode="scaleToFill" />
+                </view>
+                <view class="goods-price">￥{{good.goodPrice}}</view>
+            </navigator>
+        </view>
+        <view>
+            <button class="goods-solded" wx:if="{{good.seller==selfID&&good.status==0}}" bind:tap="workOff">
+                售出
+            </button>
+            <button class="goods-solded" wx:if="{{good.status!=0}}" disabled="true">已售出</button>
+        </view>
+    </view>
+    <!-- 聊天盒子 -->
+    <scroll-view class="chat-box" id="chat-box" scroll-y="true" scroll-into-view="{{toView}}" bindscrolltoupper="addChat">
+        <view wx:for="{{chatList}}" wx:key="{{index}}" id="chat-{{index}}">
+            <view wx:if="{{!item.type}}" class="{{item.isSelf?'chat-self':'chat-unself'}} scroll-list">
+                <view class="">
+                    <navigator url="/pages/otherIssue/otherIssue?uid={{item.isSelf?selfID:otherID}}" hover-class="none" open-type="navigate">
+                        <image class="user-head" src="{{item.isSelf?selfImage:otherImage}}" mode="widthFix"></image>
+                    </navigator>
+                </view>
+                <view class="speak-info" selectable="true" space="false" decode="false" wx:if="{{!item.isPic}}">
+                    <view class="{{item.isSelf?'self-three':'unself-three'}}"></view>
+                    <view class="speak-content">{{item.content}}</view>
+                </view>
+                <view>
+                    <image wx:if="{{item.isPic}}" class="" src="{{picUrl+item.content}}" style="max-width:420rpx;max-height: 330rpx;margin:0 20rpx" />
+                </view>
+                <view class="speak-time">{{time.switchTime(item.theTime)}}</view>
+            </view>
+            <view class="deal-success" wx:else>交易成功！</view>
+        </view>
+    </scroll-view>
+    <!-- 底部发言框 -->
+    <view class="speak">
+        <form class="" report-submit="false" bindsubmit="" bindreset="">
+            <view class="speak-box">
+                <view class="">
+                    <image class="speak-add-pic" src="../../public/images/add.png" mode="widthFix" bindtap="addImage" />
+                </view>
+                <view class="">
+                    <input class="speak-input" value="{{message}}" cursor-spacing="14" type="text" adjust-position="true" maxlength="140" bindinput="changeMessage"></input>
+                </view>
+                <view class="">
+                    <button class="speak-submit" size="default" form-type="submit" bind:tap="sendButton">
+                        发送
+                    </button>
+                </view>
+            </view>
+        </form>
+    </view>
+</view>
+<wxs module="time">
+var switchTime=function(timer){
+        var result = '';
+        var nowTime = getDate().getTime();
+        //转化为时间戳
+        var issueTime=getDate(timer);
+        var whenTime = nowTime - issueTime.getTime();
+                var minute = 1000 * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+        var month = day * 30;
+        var monthC = whenTime / month;
+        var dayC = whenTime / day;
+        var filterDay=(issueTime.getDate()>=10)?issueTime.getDate()+'日':'0'+issueTime.getDate()+'日';
+        var filterHour=(issueTime.getHours()>=10)?issueTime.getHours():'0'+issueTime.getHours();
+        var filterMin=(issueTime.getMinutes()>=10)?issueTime.getMinutes():'0'+issueTime.getMinutes()
+        if (monthC > 12) {
+            result = timer
+        } else if (dayC >= 1) {
+          result=issueTime.getMonth()+1+'月'+filterDay+' '+filterHour+':'+filterMin
+        } else{
+            //result=(issueTime.getMonth()>10)?issueTime.getMinutes():'0'+issueTime.getMinutes();
+             result = filterHour+':'+filterMin
+        }  
+        return result;
+}
+module.exports.switchTime = switchTime;
+</wxs>

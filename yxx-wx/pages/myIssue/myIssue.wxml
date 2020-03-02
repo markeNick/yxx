@@ -1,0 +1,98 @@
+<view class="my-issue">
+    <view>
+        <image class="logo" src="../../public/images/logo-myIssue.png" mode="widthFix" />
+    </view>
+    <view class="issue-box" wx:for="{{goodsList}}" wx:key="{{item.goodsId}}">
+        <!-- 上部分-商品信息 -->
+        <navigator url="/pages/goodsDetail/goodsDetail?sid={{item.goodsId}}">
+            <view class="issue-hd" hover-class="none">
+                <view>
+                    <image class="goods-pic" src="{{url}}{{item.goodsImage[0]}}" mode="scaleToFill" />
+                </view>
+                <view>
+                    <view class="goods-title">{{item.goodsName}}</view>
+                    <view class="goods-price">￥{{item.goodsPrice}}</view>
+                    <view class="goods-status">{{item.status==0?'出售中':'已售出'}}</view>
+                </view>
+            </view>
+        </navigator>
+        <!-- 下部分-对应的操作 -->
+        <view class="issue-bd">
+            <view class="issue-time">{{item.createTime}}</view>
+            <view class="operation">
+                <button class="default" disabled="{{item.allDisabled ||item.disabled}}" data-sid="{{item.goodsId}}" data-index="{{index}}" bind:tap="refresh">
+                    刷新
+                </button>
+                <button class="default" disabled="{{item.allDisabled}}" data-good="{{item}}" data-index="{{index}}" bind:tap="showDepreciate">
+                    降价
+                </button>
+                <button class="default" disabled="{{item.allDisabled||item.compileDisabled}}" data-good="{{item}}" data-index="{{index}}" bind:tap="showCompile">
+                    编辑
+                </button>
+                <button class="default" disabled="{{item.allDisabled}}" data-sid="{{item.goodsId}}" data-index="{{index}}" bind:tap="soldOut">
+                    下架
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="nothing" style="display:{{atLast?'block':'none'}}">到底了!0.0</view>
+    <!-- 修改价格界面 -->
+    <view class="change-box" wx:if="{{showDepreciateView}}">
+        <!-- 遮罩层 -->
+        <view class="task"></view>
+        <view class="change-price">
+            <view class="good-name">商品名：{{changeGood.goodsName}}</view>
+            <view class="old-price">原价：{{changeGood.goodsPrice}}元</view>
+            <form class="" bindsubmit="depreciate">
+                <view class="new-price">
+                    现价:
+                    <input class="change-input" value="" type="digit" placeholder="请输入新价格" name="price"></input>
+                </view>
+                <view class="button-box">
+                    <button class="change-button" hover-class="button-hover" form-type="submit">
+                        提交
+                    </button>
+                    <button class="change-button" hover-class="button-hover" bind:tap="closeDepreciate">
+                        取消
+                    </button>
+                </view>
+            </form>
+        </view>
+    </view>
+    <view class="all-nothing" wx:if="{{goodsList.length==0}}">您还没有发布任何商品</view>
+    <!-- 修改全部界面 -->
+    <!-- fabu -->
+<view class="change-all" wx:if="{{showCompileView}}">
+    <form class="" bindsubmit="compile">
+        <view class="">
+            <input class="change-all-title" name="title" value="{{changeGood.goodsName}}" type="text" placeholder="请输入标题内容" maxlength="40"></input>
+        </view> 
+        <view class="">
+            <textarea class="change-all-info" value="{{changeGood.goodsDescribe}}" name="info" placeholder="请输入商品的详细介绍" maxlength="250"></textarea>
+        </view>
+        <view class="">
+            <image class="add-pic" src="../../public/images/add.png" mode="widthFix" bindtap="addImage"/>
+            <view class="change-all-image-box" wx:for="{{images}}" wx:key="{{index}}">
+                <image class="change-all-image" src="{{item}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+              <image class="change-all-close-image" src="../../public/images/close.png" mode="widthFix" data-index="{{index}}" bindtap="deleteImage" />                
+            </view>
+
+        </view>
+        <view class="change-all-price-box">
+            <label>
+                ￥
+            </label>
+            <input class="change-all-price" name="price" placeholder="价格" value="{{changeGood.goodsPrice}}" type="digit"></input>
+        </view>
+        <view class="">
+            <picker class="change-all-type" name="type" value="{{changeGood.categoryId}}" range="{{types}}" bindchange="bindPickerChange" range-key="{{'category'}}">
+                {{typeIndex!=-1 ? types[typeIndex].category : types[changeGood.categoryId].category }}
+            </picker>
+        </view>
+        <view class="">
+            <button class="default" form-type="submit">修改</button>
+            <button class="default" bind:tap="closeCompile">取消</button>
+        </view>
+    </form>
+</view>
+</view>

@@ -1,0 +1,126 @@
+.main {
+    background-color: rgb(112, 211, 230);
+    padding: 20rpx 20rpx 0;
+}
+
+
+/* 轮播图 */
+
+.swiper-box {
+    margin: 20rpx 0;
+    /* margin: 20rpx auto 0; */
+}
+
+.swiper {
+    height: 200rpx;
+}
+
+.swiper image {
+    width: 100%;
+    height: 100%;
+    /* margin-left: 16rpx; */
+}
+
+
+/* 导航条 */
+
+.navbar {
+    background-color: #fff;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+    padding-bottom: 10rpx;
+}
+
+.navbar-content {
+    width: 20%;
+    text-align: center
+}
+
+.vector-pic {
+    padding-top: 10rpx;
+    font-size: 60rpx;
+    color: #a09999
+}
+
+.navbar-type {
+    font-size: 32rpx;
+    /* color: #dedede */
+}
+
+
+/* 最新 */
+
+.newest {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10rpx;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.newest-box {
+    width: 47%;
+}
+
+.goods-pic {
+    /* width: 340rpx; */
+    width: 100%;
+    height: 280rpx;
+    border-radius: 10rpx;
+}
+
+.goods-title {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    font-size: 30rpx;
+    font-weight: 500;
+}
+
+.goods-price {
+    font-size: 36rpx;
+    font-weight: 700;
+    color: rgb(224, 33, 33)
+}
+
+
+/* 授权窗口 */
+
+.authorization {
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+}
+
+.au-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100rpx;
+    width: 500rpx;
+    transform: translate(-50%, -50%);
+    background-color: forestgreen;
+    color: #fff;
+    z-index: 110;
+}
+
+.au-bg {
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 101;
+}

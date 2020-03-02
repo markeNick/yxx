@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "common-head": "../../components/CommonHead/CommonHead"
+    },
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "云小闲"
+}

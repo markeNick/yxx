@@ -1,0 +1,21 @@
+<view class="my-sold-out">
+    <view class="sold-out-box" wx:for="{{goodsList}}" wx:key="{{item.goodsId}}">
+        <!-- 上部分-商品信息 -->
+        <view class="sold-out-hd" hover-class="none">
+            <view>
+                <image class="goods-pic" src="{{url+item.goodsImage[0]}}" mode="scaleToFill" />
+            </view>
+            <view>
+                <view class="goods-title">{{item.goodsName}}</view>
+                <view class="goods-price">￥{{item.goodsPrice}}</view>
+                <view class="goods-status">已下架</view>
+            </view>
+            <view class="operation" hover-class="none" hover-stop-propagation="false">
+                <button class="default" size="default" data-sid="{{item.goodsId}}" data-index="{{index}}" bind:tap="putAway">上架</button>
+                <button class="default" size="default" data-sid="{{item.goodsId}}" data-index="{{index}}" bind:tap="delete">删除</button>
+            </view>
+        </view>
+    </view>
+           <view class="all-nothing" wx:if="{{goodsList.length==0}}">您还没有下架任何商品</view>
+               <view class="nothing" style="display:{{atLast?'block':'none'}}">已经到底了0.0</view>
+</view>

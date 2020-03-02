@@ -1,0 +1,30 @@
+<view class="my-collect">
+    <view class="collect-box" wx:for="{{goodsList}}" wx:key="{{item.goodsId}}">
+        <view class="user-box">
+            <navigator target="" url="/pages/otherIssue/otherIssue?uid={{item.openID}}" hover-class="none">
+                <view class="user-info">
+                    <view>
+                        <image class="user-head" src="{{item.userImage}}" mode="widthFix"></image>
+                    </view>
+                    <view>{{item.userName}}</view>
+                </view>
+            </navigator>
+            <view class="goods-price">￥{{item.goodsPrice}}</view>
+        </view>
+        <view class="goods-box">
+            <navigator url="/pages/goodsDetail/goodsDetail?sid={{item.goodsId}}" hover-class="none">
+                <view class="pic-box">
+                    <image class="goods-pics" wx:for="{{item.goodsImage}}" wx:for-item="image" wx:for-index="imageIndex" wx:key="{{imageIndex}}" src="{{url}}{{image}}" mode="scaleToFill"></image>
+                </view>
+                <view class="goods-name">{{item.goodsName}}</view>
+            </navigator>
+        </view>
+        <view class="operation-box">
+            <button class="operation-button icon-star-empty" data-index="{{index}}" data-goods-id="{{item.goodsId}}" bind:tap="cancelCollect">
+                取消收藏
+            </button>
+        </view>
+    </view>
+        <view class="all-nothing" wx:if="{{goodsList.length==0}}">您还没有收藏任何商品</view>
+    <view class="nothing" style="display:{{atLast?'block':'none'}}">到底了!0.0</view>
+</view>

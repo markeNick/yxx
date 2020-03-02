@@ -1,0 +1,95 @@
+<view class="goods-detail">
+    <!-- 输入留言框 -->
+    <view class="speak" wx:if="{{replyView}}">
+        <view class="speak-box">
+            <view class="speak-add-pic icon-arrow-left" bind:tap="closeReply"></view>
+            <view>
+                <input class="speak-input" bindinput="changeMessage" placeholder="{{'回复'+listener}}" cursor-spacing="14" type="text" adjust-position="{{true}}" maxlength="140"></input>
+            </view>
+            <view>
+                <button class="speak-submit" size="default" bind:tap="postMessage">发送</button>
+            </view>
+        </view>
+    </view>
+    <!-- 显示卖家的信息 -->
+    <view class="seller">
+        <navigator class="seller-nav" url="/pages/otherIssue/otherIssue?uid={{userID}}" open-type="redirect" hover-class="none">
+            <image class="seller-head" src="{{userImage}}" mode="widthFix" />
+            <view class="seller-box">
+                <view class="seller-name">{{userName}}</view>
+                <view class="seller-create-time">{{createTime}}</view>
+            </view>
+        </navigator>
+    </view>
+    <!-- 商品信息 -->
+    <view class="goods-box">
+        <view class="goods-price">￥{{goodsPrice}}</view>
+        <view class="goods-info">{{goodsDescribe}}</view>
+        <view>
+            <image class="goods-pic" src="{{url}}{{item}}" mode="widthFix" wx:for="{{goodsImage}}" wx:key="{{index}}" />
+        </view>
+    </view>
+    <!-- 留言部分 -->
+    <view class="message">
+        <view class="message-hd">留言</view>
+        <view class="message-float" wx:for="{{firstMessage}}" wx:for-item="first" wx:for-index="firstIndex" wx:key="{{firstIndex}}">
+            <view wx:for="{{first}}" wx:for-item="firstFor" wx:for-index="firstForIndex" wx:key="{{firstForIndex}}">
+                <view class="m-user-box">
+                    <view class="m-userhead">
+                        <image class="m-userhead" src="{{firstFor.speakerImage}}" mode="widthFix" />
+                    </view>
+                    <view class="m-username">{{firstFor.speaker}}</view>
+                    <view>{{firstFor.createTime}}</view>
+                    <button class="m-reply-button" bind:tap="openReply" data-reply-one="true" data-message-number="{{firstFor.messageNumber}}" data-listener="{{firstFor.speaker}}" data-listener-uid="{{firstFor.buyer}}" data-reply-index="{{firstIndex}}">
+                        回复
+                    </button>
+                </view>
+                <view class="m-first-info">{{firstFor.message}}</view>
+                <view wx:for="{{reply}}" wx:for-item="replyList" wx:for-index="replyIndex" wx:key="{{replyIndex}}">
+                    <view wx:for="{{replyList}}" wx:for-item="outReply" wx:for-index="outIndex" wx:key="{{outIndex}}">
+                        <view class="m-small-box" wx:if="{{outReply.messageNumber==firstFor.messageNumber}}">
+                            <view class="m-user-box">
+                                <view class="m-userhead">
+                                    <image class="m-userhead" src="{{outReply.speakerImage}}" mode="widthFix" />
+                                </view>
+                                <view class="m-username">
+                                    {{outReply.speaker+' 回复 '+outReply.listener}}
+                                </view>
+                                <view>{{outReply.createTime}}</view>
+                                <button class="m-reply-button" bind:tap="openReply" data-reply-one="true" data-message-number="{{outReply.messageNumber}}" data-listener="{{outReply.speaker}}" data-listener-uid="{{outReply.buyer}}" data-reply-index="{{firstIndex}}">
+                                    回复
+                                </button>
+                            </view>
+                            <view class="m-first-info">{{outReply.message}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="get-more" wx:if="{{replyStatus[firstIndex].isShow}}" bind:tap="getMessageNumInfo" data-message-number="{{firstFor.messageNumber}}" data-index="{{firstIndex}}">
+                    查看更多信息
+                </view>
+            </view>
+        </view>
+        <view class="no-message" wx:if="{{firstMessage.length===0}}">
+            目前还没有人留言=.=
+        </view>
+    </view>
+    <!-- 底部购买等按钮 -->
+    <view class="want-buy">
+        <view class="want-left">
+            <!-- 留言 -->
+            <view class="leave-word" data-reply-one="false" bind:tap="openReply">
+                <text class="icon-bubble2"></text>
+                留言
+            </view>
+            <!-- 收藏 -->
+            <view class="collect" data-sid="{{goodsId}}" bind:tap="toggleCollect">
+                <text class="{{isCollect?'icon-star-full':'icon-star-empty'}}"></text>
+                {{isCollect?'已收藏':'收藏'}}
+            </view>
+        </view>
+        <view class="want-right">
+            <button class="default" wx:if="{{!isSelf||!isSale}}" type="warn" bind:tap="createChat">我想要</button>
+            <button wx:if="{{isSale}}" disabled="true">已售出</button>
+        </view>
+    </view>
+</view>

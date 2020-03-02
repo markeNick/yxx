@@ -1,0 +1,215 @@
+/* 显示卖家的信息 */
+
+.goods-detail {
+    padding: 30rpx;
+    margin-bottom: 100rpx;
+}
+
+.seller {
+    padding-bottom: 20rpx;
+    border-bottom: 1px solid #dedede;
+}
+
+.seller-nav {
+    display: flex;
+}
+
+.seller-head {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 10rpx;
+    display: inline-block;
+    border: 2rpx solid #dedede;
+}
+
+.seller-box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+}
+
+.seller-name {
+    font-weight: 600;
+    font-size: 32rpx;
+}
+
+.seller-create-time {
+    margin-top: 5rpx;
+    font-size: 28rpx;
+    color: rgb(158, 158, 158)
+}
+
+
+/* 商品信息 */
+
+.goods-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.goods-price {
+    font-size: 34rpx;
+    font-weight: 700;
+    color: rgb(224, 33, 33);
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.goods-info {
+    font-size: 33rpx;
+    font-weight: 500;
+    padding: 10rpx 0;
+}
+
+.goods-pic {
+    width: 100%;
+    padding: 5rpx 0;
+}
+
+
+/* 底部购买等按钮 */
+
+.want-buy {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100rpx;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.want-left {
+    display: flex;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    margin-left: 40rpx;
+}
+
+.want-right {
+    margin-right: 30rpx;
+    height: 80rpx;
+    padding: 10rpx;
+}
+
+.want-right button {
+    margin-top: 5rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+
+
+/* 留言 */
+
+.message {
+    background-color: #212121;
+    color: #bdbdbd;
+}
+
+.message-hd {
+    text-align: center
+}
+
+.message-float {
+    padding: 30rpx 20rpx;
+    font-size: 24rpx;
+    margin-bottom: 20rpx;
+    border-bottom: 2rpx solid #333333;
+    border-radius: 5rpx;
+}
+
+.no-message {
+    text-align: center;
+    height: 200rpx;
+    line-height: 200rpx;
+}
+
+.m-user-box {
+    display: flex;
+    align-items: center;
+    padding-left: 30rpx;
+    position: relative;
+    margin-right: 130rpx;
+}
+
+.m-userhead {
+    width: 70rpx;
+    border-radius: 50%;
+}
+
+.m-username {
+    margin: 0 10rpx;
+}
+
+.m-reply-button {
+    position: absolute;
+    right: 0;
+    height: 55rpx;
+    line-height: 55rpx;
+    width: 110rpx;
+    font-size: 26rpx;
+    margin: 0 -108rpx 0 0
+}
+
+.m-first-info {
+    margin-left: 30rpx;
+    text-indent: 25rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    background-color: #333333;
+    margin-top: 5rpx;
+    border-radius: 25rpx;
+}
+
+.m-small-box {
+    margin-top: 5rpx;
+    padding-left: 40rpx;
+    position: relative;
+}
+
+.get-more {
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 20rpx;
+}
+
+
+/* 聊天窗口 */
+
+.speak {
+    position: fixed;
+    height: 100rpx;
+    width: 92%;
+    bottom: 0;
+    z-index: 100;
+    background-color: #fff
+}
+
+.speak-box {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.speak-add-pic {
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 48rpx;
+}
+
+.speak-input {
+    border-bottom: 2rpx solid #dededd;
+    max-height: 360rpx;
+    padding: 10rpx 20rpx
+}
+
+.speak-submit {
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: #9eea6a
+}

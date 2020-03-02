@@ -1,0 +1,179 @@
+/* 商品信息 */
+
+.chat-interface {
+    height: 100%;
+    display: flex;
+    flex-direction: column
+}
+
+.goods-box {
+    /* flex: 1; */
+    height: 130rpx;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    width: 100%;
+    padding: 10rpx 20rpx;
+    line-height: 130rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 4rpx solid #dededd;
+}
+
+.goods {
+    height: 120rpx;
+    display: flex;
+}
+
+.goods-pic {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 4rpx;
+    margin: 0 10rpx;
+}
+
+.goods-price {
+    line-height: 120rpx;
+    /* color: #e02121; */
+    font-size: 34rpx;
+}
+
+.goods-solded {
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 200rpx;
+    margin-top: 10rpx;
+    margin-right: 10rpx;
+}
+
+
+/* 聊天盒子 */
+
+.chat-box {
+    /* flex: 8; */
+    margin-top: 150rpx;
+    overflow: auto;
+    padding: 20rpx;
+    margin-top: 130rpx;
+    height: 100%;
+    width: 94%;
+    margin-bottom: 100rpx;
+    background-color: rgb(245, 245, 245)
+}
+
+.chat-unself {
+    display: inline-flex;
+    margin-bottom: 30rpx;
+    width: 100%;
+}
+
+.chat-self {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    margin-bottom: 30rpx;
+    width: 100%;
+}
+
+.deal-success {
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #fff;
+    font-size: 42rpx;
+    text-align: center;
+    border-radius: 5rpx;
+}
+
+.user-head {
+    height: 80rpx;
+    width: 80rpx;
+    border-radius: 4rpx;
+}
+
+.speak-info {
+    position: relative;
+    max-width: 60%;
+    min-width: 20rpx;
+    font-size: 30rpx;
+    padding: 10rpx 20rpx;
+    margin: 0 10rpx 0 17rpx;
+    border-radius: 7rpx;
+    background-color: #9eea6a;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.self-three {
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0;
+    border-right: 50rpx solid #9eea6a;
+    border-bottom: 50rpx solid #9eea6a;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.unself-three {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    border-right: 50rpx solid #9eea6a;
+    border-bottom: 50rpx solid #9eea6a;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.speak-time {
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: 28rpx;
+    color: #afafac
+}
+
+
+/* 底部发言框 */
+
+.speak {
+    /* position: fixed; */
+    height: 100rpx;
+    width: 100%;
+    bottom: 0;
+    background-color: #fff;
+    position: fixed;
+}
+
+.speak-box {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* padding-bottom: 10rpx */
+}
+
+.speak-add-pic {
+    width: 80rpx;
+    height: 80rpx;
+    vertical-align: bottom
+}
+
+.speak-input {
+    border-bottom: 2rpx solid #dededd;
+    /* background-color: #afafac; */
+    /* height: 60rpx;
+    
+    line-height: 60rpx; */
+    max-height: 360rpx;
+    padding: 10rpx 20rpx
+}
+
+.speak-submit {
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: #9eea6a
+}

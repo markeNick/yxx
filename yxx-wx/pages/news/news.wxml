@@ -1,0 +1,73 @@
+<view class="news">
+    <view class="news-search">
+        <view class="{{type===0?'beclick ':''}}exchanges icon-users" bind:tap="switchType" data-type="false">
+            聊天列表
+        </view>
+        <view class="{{type===1?'beclick icon-bubble ':' icon-bubble2 '}}reply" bind:tap="switchType" data-type="true">
+            回复我的
+        </view>
+    </view>
+    <view wx:if="{{type===0}}" class="bigbox">
+        <view class="exchange-box" wx:for="{{chatList}}" wx:key="{{index}}" bind:touchstart="touchStart" bind:touchend="touchEnd">
+            <view bind:tap="navToAndDelete" data-index="{{index}}" data-me="{{item.aopenID}}" data-other="{{item.bopenID}}" data-other-name="{{item.userName}}" data-other-image="{{item.userImage}}" data-goods-status="{{item.status}}" data-goods-id="{{item.goodsID}}" data-goods-img="{{item.goodsImage[0]}}" data-price="{{item.goodsPrice}}" data-seller="{{item.seller}}" style="display:initial">
+                <view class="user">
+                    <view class="user-info">
+                        <view class="">
+                            <image class="user-head" src="{{item.userImage}}" mode="scaleToFill" />
+                        </view>
+                        <view class="user-box">
+                            <view class="user-name">{{item.userName}}</view>
+                            <view class="speak-last">{{item.lastType?'图片':item.last}}</view>
+                            <view class="speak-num" wx:if="{{item.unreadNum>0}}">
+                                {{item.unreadNum}}
+                            </view>
+                            <view class="speak-last-time">{{item.lastTime}}</view>
+                        </view>
+                    </view>
+                    <view class="">
+                        <image class="goods-pic" src="{{url+item.goodsImage[0]}}" mode="widthFill" lazy-load="false" binderror="" bindload=""></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="all-nothing" wx:if="{{chatList.length==0}}">还没有人和您进行聊天</view>
+    </view>
+    <view wx:if="{{type===1}}" class="bigbox">
+        <view class="reply-box" wx:for="{{messageList}}" wx:key="{{index}}">
+            <view class="reply-user">
+                <view>
+                    <image class="reply-user-head" src="{{item.speakerImage}}" mode="widthFill"></image>
+                </view>
+                <view class="reply-info">
+                    <view class="reply-user-box">
+                        <view class="reply-user-name">{{item.speaker}}</view>
+                        <view>回复了你</view>
+                    </view>
+                    <view class="reply-word">{{item.message}}</view>
+                    <view class="reply-time">{{item.createTime}}</view>
+                    <view class="reply-button" bind:tap="openReply" data-goods-id="{{item.goodsId}}" data-listener="{{item.speaker}}" data-listener-uid="{{item.buyer}}" data-message-num="{{item.messageNumber}}">
+                        回复
+                    </view>
+                </view>
+            </view>
+            <view>
+                <navigator url="/pages/goodsDetail/goodsDetail?sid={{item.goodsId}}">
+                    <image class="reply-goods" src="{{url+item.goodsImage[0]}}" mode="scaleToFill"></image>
+                </navigator>
+            </view>
+        </view>
+        <view class="all-nothing" wx:if="{{messageList.length==0}}">没有人回复你</view>
+    </view>
+    <!-- 输入留言框 -->
+    <view class="speak" wx:if="{{replyView}}">
+        <view class="speak-box">
+            <view class="speak-add-pic icon-arrow-left" bind:tap="closeReply"></view>
+            <view>
+                <input class="speak-input" bindinput="changeMessage" placeholder="{{'回复'+listener}}" cursor-spacing="14" type="text" adjust-position="{{true}}" maxlength="140"></input>
+            </view>
+            <view>
+                <button class="speak-submit" size="default" bind:tap="postMessage">发送</button>
+            </view>
+        </view>
+    </view>
+</view>

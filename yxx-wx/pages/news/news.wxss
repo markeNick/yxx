@@ -1,0 +1,230 @@
+.news {
+    overflow: auto;
+}
+
+.news-search {
+    display: flex;
+    justify-content: space-around;
+    height: 100rpx;
+    background-color: palegreen;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.bigbox {
+    margin-top: 100rpx;
+}
+
+.exchanges,
+.reply {
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.beclick {
+    color: blue
+}
+
+
+/* 聊天列表 */
+
+.exchange-box {
+    height: 150rpx;
+    padding: 0 30rpx;
+    border-bottom: 2rpx solid #beb7b7;
+}
+
+.user {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.user-info {
+    display: flex;
+    justify-content: center
+}
+
+.user-head {
+    height: 90rpx;
+    width: 90rpx;
+    border-radius: 5rpx;
+}
+
+.user-box {
+    display: inline-flex;
+    flex-direction: column;
+    margin-left: 30rpx;
+    position: relative;
+}
+
+.user-name {
+    font-size: 30rpx;
+    font-weight: 600;
+}
+
+.speak-last {
+    font-size: 30rpx;
+    color: #797676;
+    height: 36rpx;
+    line-height: 36rpx;
+    width: 400rpx;
+    overflow: hidden;
+    margin-top: 5rpx;
+}
+
+.speak-num {
+    position: absolute;
+    right: 0;
+    width: 40rpx;
+    height: 40rpx;
+    color: #fff;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    top: 37rpx;
+}
+
+.speak-last-time {
+    font-size: 22rpx;
+    color: #797676;
+    margin-top: 10rpx;
+}
+
+.goods-pic {
+    height: 105rpx;
+    width: 120rpx;
+    border-radius: 2rpx;
+}
+
+
+/* 回复我的 */
+
+.reply-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 15rpx 30rpx;
+    border-bottom: 2rpx solid #beb7b7;
+}
+
+.reply-user {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reply-user-head {
+    height: 100rpx;
+    width: 100rpx;
+    border-radius: 50%;
+}
+
+.reply-info {
+    position: relative;
+    margin-top: 10rpx;
+    font-size: 28rpx;
+    margin-left: 20rpx;
+}
+
+.reply-user-box {
+    display: flex;
+}
+
+.reply-goods {
+    height: 150rpx;
+    width: 150rpx;
+}
+
+.reply-user-name {
+    font-size: 30rpx;
+    font-weight: 600;
+    display: -webkit-inline-box;
+    max-width: 260rpx;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 8rpx;
+}
+
+.reply-word {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 30rpx;
+    color: #797676;
+    overflow: hidden;
+    line-height: 36rpx;
+    width: 400rpx;
+    margin-top: 10rpx;
+}
+
+.reply-time {
+    font-size: 30rpx;
+    color: #797676;
+    margin-top: 15rpx;
+}
+
+.tt {
+    display: inline-block
+}
+
+.reply-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 55rpx;
+    width: 100rpx;
+    padding: 0;
+    text-align: center;
+    line-height: 55rpx;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    margin-right: 10rpx;
+    margin-bottom: -12rpx;
+}
+
+
+/* 聊天窗口 */
+
+.speak {
+    position: fixed;
+    height: 100rpx;
+    width: 100%;
+    bottom: 0;
+    z-index: 100;
+    background-color: #fff
+}
+
+.speak-box {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.speak-add-pic {
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 48rpx;
+}
+
+.speak-input {
+    border-bottom: 2rpx solid #dededd;
+    max-height: 360rpx;
+    padding: 10rpx 20rpx
+}
+
+.speak-submit {
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: #9eea6a
+}

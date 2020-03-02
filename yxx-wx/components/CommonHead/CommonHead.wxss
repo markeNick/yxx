@@ -1,0 +1,49 @@
+.common-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+
+.logo image,
+.logo navigator {
+    margin-top: 5rpx;
+    margin-right: 20rpx;
+    height: 68rpx;
+    width: 150rpx;
+}
+
+.search {
+    position: relative;
+    margin-right: 30rpx;
+}
+
+.search input {
+    background-color: #fff;
+    border-radius: 30rpx;
+    font-size: 32rpx;
+    padding: 8rpx 62rpx 8rpx 20rpx;
+}
+
+.search .icon-search {
+    position: absolute;
+    right: 0rpx;
+    top: 0rpx;
+    padding: 15rpx 0;
+    height: 40rpx;
+    /* line-height: 70rpx; */
+    width: 65rpx;
+    text-align: center;
+    color: #aaa;
+}
+
+.user-head image,
+.user-head navigator {
+    height: 60rpx;
+    width: 60rpx;
+    border-radius: 50%;
+}

@@ -1,0 +1,34 @@
+<view class="goods-list">
+    <common-head bind:search="getSearch" bind:whatSearch="getWhatSearch"></common-head>
+    <!-- 滑动导航栏 -->
+    <view class="slide-navbar">
+        <scroll-view class="navbar-box" scroll-x="true">
+            <view class="{{currentIndex==index?'navbar-active':''}} navbar-content" bindtap="checkNav" data-index="{{item.categoryId}}" hover-class="none" url="" wx:for="{{navBar}}" wx:key="{{item.categoryId}}">
+                {{item.category}}
+            </view>
+        </scroll-view>
+    </view>
+    <view class="list" hover-class="none" hover-stop-propagation="false">
+        <navigator class="list-box" url="/pages/goodsDetail/goodsDetail?sid={{item.goodsId}}" wx:for="{{goodsList}}" wx:key="{{item.goodsId}}">
+            <!-- 商品图片 -->
+            <view>
+                <image class="goods-pic" src="{{url}}{{item.goodsImage[0]}}" mode="scaleToFill" lazy-load="false"></image>
+            </view>
+            <!-- 商品介绍 -->
+            <view class="goods-box" hover-class="none" hover-stop-propagation="false">
+                <view class="goods-title" hover-class="none">
+                   {{item.goodsName}}
+                </view>
+                <view class="goods-price" hover-class="none" hover-stop-propagation="false">
+                    ￥{{item.goodsPrice}}
+                </view>
+                <view class="goods-master" hover-class="none" hover-stop-propagation="false">
+                    <image class="" src="{{item.userImage}}" mode="widthFix" />
+                    {{item.userName}}
+                </view>
+            </view>
+        </navigator>
+    </view>
+              <view class="all-nothing" wx:if="{{goodsList.length==0}}">这里什么没有噢0.0</view>
+                  <view class="nothing" style="display:{{atLast?'block':'none'}}">到底了!0.0</view>
+</view>

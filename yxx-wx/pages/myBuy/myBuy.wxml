@@ -1,0 +1,33 @@
+<view class="my-buy">
+    <view class="buy-box" wx:for="{{goodsList}}" wx:key="{{item.goodsId}}">
+        <!-- 上部分-商品信息 -->
+        <navigator url="/pages/goodsDetail/goodsDetail?sid={{item.goodsId}}">
+            <view class="buy-hd">
+                <view>
+                    <image class="goods-pic" src="{{url}}{{item.goodsImage[0]}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+                </view>
+                <view>
+                    <view class="goods-title">{{item.goodsName}}</view>
+                    <view class="goods-price">￥{{item.goodsPrice}}</view>
+                    <view></view>
+                </view>
+            </view>
+        </navigator>
+        <!-- 下部分-对应的操作 -->
+        <view class="buy-bd">
+            <view>
+                <view bind:tap="createChat" data-me="{{item.buyer}}" data-other="{{item.seller}}" data-other-name="{{item.userName}}" data-other-image="{{item.userImage}}" data-goods-id="{{item.goodsId}}" data-goods-img="{{item.goodsImage[0]}}" data-price="{{item.goodsPrice}}" data-seller="{{item.seller}}">
+                    <view class="icon-bubble2"></view>
+                    <view class="link-buyer">联系卖家</view>
+                </view>
+            </view>
+            <view>
+                <button class="operation" data-goods-id="{{item.goodsId}}" data-index="{{index}}" bind:tap="deleteOrder">
+                    删除订单
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="all-nothing" wx:if="{{goodsList.length==0}}">您还没有购买任何商品</view>
+    <view class="nothing" style="display:{{atLast?'block':'none'}}">到底了!0.0</view>
+</view>
